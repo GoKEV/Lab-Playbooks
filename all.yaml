@@ -3,6 +3,6 @@
   hosts: all
   remote_user: root
   tasks:
-    - include: tasks/motd_customize.yaml
-    - include: tasks/rpm_install.yaml
+    - include: motd_customize.yaml
+    - include: rpm_install.yaml
 
