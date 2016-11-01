@@ -1,0 +1,14 @@
+- name: include packages
+
+  vars:
+    install_packages:
+      - libselinux-python
+      - network-utils
+      - netstat
+      - nmap
+      - nano
+      - ntp
+      - screen
+      - sysstat
+
+

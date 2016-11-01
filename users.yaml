@@ -1,0 +1,28 @@
+- name: common user settings
+  hosts: all
+  remote_user: root
+
+  tasks:
+    - template: src=includes/screenrc dest=/root/.screenrc owner=root group=root mode=0644 backup=yes
+    - template: src=includes/screenrc dest=/etc/skel/.screenrc owner=root group=root mode=0644
+
+# groups
+    - name: group sudo creation
+      group: name=sudo state=present gid=123
+    - name: group svcacct creation
+      group: name=svcacct state=present gid=124
+
+# user root
+    - name: user root
+      user: name=root password='$6$e.QNc0XIKZKIrQBy$1362djxE/wqe/DGL9MAwbMEjmdwRGAOBrvyawBnDPswFJJXwJXhaIZEDMce1sK68OiK7/h8V6zibayfgVODBx/' generate_ssh_key=yes
+
+    - name: screenrc template for existing user
+      template: src=includes/screenrc dest=/root/.screenrc owner=root group=root mode=0644 backup=yes
+
+# user serviceaccount
+    - name: user serviceaccount
+      user: name=serviceaccount password='$6$PCiwYvBD$dDO2FLvtQ8PbHF7miqYUGlxEJBAMdU/qqrgN05X7gZbu1/uNciG4RhOVHWAEC6lSAxMzxR6htb8yu12cUrJ8r0' uid=501 group=svcacct groups=wheel,sudo append=yes home=/home/serviceaccount move_home=yes createhome=yes generate_ssh_key=yes
+
+    - name: screenrc template for existing user
+      template: src=includes/screenrc dest=/home/serviceaccount/.screenrc owner=serviceaccount group=svcacct mode=0644
+

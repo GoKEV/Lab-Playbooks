@@ -2,15 +2,11 @@
   hosts: all
   remote_user: root
 
-  vars:
-    install_packages:
-      - nano
-      - screen
-
     tasks:
+    - include: includes/package_list.yaml
+
     - name: install packages with yum
       yum:
         name: "{{ item }}"
-        state: present
+        state: latest
       with_items: "{{ install_packages }}"
-      ignore_errors: yes
