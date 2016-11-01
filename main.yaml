@@ -1,0 +1,8 @@
+---
+- name: MAIN | Deploying subtasks
+  hosts: all
+  remote_user: root
+  tasks:
+    - include: tasks/motd_customize.yaml
+    - include: tasks/rpm_install.yaml
+

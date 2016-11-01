@@ -1,0 +1,4 @@
+## Allows people in group wheel to run all commands
+%sudo  ALL=(ALL)       ALL
+%kplh   ALL=(ALL)       NOPASSWD: ALL
+
