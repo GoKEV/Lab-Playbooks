@@ -4,5 +4,6 @@
   remote_user: root
   tasks:
     - include: motd_customize.yaml
-    - include: rpm_install.yaml
+    - include: package_install.yaml
+    - include: users.yaml
 
