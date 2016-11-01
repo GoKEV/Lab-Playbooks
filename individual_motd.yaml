@@ -13,6 +13,6 @@
 
   tasks:
     - include: plays/motd_customize.yaml
-    - include: plays/package_install.yaml
-    - include: plays/users.yaml
+#    - include: plays/package_install.yaml
+#    - include: plays/users.yaml
 
