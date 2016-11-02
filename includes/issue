@@ -1,6 +1,3 @@
 \S
 Kernel \r on an \m
 
-The server, {{ ansible_hostname }}, is a secure system.  Unauthorized users will be flogged.
-
-

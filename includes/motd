@@ -28,3 +28,11 @@ COREs		{{ ansible_processor_cores }}
 PLAYBOOK RUN	{{ ansible_date_time["weekday"] }}, {{ ansible_date_time["date"] }} {{ ansible_date_time["time"] }} {{ ansible_date_time["tz"] }}
 
   --------------------------------------------------------------------
+
+
+
+
+
+
+
+
