@@ -13,14 +13,14 @@
 
   tasks:
     - include: plays/motd_customize.yaml
-      when: ansible_distribution[ANSIBLERUN] is defined and ansible_distribution[ANSIBLERUN] == 'yes'
+      when: ansible_cmdline[ANSIBLERUN] is defined and ansible_cmdline[ANSIBLERUN] == 'yes'
 
     - include: plays/package_install.yaml
-      when: ansible_distribution[ANSIBLERUN] is defined and ansible_distribution[ANSIBLERUN] == 'yes'
+      when: ansible_cmdline[ANSIBLERUN] is defined and ansible_cmdline[ANSIBLERUN] == 'yes'
 
     - include: plays/users.yaml
-      when: ansible_distribution[ANSIBLERUN] is defined and ansible_distribution[ANSIBLERUN] == 'yes'
+      when: ansible_cmdline[ANSIBLERUN] is defined and ansible_cmdline[ANSIBLERUN] == 'yes'
 
     - include: plays/figlet.yaml
-      when: ansible_distribution[ANSIBLERUN] is defined and ansible_distribution[ANSIBLERUN] == 'yes'
+      when: ansible_cmdline[ANSIBLERUN] is defined and ansible_cmdline[ANSIBLERUN] == 'yes'
 
