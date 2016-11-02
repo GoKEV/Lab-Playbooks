@@ -16,3 +16,4 @@
     - include: plays/package_install.yaml
     - include: plays/users.yaml
     - include: plays/figlet.yaml
+    - include: plays/cowsay.yaml

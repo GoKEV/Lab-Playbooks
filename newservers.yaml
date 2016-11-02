@@ -24,3 +24,6 @@
     - include: plays/figlet.yaml
       when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
 
+    - include: plays/cowsay.yaml
+      when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
+
