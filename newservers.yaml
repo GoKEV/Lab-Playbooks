@@ -27,3 +27,4 @@
     - include: plays/cowsay.yaml
       when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
 
+    - raw: touch /tmp/playbookdone
