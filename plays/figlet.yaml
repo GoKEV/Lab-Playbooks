@@ -5,4 +5,4 @@
   synchronize: src=includes/figletfonts/ dest=/usr/share/figlet/
 
 - name: add figlet hostname to MOTD
-  raw: figlet -f rectangles `hostname -f` >> /etc/motd
+  raw: figlet -f rectangles `hostname -f` >> /etc/issue

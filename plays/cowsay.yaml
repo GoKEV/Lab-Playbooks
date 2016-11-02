@@ -2,4 +2,4 @@
   yum: name=cowsay state=latest
 
 - name: add cowsay hostname to MOTD
-  raw: cowsay first-boot hardening provided by API calls to Ansible Tower >> /etc/motd
+  raw: cowsay This is a secure system and unauthorized users are not allowed.  Your usage is being tracked and is conditional to your compliance with the company policy. >> /etc/issue

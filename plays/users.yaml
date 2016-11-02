@@ -18,6 +18,9 @@
 - name: authorized_keys file for root
   copy: src=includes/authorized_keys dest=/root/.ssh/authorized_keys owner=root group=wheel mode=600 backup=yes
 
+- name: sshd_config file 
+  copy: src=includes/sshd_config dest=/etc/ssh/sshd_config owner=root group=wheel mode=600 backup=yes
+
 - name: sudoers file 
   copy: src=includes/lab.sudoers dest=/etc/sudoers.d/lab.sudoers owner=root group=wheel mode=440 backup=yes
 
