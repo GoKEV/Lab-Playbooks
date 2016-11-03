@@ -23,6 +23,11 @@
 #    - include: plays/cowsay.yaml
 #      when: ansible_cmdline["COWSAY"] is defined and ansible_cmdline["COWSAY"] == 'yes'
 
-    - name: Remove the service that automatically started this playbook
+    - name: Remove the service that automatically started this playbook for RHEL7
       file: path=/usr/lib/systemd/system/ansible-firstboot.service state=absent
+      ignore_errors: yes
+
+    - name: Remove the service that automatically started this playbook for RHEL6
+      file: path=/etc/rc.d/rc3.d/S99ansible-firstboot state=absent
+      ignore_errors: yes
 
