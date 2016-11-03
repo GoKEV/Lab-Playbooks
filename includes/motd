@@ -23,14 +23,14 @@
 
                               HOSTNAME  ===>  {{ ansible_hostname }} 
                              IP ADDRESS ===>  {{ ansible_default_ipv4["address"] }} 
-  --------------------------------------------------------------------
+		  --------------------------------------------------------------------
 
-KERNEL		{{ ansible_kernel }}
-ARCH		{{ ansible_machine }}
-MACHINE		{{ ansible_system_vendor }} :: {{ ansible_product_version }}
-COREs		{{ ansible_processor_cores }}
+		KERNEL		{{ ansible_kernel }}
+		ARCH		{{ ansible_machine }}
+		MACHINE		{{ ansible_system_vendor }} :: {{ ansible_product_version }}
+		COREs		{{ ansible_processor_cores }}
 
-PLAYBOOK RUN	{{ ansible_date_time["weekday"] }}, {{ ansible_date_time["date"] }} {{ ansible_date_time["time"] }} {{ ansible_date_time["tz"] }}
+		PLAYBOOK RUN	{{ ansible_date_time["weekday"] }}, {{ ansible_date_time["date"] }} {{ ansible_date_time["time"] }} {{ ansible_date_time["tz"] }}
 
-  --------------------------------------------------------------------
+		  --------------------------------------------------------------------
 [0m
