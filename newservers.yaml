@@ -20,8 +20,8 @@
 
     - include: plays/figlet.yaml
 
-    - include: plays/cowsay.yaml
-      when: ansible_cmdline["COWSAY"] is defined and ansible_cmdline["COWSAY"] == 'yes'
+#    - include: plays/cowsay.yaml
+#      when: ansible_cmdline["COWSAY"] is defined and ansible_cmdline["COWSAY"] == 'yes'
 
     - name: Remove the service that automatically started this playbook
       file: path=/usr/lib/systemd/system/ansible-firstboot.service state=absent
