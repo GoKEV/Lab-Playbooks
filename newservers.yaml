@@ -13,18 +13,16 @@
 
   tasks:
     - include: plays/motd_customize.yaml
-      when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
 
     - include: plays/package_install.yaml
-      when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
 
     - include: plays/users.yaml
-      when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
 
     - include: plays/figlet.yaml
-      when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
 
     - include: plays/cowsay.yaml
-      when: ansible_cmdline["ANSIBLERUN"] is defined and ansible_cmdline["ANSIBLERUN"] == 'yes'
+      when: ansible_cmdline["COWSAY"] is defined and ansible_cmdline["COWSAY"] == 'yes'
 
-    - raw: touch /tmp/playbookdone
+    - name: Remove the service that automatically started this playbook
+      file: path=/usr/lib/systemd/system/ansible-firstboot.service state=absent
+
