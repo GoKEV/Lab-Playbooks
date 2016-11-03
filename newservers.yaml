@@ -31,4 +31,4 @@
       file: path=/etc/rc.d/rc3.d/S99ansible-firstboot state=absent
       ignore_errors: yes
 
-      raw: reboot
+    - raw: reboot
