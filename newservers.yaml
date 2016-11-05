@@ -32,6 +32,6 @@
       ignore_errors: yes
 
     - name: Reboot server
-      raw: /usr/bin/sleep 5 && /sbin/shutdown -r now "Ansible is rebooting me" &
+      raw: /sbin/shutdown -r now "Ansible is rebooting me"
       when: rebootrequired is defined and rebootrequired == 'yes'
       ignore_errors: yes
