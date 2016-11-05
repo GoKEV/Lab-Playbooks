@@ -33,6 +33,6 @@
 
     - name: Rebooting if required.
       raw: sleep 5 ; reboot &
-      when: extra_vars["rebootrequired"] is defined and extra_vars["rebootrequired"] == 'yes'
+      when: rebootrequired is defined and rebootrequired == 'yes'
       ignore_errors: true
 
