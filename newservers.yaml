@@ -32,6 +32,6 @@
       ignore_errors: yes
 
     - name: Reboot server
-      command: /sbin/reboot
+      command: /sbin/shutdown -r 1 "Ansible Tower Requested" ; echo
       when: rebootrequired is defined and rebootrequired == 'yes'
       ignore_errors: yes
