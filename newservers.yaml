@@ -31,6 +31,8 @@
       file: path=/etc/rc.d/rc3.d/S99ansible-firstboot state=absent
       ignore_errors: yes
 
+    - debug var=extra_vars["rebootrequired"] verbosity=4
+
     - name: Rebooting if required.
       raw: sleep 5 ; reboot &
       when: extra_vars["rebootrequired"] is defined and extra_vars["rebootrequired"] == 'yes'
