@@ -37,7 +37,10 @@
       when: rebootrequired is defined and rebootrequired == 'yes'
 
     - name: execute the reboot script
-      raw: /root/ansible_reboot.sh &
+      raw: /root/ansible_reboot.sh
+
+    - name: 1 second delay
+      raw: sleep 5
 
     - name: removing reboot temp script
       file: path=/root/ansible_reboot.ssh state=absent
