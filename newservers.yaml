@@ -32,3 +32,5 @@
       ignore_errors: yes
 
     - raw: reboot
+      when: extra_vars["rebootrequired"] is defined and extra_vars["rebootrequired"] == 'yes'
+
