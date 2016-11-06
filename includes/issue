@@ -1,18 +1,13 @@
 \S
 Kernel \r on an \m
 
+You are about to connect to 
+
+YOU ARE ABOUT TO CONNECT TO {{ ansible_hostname }} ON THE {{ ansible_domain }} DOMAIN.
+
 The computer you are about to use is company owned and is intended to be used for official company
 business. As such, the company reserves the right to monitor all activity on all company provided
-equipment and services. Use of the company provided information systems and networks in violation
-of company guidelines will result in disciplinary action, up to and including termination., 
-Occasional personal usage on company equipment is permitted. Under no conditions are you permitted 
-to use company equipment to:,
-	• Conduct your own business for personal gains.,
-	• Access, create or distribute pornography or ethnic hate inducing content.,
-	• Generate material that can be construed as rude, intolerant or demeaning.,
-	• Share company information with any competitors or competitors' alliances.,
-	• Install software without prior management and IT approval., 
+equipment and services. All use of this machine must comply with company IT policies, which are
+available from HR.
 
-The above does not represent the complete list of computer usage violations. For further details,
-contact your HR department or your manager.
 
