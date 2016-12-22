@@ -21,25 +21,27 @@
 
     - include: plays/satellite-reg.yaml
 
-## If this is a RHEL6 machine
-    - name: Remove the service the kickstart laid down for RHEL6
-      file: path=/etc/rc.d/rc3.d/S99ansible-firstboot state=absent
-      ignore_errors: yes
 
-## If this is a RHEL7 machine
-    - name: Remove the service the kickstart laid down for RHEL7
-      file: path=/usr/lib/systemd/system/ansible-firstboot.service state=absent
-      ignore_errors: yes
+## If we called for a reboot
+    - name: reboot host RHEL6 if we call for a reboot
+      command: sleep 5 ; /sbin/shutdown -r ; echo &
+      when: rebootrequired is defined and rebootrequired == 'yes' and ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
 
-    - name: reboot host
+
+    - name: reboot host RHEL7 if we call for a reboot
       command: /usr/bin/systemd-run --on-active=10 /usr/bin/systemctl reboot
       async: 0
       poll: 0
-      when: rebootrequired is defined and rebootrequired == 'yes'
-
-    - name: wait for host sshd
-      local_action: wait_for host="{{ inventory_hostname }}" search_regex=OpenSSH port=22 timeout=300 delay=30
-      when: rebootrequired is defined and rebootrequired == 'yes'
+      when: rebootrequired is defined and rebootrequired == 'yes' and ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
 
+    - name: wait for host sshd if we call for a reboot
+      local_action: wait_for host="{{ inventory_hostname }}" search_regex=OpenSSH port=22 timeout=300 delay=90
+      when: rebootrequired is defined and rebootrequired == 'yes' and ansible_os_family == "RedHat" 
+
+    - name: Display conditionals for this request
+      debug: msg="rebootrequired is {{ rebootrequired }} and ansible_os_family is {{ ansible_os_family }} and ansible_distribution_major_version is {{ ansible_distribution_major_version }}"
+
+    - name: Display all variables/facts known for a host
+      debug: var=hostvars[inventory_hostname] verbosity=4
 
