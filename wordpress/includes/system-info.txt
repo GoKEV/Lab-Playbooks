@@ -1,14 +1,18 @@
 #  --------------------------------------------------------------------
 #	KERNEL		{{ ansible_kernel }}
-#	OS		{{ ansible_lsb["description"] }}
-#	VER.		{{ ansible_lsb["release"] }}
-#	MAJ.		{{ ansible_lsb["major_release"] }}
-#	ARCH		{{ ansible_machine }}
+#	OS		{{ ansible_system }}
+#	VER.		{{ ansible_distribution_version }}
 #	MACHINE		{{ ansible_system_vendor }} :: {{ ansible_product_version }}
 #	COREs		{{ ansible_processor_cores }}
 #
 #	LAST RUN	{{ ansible_date_time["weekday"] }}, {{ ansible_date_time["date"] }} {{ ansible_date_time["time"] }} {{ ansible_date_time["tz"] }}
 #
-#	PROMISCUOUS	{{ ansible_lo["promisc"} }}
+#	PROMISCUOUS	{{ ansible_lo["promisc"] }}
 #	SELINUX		{{ ansible_selinux }}
 #
+
+
+
+
+
+

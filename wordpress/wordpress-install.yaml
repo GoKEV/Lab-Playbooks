@@ -21,14 +21,6 @@
         state: latest
       with_items: "{{ install_packages }}"
 
-    - name: enable firewall for http traffic
-      firewalld:
-        service: http
-        permanent: true
-        immediate: true
-        state: enabled
-        ignore_errors: yes
-
     - name: Retrieve and extract the wordpress.org/latest.zip file
       unarchive:
         src: https://wordpress.org/latest.zip
@@ -59,7 +51,7 @@
     - name: copy a fun template of some variables
       template:  
         src: includes/system-info.txt
-        dest: /tmp/system-info.txt
+        dest: /root/system-info.txt
         owner: root
         group: root
         mode: 0644
@@ -99,7 +91,7 @@
         permanent: true
         immediate: true
         state: enabled
-        ignore_errors: yes
+      ignore_errors: yes
 
     - name: enable http and restart it
       service:
