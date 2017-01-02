@@ -6,7 +6,7 @@
   vars:
     remove_paths:
     - /var/www/html/wordpress/
-    - /var/lib/mysql/wordpress/
+    - /var/lib/mysql/
     - /tmp/wordpress.sql
     - /root/system-info.txt
 
