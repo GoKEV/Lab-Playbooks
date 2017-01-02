@@ -1,5 +1,7 @@
 # Ansible Playbooks
 
+First off, please don't use these on anything production.  In fact, don't use these if you don't understand what they're doing.  Some of the playbooks here will change configuration files and overwrite settings on your servers.  Only run these on non-production servers and servers where you aren't afraid of changes.  I am not responsible for anything that happens because you run this in a place where it wasn't meant to be run.  Thank you.  -Kev
+
 [![N|Solid](http://gokev.com/GoKEVicon300.png)](https://goKev.com)
 
 This is a set of stuff to go along with a Red Hat Satellite Server 6.x implementation
