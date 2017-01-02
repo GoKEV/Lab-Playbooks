@@ -6,12 +6,11 @@
   vars:
     install_packages:
     - unzip
-    - libzip
     - httpd
     - php
     - php-mysql
     - mariadb
-    - mariadb-server 
+    - mariadb-server
     - libselinux-python
 
   tasks:
