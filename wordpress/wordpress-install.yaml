@@ -66,6 +66,7 @@
 
     - name: import wordpress.sql to our wordpress server
       raw: 'mysql wordpress < /tmp/wordpress.sql'
+      ignore_errors: yes
 
     - name: copy our existing config to the site
       copy:  
