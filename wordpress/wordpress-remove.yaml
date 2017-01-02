@@ -1,0 +1,40 @@
+---
+- name: MAIN | Deploying subtasks
+  hosts: all
+  remote_user: root
+
+  vars:
+    remove_paths:
+    - /var/www/html/wordpress/
+    - /var/lib/mysql/wordpress/
+    - /tmp/wordpress.sql
+    - /root/system-info.txt
+
+    remove_packages:
+    - httpd
+    - php
+    - php-mysql
+    - mariadb
+    - mariadb-server 
+
+  tasks:
+    - name: remove packages
+      yum:
+        name: "{{ item }}"
+        state: absent
+      with_items: "{{ remove_packages }}"
+
+    - name: remove paths and files
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items: "{{ remove_paths }}"
+
+    - name: disable httpd firewall rule
+      firewalld:
+        service: http
+        permanent: true
+        immediate: true
+        state: disabled
+      ignore_errors: yes
+
