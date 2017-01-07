@@ -23,10 +23,10 @@
 
 - name: sudoers file 
   copy: src=includes/lab.sudoers dest=/etc/sudoers.d/lab.sudoers owner=root group=wheel mode=440 backup=yes
+#
+#- name: user serviceaccount
+#  user: name=serviceaccount password='$6$PCiwYvBD$dDO2FLvtQ8PbHF7miqYUGlxEJBAMdU/qqrgN05X7gZbu1/uNciG4RhOVHWAEC6lSAxMzxR6htb8yu12cUrJ8r0' uid=501 group=svcacct groups=nobody,sudo append=yes home=/home/serviceaccount move_home=yes createhome=yes
 
-- name: user serviceaccount
-  user: name=serviceaccount password='$6$PCiwYvBD$dDO2FLvtQ8PbHF7miqYUGlxEJBAMdU/qqrgN05X7gZbu1/uNciG4RhOVHWAEC6lSAxMzxR6htb8yu12cUrJ8r0' uid=501 group=svcacct groups=nobody,sudo append=yes home=/home/serviceaccount move_home=yes createhome=yes
-
-- name: screenrc template for existing user
-  template: src=includes/screenrc dest=/home/serviceaccount/.screenrc owner=serviceaccount group=svcacct mode=0644
+#- name: screenrc template for existing user
+#  template: src=includes/screenrc dest=/home/serviceaccount/.screenrc owner=serviceaccount group=svcacct mode=0644
 
