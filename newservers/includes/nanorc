@@ -1,6 +1,5 @@
 ## Nanorc file written by GoKEV Lab-Playbooks 
 ##  https://github.com/GoKEV/Lab-Playbooks
-## {{ ansible_date_time["weekday"] }}, {{ ansible_date_time["date"] }} {{ ansible_date_time["time"] }} {{ ansible_date_time["tz"] }}
 
 set nowrap
 set speller "hunspell"
