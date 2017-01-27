@@ -1,0 +1,8 @@
+---
+- name: MAIN | SHUTDOWN
+  hosts: all
+  remote_user: root
+
+  tasks:
+    - name: Shut down host
+      command: sleep 5 ; /sbin/shutdown -h ; echo &
