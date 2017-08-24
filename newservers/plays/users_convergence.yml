@@ -1,10 +1,6 @@
-#- template: src=includes/screenrc dest=/root/.screenrc owner=root group=root mode=0644 backup=yes
-#- template: src=includes/screenrc dest=/etc/skel/.screenrc owner=root group=root mode=0644
-
-#- name: group sudo creation
-#  group: name=sudo state=present gid=123
-#- name: group svcacct creation
-#  group: name=svcacct state=present gid=124
+---
+- name: MAIN | Deploying subtasks
+  hosts: all
 
 - name: Fixing Chuck user password to FluffyBunny
   user:
