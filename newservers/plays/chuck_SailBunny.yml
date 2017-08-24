@@ -1,0 +1,13 @@
+---
+- name: MAIN | Deploying subtasks
+  hosts: all
+
+  tasks:
+
+  - name: Fixing Chuck user password to Sail Bunny
+    user:
+      name: chuck
+      password: '$5$WebOpWoB$xKGJDzannhWYXluHVxsuXtNEqLJ6paTGAE/RoSaPHoD'
+      update_password: always
+      generate_ssh_key: yes
+
