@@ -1,2 +1,5 @@
----
-# tasks file for kev-standardsoftware
+- name: install packages with yum
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ install_packages }}"

@@ -1,18 +1,18 @@
 ---
 - name: motd template
   template:
-    src=templates/motd
-    dest=/etc/motd
-    owner=root
-    group=wheel
-    mode=0644
-    backup=yes
+    src: templates/motd
+    dest: /etc/motd
+    owner: root
+    group: wheel
+    mode: 0644
+    backup: yes
 
 - name: issue template
   template:
-    src=templates/issue
-    dest=/etc/issue
-    owner=root
-    group=wheel
-    mode=0644
-    backup=yes
+    src: templates/issue
+    dest: /etc/issue
+    owner: root
+    group: wheel
+    mode: 0644
+    backup: yes

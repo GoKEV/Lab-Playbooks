@@ -5,11 +5,29 @@
     state: latest
 
 - name: nanorc template
-  template: src=templates/nanorc dest=/etc/nanorc owner=root group=wheel mode=0644 backup=yes
+  template:
+    src: templates/nanorc
+    dest: /etc/nanorc
+    owner: root
+    group: wheel
+    mode: 0644
+    backup: yes
 
 - name: copy json nanorc template
-  copy: src=templates/json.nanorc dest=/usr/share/nano/json.nanorc owner=root group=wheel mode=0644 backup=yes
+  copy:
+    src: templates/json.nanorc
+    dest: /usr/share/nano/json.nanorc
+    owner: root
+    group: wheel
+    mode: 0644
+    backup: yes
 
 - name: copy yaml nanorc template
-  copy: src=templates/yaml.nanorc dest=/usr/share/nano/yaml.nanorc owner=root group=wheel mode=0644 backup=yes
+  copy:
+    src: templates/yaml.nanorc
+    dest: /usr/share/nano/yaml.nanorc
+    owner: root
+    group: wheel
+    mode: 0644
+    backup: yes
 

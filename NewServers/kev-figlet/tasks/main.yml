@@ -1,2 +1,12 @@
----
-# tasks file for kev-figlet
+- name: figlet installation
+  yum:
+    name: figlet
+    state: latest
+
+- name: synchronize extra fonts
+  synchronize:
+    src: files/figletfonts/
+    dest: /usr/share/figlet/
+
+#- name: add figlet hostname to MOTD
+#  raw: figlet -f rectangles `hostname -f` >> /etc/issue

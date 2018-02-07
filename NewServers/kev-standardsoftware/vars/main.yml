@@ -1,2 +1,6 @@
----
-# vars file for kev-standardsoftware
+vars:
+  install_packages:
+  - libselinux-python
+  - nmap
+  - sysstat
+

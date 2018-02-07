@@ -1,7 +1,0 @@
----
-- name: kevserver-aesthetic | Applying changes to make the new servers look pretty.
-  hosts: all
-  remote_user: root
-
-  tasks:
-    - include: tasks/main.yml

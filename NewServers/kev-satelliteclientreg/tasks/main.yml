@@ -1,0 +1,14 @@
+- yum:
+    name: "{{ satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm"
+
+- redhat_subscription:
+    state: present
+    activationkey: "{{ activation_key }}"
+    org_id: "{{ organization }}"
+    autosub_yn: "{{ autosubscribe }}"
+#  when:
+#    ansible_os_family : :  "Redhat" and ansible_distribution_major_version : :  "7"
+
+
+
+
