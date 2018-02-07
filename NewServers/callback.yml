@@ -4,10 +4,8 @@
   remote_user: root
   gather_facts: yes
 
-  tasks:
 
   roles: include role kev-figlet
-#    - kev-figlet
     - kev-motd
     - kev-nano
     - kev-satelliteclientreg
@@ -17,6 +15,8 @@
 
 
 ## If we called for a reboot, we do that here in tasks
+
+  tasks:
 
     - name: reboot host RHEL6 if we call for a reboot
       command: sleep 5 ; /sbin/shutdown -r ; echo &
