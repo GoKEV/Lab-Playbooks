@@ -1,20 +1,38 @@
 ---
-- hosts: all
-  name: Apply roles
+- name kev standards roles
+  hosts: all
   become: yes
+  gather_facts: true
+  tasks:
 
-  roles:
+#kev-figlet
+#kev-standardsoftware
+#kev-users
+#satellite-reg.yaml
+#shadowmansplash
+#site.yml
+
+  - name: include role kev-nano
+    include_role:
+      name: kev-nano
+    tags:
     - kev-nano
-      tags: kev-nano
 
-  roles:
+  - name: include role kev-screen
+    include_role:
+      name: kev-screen
+    tags:
     - kev-screen
-      tags: kev-screen
 
-  roles:
+  - name: include role kev-shadowmanmotd
+    include_role:
+      name: kev-shadowmanmotd
+    tags:
+    - kev-shadowmanmotd
+
+  - name: include role kev-users
+    include_role:
+      name: kev-users
+    tags:
     - kev-users
-      tags: kev-users
 
-  roles:
-    - shadowmansplash
-      tags: shadowmansplash
