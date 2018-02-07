@@ -11,7 +11,7 @@
     state: directory
     owner: root
     group: wheel
-    mode: 700
+    mode: 0700
 
 - name: authorized_keys file for root
   copy:
@@ -19,7 +19,7 @@
     dest: /root/.ssh/authorized_keys
     owner: root
     group: wheel
-    mode: 600
+    mode: 0600
     backup: yes
 
 - name: sshd_config file
@@ -28,6 +28,6 @@
     dest: /etc/ssh/sshd_config
     owner: root
     group: wheel
-    mode: 600
+    mode: 0600
     backup: yes
 
