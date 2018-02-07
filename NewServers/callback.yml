@@ -5,7 +5,7 @@
   gather_facts: yes
 
 
-  roles: include role kev-figlet
+  roles:
   - kev-motd
   - kev-nano
   - kev-satelliteclientreg
