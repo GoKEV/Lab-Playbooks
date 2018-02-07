@@ -1,6 +1,6 @@
 ---
-- name kev standards roles
-  hosts: all
+- hosts: all
+  name kev standards roles
   become: yes
   gather_facts: true
   tasks:
