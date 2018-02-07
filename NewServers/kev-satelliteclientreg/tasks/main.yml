@@ -5,7 +5,7 @@
     state: present
     activationkey: "{{ activation_key }}"
     org_id: "{{ organization }}"
-    autosub_yn: "{{ autosubscribe }}"
+    autosubscribe: "{{ autosub_yn }}"
 #  when:
 #    ansible_os_family : :  "Redhat" and ansible_distribution_major_version : :  "7"
 
