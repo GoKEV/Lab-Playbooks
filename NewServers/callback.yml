@@ -6,12 +6,12 @@
 
 
   roles: include role kev-figlet
-    - kev-motd
-    - kev-nano
-    - kev-satelliteclientreg
-    - kev-screen
-    - kev-standardsoftware
-    - kev-users
+  - kev-motd
+  - kev-nano
+  - kev-satelliteclientreg
+  - kev-screen
+  - kev-standardsoftware
+  - kev-users
 
 
 ## If we called for a reboot, we do that here in tasks
