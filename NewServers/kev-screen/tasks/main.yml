@@ -1,0 +1,9 @@
+---
+- name: install screen
+  yum:
+    name: screen
+    state: latest
+
+- name: add screenrc template
+  template: src=templates/screenrc dest=/root/.screenrc owner=root group=wheel mode=0644 backup=yes
+

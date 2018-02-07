@@ -1,0 +1,20 @@
+---
+- hosts: all
+  name: Apply roles
+  become: yes
+
+  roles:
+    - kev-nano
+      tags: kev-nano
+
+  roles:
+    - kev-screen
+      tags: kev-screen
+
+  roles:
+    - kev-users
+      tags: kev-users
+
+  roles:
+    - shadowmansplash
+      tags: shadowmansplash
