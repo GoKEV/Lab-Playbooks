@@ -1,5 +1,4 @@
-vars:
-  install_packages:
+install_packages:
   - libselinux-python
   - nmap
   - sysstat
