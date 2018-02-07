@@ -3,14 +3,58 @@
   hosts: all
   remote_user: root
 
-  roles:
-#  - kev-figlet
-  - kev-motd
-  - kev-nano
-  - kev-satelliteclientreg
-  - kev-screen
-  - kev-standardsoftware
-  - kev-users
+  tasks:
+
+  - name: include role kev-figlet
+    include_role:
+      name: kev-figlet
+    tags:
+    - kev-figlet
+
+  - name: include role kev-motd
+    include_role:
+      name: kev-motd
+    tags:
+    - kev-motd
+
+  - name: include role kev-nano
+    include_role:
+      name: kev-nano
+    tags:
+    - kev-nano
+
+  - name: include role kev-satelliteclientreg
+    include_role:
+      name: kev-satelliteclientreg
+    tags:
+    - kev-satelliteclientreg
+
+  - name: include role kev-screen
+    include_role:
+      name: kev-screen
+    tags:
+    - kev-screen
+
+  - name: include role kev-standardsoftware
+    include_role:
+      name: kev-standardsoftware
+    tags:
+    - kev-standardsoftware
+
+  - name: include role kev-users
+    include_role:
+      name: kev-users
+    tags:
+    - kev-users
+
+
+
+
+
+
+
+
+
 
 ## If we called for a reboot, we do that here in tasks
 
