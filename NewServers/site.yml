@@ -24,11 +24,11 @@
     tags:
     - kev-screen
 
-  - name: include role kev-shadowmanmotd
+  - name: include role kev-motd
     include_role:
-      name: kev-shadowmanmotd
+      name: kev-motd
     tags:
-    - kev-shadowmanmotd
+    - kev-motd
 
   - name: include role kev-users
     include_role:

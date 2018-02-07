@@ -24,8 +24,7 @@
 
 - name: sshd_config file
   copy:
-    src:
-    templates/sshd_config
+    src: templates/sshd_config
     dest: /etc/ssh/sshd_config
     owner: root
     group: wheel
