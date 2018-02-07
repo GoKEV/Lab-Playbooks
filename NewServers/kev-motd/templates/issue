@@ -1,7 +1,4 @@
-\S
-Kernel \r on an \m
-
-You are about to connect to 
+###########################   WARNING!   ###########################
 
 YOU ARE ABOUT TO CONNECT TO {{ ansible_hostname }} ON THE {{ ansible_domain }} DOMAIN.
 

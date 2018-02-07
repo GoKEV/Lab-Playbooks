@@ -1,6 +1,0 @@
----
-- name: install the Shadowman splash MOTD page
-
-- name: motd template
-  template: src=templates/motd dest=/etc/motd owner=root group=wheel mode=0644 backup=yes
-
