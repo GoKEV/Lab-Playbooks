@@ -48,17 +48,8 @@
     - kev-users
 
 
-
-
-
-
-
-
-
-
 ## If we called for a reboot, we do that here in tasks
 
-  tasks:
     - name: reboot host RHEL6 if we call for a reboot
       command: sleep 5 ; /sbin/shutdown -r ; echo &
       when: rebootrequired is defined and rebootrequired == 'yes' and ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
