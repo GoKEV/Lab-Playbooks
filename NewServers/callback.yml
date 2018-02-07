@@ -6,7 +6,7 @@
 
   tasks:
 
-  - roles: include role kev-figlet
+  roles: include role kev-figlet
 #    - kev-figlet
     - kev-motd
     - kev-nano
