@@ -5,12 +5,17 @@
   gather_facts: true
   tasks:
 
-#kev-figlet
-#kev-standardsoftware
-#kev-users
-#satellite-reg.yaml
-#shadowmansplash
-#site.yml
+  - name: include role kev-figlet
+    include_role:
+      name: kev-figlet
+    tags:
+    - kev-figlet
+
+  - name: include role kev-motd
+    include_role:
+      name: kev-motd
+    tags:
+    - kev-motd
 
   - name: include role kev-nano
     include_role:
@@ -24,11 +29,11 @@
     tags:
     - kev-screen
 
-  - name: include role kev-motd
+  - name: include role kev-standardsoftware
     include_role:
-      name: kev-motd
+      name: kev-standardsoftware
     tags:
-    - kev-motd
+    - kev-standardsoftware
 
   - name: include role kev-users
     include_role:

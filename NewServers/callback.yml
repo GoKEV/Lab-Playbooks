@@ -4,7 +4,7 @@
   remote_user: root
 
   roles:
-  - kev-figlet
+#  - kev-figlet
   - kev-motd
   - kev-nano
   - kev-satelliteclientreg
@@ -18,7 +18,6 @@
     - name: reboot host RHEL6 if we call for a reboot
       command: sleep 5 ; /sbin/shutdown -r ; echo &
       when: rebootrequired is defined and rebootrequired == 'yes' and ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
-
 
     - name: reboot host RHEL7 if we call for a reboot
       command: /usr/bin/systemd-run --on-active=10 /usr/bin/systemctl reboot
