@@ -3,8 +3,7 @@
 
 - redhat_subscription:
     state: present
-    force_register: yes
-    autosubscribe: yes
+    force_register: "{{ forcereg_yn }}"
     activationkey: "{{ activation_key }}"
     org_id: "{{ organization }}"
     autosubscribe: "{{ autosub_yn }}"

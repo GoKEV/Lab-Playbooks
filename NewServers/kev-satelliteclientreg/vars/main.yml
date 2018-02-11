@@ -4,4 +4,5 @@ satellite_url: https://satellite.kev
 activation_key: RHEL7-PROD
 organization: "GoKEV"
 autosub_yn: true
+forcereg_yn: true
 
