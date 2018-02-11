@@ -1,0 +1,46 @@
+---
+- name: bigip test
+  hosts: dtl
+  become: yes
+  gather_facts: true
+
+  vars:
+    bigip_device: f5bigip.kev
+    bigip_user: admin
+    bigip_pass: GoKEV!
+    bigip_poolname: lamp-kev
+    servers: 
+    - 10.0.20.31
+    - 10.0.20.32
+    - 10.0.20.33
+
+  tasks:
+
+  - name: Create pool
+    bigip_pool:
+      server: "{{ bigip_device }}"
+      user: "{{ bigip_user }}"
+      password: "{{ bigip_pass }}"
+      state: "present"
+      name: "{{ bigip_poolname }}"
+      partition: "Common"
+      lb_method: "least_connection_member"
+      slow_ramp_time: 120
+      host: "{{ item }}"
+      port: 80
+    with_items: "{{ servers }}"
+    delegate_to: localhost
+
+
+#  - name: Add pool member
+#    bigip_pool:
+#      server: "{{ bigip_device }}"
+#      user: "{{ bigip_user }}"
+#      password: "{{ bigip_pass }}"
+#      state: "present"
+#      name: "{{ bigip_poolname }}"
+#      partition: "Common"
+#      host: "10.0.20.31"
+#      port: 80
+#    delegate_to: localhost
+

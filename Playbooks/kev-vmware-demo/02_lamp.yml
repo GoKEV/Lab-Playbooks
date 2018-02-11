@@ -1,0 +1,16 @@
+---
+- name: bigip test
+  hosts: lamp
+  become: yes
+  gather_facts: true
+
+  tasks:
+  - name: install the latest version of Apache
+    yum:
+      name: httpd
+      state: latest
+
+  - service:
+      name: httpd
+      enabled: yes
+      state: started

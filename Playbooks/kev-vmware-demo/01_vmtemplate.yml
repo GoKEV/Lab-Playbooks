@@ -1,0 +1,32 @@
+---
+- name: VM from template
+  hosts: localhost
+  become: yes
+  gather_facts: true
+
+  tasks:
+  - name: Create a VM from a template
+    vmware_guest:
+      hostname: 10.0.0.30
+      username: administrator@photon-machine.kplh
+      password: FluffyBunny17!
+      validate_certs: no
+#      folder: /testvms
+      name: lamp05
+      state: poweredon
+      template: lamp00.kev
+      datacenter: KEV Datacenter
+      disk:
+      - size_gb: 10
+        type: thin
+        datastore: VMNFS
+#      hardware:
+#        memory_mb: 1024
+#        num_cpus: 1
+#        scsi: paravirtual
+      networks:
+      - name: VLAN20
+#        mac: 00:50:56:bb:bc:aa
+#      wait_for_ip_address: yes
+    delegate_to: localhost
+    register: deploy
