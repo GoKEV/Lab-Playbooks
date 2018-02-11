@@ -1,12 +1,30 @@
-- yum:
-    name: "{{ satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm"
+#- yum:
+#    name: "{{ satellite_url }}/pub/katello-ca-consumer-latest.noarch.rpm"
 
-- redhat_subscription:
-    state: present
-    force_register: "{{ forcereg_yn }}"
-    activationkey: "{{ activation_key }}"
-    org_id: "{{ organization }}"
-    autosubscribe: "{{ autosub_yn }}"
+#- redhat_subscription:
+#    state: present
+#    force_register: "{{ forcereg_yn }}"
+#    activationkey: "{{ activation_key }}"
+#    org_id: "{{ organization }}"
+#    autosubscribe: "{{ autosub_yn }}"
+
+- name: Install katello RPM from the satellite server.  Yum may be disabled so we do this raw.
+  raw: rpm -ivh http://satellite.kev/pub/katello-ca-consumer-latest.noarch.rpm
+
+- name: Register with raw
+  raw: 'subscription-manager register --org="{{ org_id }}" --force --activationkey="{{ activation_key }}"
+
+- name: Attach some repos
+  raw: subscription-manager repos --enable=rhel-*-satellite-tools-*-rpms
+
+- name: Clean yum
+  raw: yum clean all
+
+
+
+
+
+
 #  when:
 #    ansible_os_family : :  "Redhat" and ansible_distribution_major_version : :  "7"
 
