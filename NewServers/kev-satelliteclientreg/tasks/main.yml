@@ -1,15 +1,21 @@
-- name: Install katello RPM from the satellite server.  Yum may be disabled so we do this raw.
-  raw: rpm --force -ivh http://satellite.kev/pub/katello-ca-consumer-latest.noarch.rpm
-  changed_when: False
+- name: connect this host to Satellite server if this is a RHEL machine
+  block:
 
-- name: Register with raw
-  raw: subscription-manager register --org="GoKEV" --force --activationkey="RHEL7-PROD"
-  changed_when: False
+  - name: Install katello RPM from the satellite server.  Yum may be disabled so we do this raw.
+    raw: rpm --force -ivh http://satellite.kev/pub/katello-ca-consumer-latest.noarch.rpm
+    changed_when: False
 
-- name: Attach some repos
-  raw: subscription-manager repos --enable=rhel-*-satellite-tools-*-rpms
-  changed_when: False
+  - name: Register with raw
+    raw: subscription-manager register --org="GoKEV" --force --activationkey="RHEL7-PROD"
+    changed_when: False
 
-- name: Clean yum
-  raw: yum clean all
-  changed_when: False
+  - name: Attach some repos
+    raw: subscription-manager repos --enable=rhel-*-satellite-tools-*-rpms
+    changed_when: False
+
+  - name: Clean yum
+    raw: yum clean all
+    changed_when: False
+
+  when: ansible_distribution == "RedHat" and ansible_distribution_major_version == "7"
+

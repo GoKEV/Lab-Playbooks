@@ -1,7 +1,23 @@
 ---
+
+- name: Define the MOTD file
+  set_fact:
+    motd_template_file: templates/motd_generic
+  when: ansible_distribution == "CentOS"
+
+- name: Define the MOTD file for CentOS
+  set_fact:
+    motd_template_file: templates/motd_centos
+  when: ansible_distribution == "CentOS"
+
+- name: Define the MOTD file for CentOS
+  set_fact:
+    motd_template_file: templates/motd_redhat
+  when: ansible_distribution == "RedHat"
+
 - name: motd template
   template:
-    src: templates/motd
+    src: "{{ motd_template_file }}"
     dest: /etc/motd
     owner: root
     group: wheel
@@ -16,3 +32,4 @@
     group: wheel
     mode: 0644
     backup: yes
+

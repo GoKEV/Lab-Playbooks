@@ -11,17 +11,11 @@
   - kev-screen
   - kev-standardsoftware
   - kev-users
-
+  - kev-satelliteclientreg
 
 ## If we called for a reboot, we do that here in tasks
 
   tasks:
-
-    - name: include role kev-figlet
-      include_role:
-        name: kev-satelliteclientreg
-      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
-
     - name: reboot host RHEL6 if we call for a reboot
       command: sleep 5 ; /sbin/shutdown -r ; echo &
       when: rebootrequired is defined and rebootrequired == 'yes' and ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
