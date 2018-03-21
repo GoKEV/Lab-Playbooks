@@ -1,0 +1,13 @@
+- name: SET SOME STUFF
+  hosts: localhost
+  remote_user: root
+
+  vars:
+    - kev_message: This is a message I'm passing between playbooks in a Tower workflow.
+
+  tasks:
+  - set_stats:
+      kev_message: {{ kev_message }}
+      some_message: This is a message
+      some_variable: 36
+
