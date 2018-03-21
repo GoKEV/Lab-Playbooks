@@ -8,7 +8,8 @@
 
   tasks:
   - set_stats:
-      kev_message: "{{ kev_message }}"
-      some_message: This is a message
-      some_variable: 36
+      data:
+        kev_message: "{{ kev_message }}"
+        some_message: This is a message
+        some_variable: 36
 
