@@ -1,5 +1,5 @@
 - name: SET SOME STUFF
-  hosts: localhost
+  hosts: all
   remote_user: root
 
   vars:
@@ -7,7 +7,7 @@
 
   tasks:
   - set_stats:
-      kev_message: {{ kev_message }}
+      kev_message: "{{ kev_message }}"
       some_message: This is a message
       some_variable: 36
 
