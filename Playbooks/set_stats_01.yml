@@ -1,7 +1,7 @@
 - name: SET SOME STUFF
   hosts: all
   remote_user: root
-  delegate_to: 127.0.0.1
+  connection: local
 
   vars:
     - kev_message: This is a message I'm passing between playbooks in a Tower workflow.
