@@ -21,7 +21,7 @@
     delegate_to: localhost
 
   - set_stats:
-      data:
+      data: 
         tower_user_request: "{{ user_request }}"
         kev_message: "{{ kev_message }}"
         some_message: This is a message
