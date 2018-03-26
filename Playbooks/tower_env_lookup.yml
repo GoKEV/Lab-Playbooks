@@ -18,7 +18,7 @@
     validate_certs: no
     register: user_request
     changed_when: False
-  delegate_to: localhost 
+    delegate_to: localhost 
 
   - set_stats:
       data:
