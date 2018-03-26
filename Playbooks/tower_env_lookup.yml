@@ -10,15 +10,15 @@
   tasks:
 
   uri:
-    url: "{{ lookup('env', 'TOWER_HOST') }}/api/v2/me"
-      user: "{{ lookup('env', 'TOWER_USERNAME') }}"
-      password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
-      return_content: yes
-      force_basic_auth: yes
-      validate_certs: no
-      register: user_request
-      changed_when: False
-    delegate_to: localhost 
+    url: "{{ lookup('env', 'TOWER_HOST') }}/api/v2/me"}}
+    user: "{{ lookup('env', 'TOWER_USERNAME') }}"
+    password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
+    return_content: yes
+    force_basic_auth: yes
+    validate_certs: no
+    register: user_request
+    changed_when: False
+  delegate_to: localhost 
 
   - set_stats:
       data:
