@@ -17,13 +17,13 @@
       return_content: yes
       force_basic_auth: yes
       validate_certs: no
-      register: user_request
+      register: results
       changed_when: False
     delegate_to: localhost
 
   - set_stats:
-      data: 
-        tower_user_request: "{{ user_request }}"
+      data:
+        tower_results: "{{ results }}"
         kev_message: "{{ kev_message }}"
         some_message: This is a message
         some_variable: 36
