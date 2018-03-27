@@ -9,8 +9,9 @@
 
   tasks:
 
-    uri: 
-      url: "{{ lookup('env', 'TOWER_HOST') }}"/api/v2/me
+  - name: Get information about the user making this request
+    uri:
+      url: "{{ lookup('env', 'TOWER_HOST') }}/api/v2/me"
       user: "{{ lookup('env', 'TOWER_USERNAME') }}"
       password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
       return_content: yes
