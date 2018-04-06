@@ -1,0 +1,30 @@
+---
+- name: include some vars from a vault-encrypted file into our playbook
+  hosts: all
+  remote_user: root
+  connection: local
+  gather_facts: no
+
+
+
+  vars:
+    - kev_message: This is a non-encrypted variable that I am passing inside the playbook.
+
+
+  tasks:
+  - name: include the vault encrypted file
+    include_vars:
+      file: my_encrypted_file.yml
+
+  - debug:
+      msg: "kev_message is {{ kev_message }}"
+    when: kev_message is defined
+
+  - debug:
+      msg: "secretvar1 is {{ secretvar1 }}"
+    when: secretvar1 is defined
+
+  - debug:
+      msg: "secretvar2 is {{ secretvar2 }}"
+    when: secretvar2 is defined
+
