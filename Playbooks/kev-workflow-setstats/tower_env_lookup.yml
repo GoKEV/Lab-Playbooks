@@ -1,0 +1,30 @@
+- name: SET SOME STUFF
+  hosts: all
+  remote_user: root
+  connection: local
+
+  vars:
+    - kev_message: This is a message I'm passing between playbooks in a Tower workflow.
+
+
+  tasks:
+
+  - name: Get information about the user making this request
+    uri:
+      url: "https://{{ lookup('env', 'TOWER_HOST') }}/api/v2/me"
+      user: "{{ lookup('env', 'TOWER_USERNAME') }}"
+      password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
+      return_content: yes
+      force_basic_auth: yes
+      validate_certs: no
+#      register: tower_content
+      changed_when: False
+    delegate_to: localhost
+
+  - set_stats:
+      data:
+#        tower_results: "{{ tower_content }}"
+        kev_message: "{{ kev_message }}"
+        some_message: This is a message
+        some_variable: 36
+
