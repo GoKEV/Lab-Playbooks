@@ -23,6 +23,7 @@
       datacenter: "{{ vmware_datacenter }}"
       name: "{{ vmware_new_hostname }}"
       template: "{{ vmware_template_name }}"
+      folder: "/{{ vmvware_folder }}"
       disk:
       - size_gb: "{{ vmware_disk_size }}"
         type: thin
