@@ -10,7 +10,7 @@
   - vmware_new_hostname: AnsiBuilt001
   - vmware_template_name: CentOS7-64-Tempalte
   - vmware_datastore: VMNFS
-  - vmware_folder: /
+  - vmware_folder: '/'
   - vmware_disk_size: 20
   - vmware_ram_mb: 512
   - vm_cpu_count: 1
@@ -24,7 +24,7 @@
       datacenter: "{{ vmware_datacenter }}"
       name: "{{ vmware_new_hostname }}"
       template: "{{ vmware_template_name }}"
-      folder: "{{ vmvware_folder }}"
+      folder: "{{ vmware_folder }}"
       disk:
       - size_gb: "{{ vmware_disk_size }}"
         type: thin
