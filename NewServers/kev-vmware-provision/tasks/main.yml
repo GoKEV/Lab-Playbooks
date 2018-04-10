@@ -15,7 +15,7 @@
       memory_mb: "{{ vmware_ram_mb }}"
       num_cpus: "{{ vm_cpu_count }}"
       num_cpu_cores_per_socket: "{{ vm_core_per_cpu }}"
-    state: "{{ vm_state }}"
+    state: "{{ vmware_state }}"
   register: newvminfo
   delegate_to: localhost
 
