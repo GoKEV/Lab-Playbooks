@@ -1,0 +1,12 @@
+---
+- name: Build a VMware guest from template
+  hosts: all
+  remote_user: root
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - debug:
+      msg: "newvminfo is {{ newvminfo }}"
+    when: newvminfo is defined
+
