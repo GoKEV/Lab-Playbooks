@@ -11,7 +11,7 @@
   - kev-screen
   - kev-standardsoftware
   - kev-users
-  - kev-satelliteclientreg
+#  - kev-satelliteclientreg
 
 ## If we called for a reboot, we do that here in tasks
 

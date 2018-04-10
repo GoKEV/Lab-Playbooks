@@ -1,5 +1,5 @@
 ---
-- name: bigip test
+- name: installing httpd
   hosts: lamp
   become: yes
   gather_facts: true
