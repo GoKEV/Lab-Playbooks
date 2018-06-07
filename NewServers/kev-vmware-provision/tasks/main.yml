@@ -20,7 +20,7 @@
 #      mac: aa:bb:dd:aa:00:14
     wait_for_ip_address: yes
     state: "{{ vmware_state }}"
-  register: newvminfo.ipv4
+  register: newvminfo
   delegate_to: localhost
 
 - name: "Using set_stats to save info from {{ vmware_new_hostname }} provisioning"
