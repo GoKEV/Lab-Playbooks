@@ -34,3 +34,15 @@
     msg: "newvminfo is {{ newvminfo }}"
   when: newvminfo is defined
 
+- name: debug newvminfo.instance.ipv4
+  debug:
+    msg: "newvminfo is {{ newvminfo.instance.ipv4 }}"
+  when: newvminfo.instance.ipv4 is defined
+  ignore_errors: true
+
+- name: debug newvminfo.ipv4
+  debug:
+    msg: "newvminfo is {{ newvminfo.ipv4 }}"
+  when: newvminfo.ipv4 is defined
+  ignore_errors: true
+
