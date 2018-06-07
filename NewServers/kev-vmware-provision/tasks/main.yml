@@ -1,7 +1,7 @@
 ---
 # tasks file for kev-vmware-provision/
 
-- name: "Deploy new VM called {{ vmware_new_hostname }} with {{ vm_cpu_count }} CPUs, {{ vm_core_per_cpu }} cores, {{ vmware_disk_size }} HDD, {{ vmware_ram_mb }} RAM from {{ vmware_template_name }} template."
+- name: "Deploy new VM called {{ vmware_new_hostname }} with {{ vm_cpu_count }} CPUs, {{ vmware_disk_size }} HDD, {{ vmware_ram_mb }} RAM with {{ vmware_network }} network from {{ vmware_template_name }} template."
   vmware_guest:
     datacenter: "{{ vmware_datacenter }}"
     name: "{{ vmware_new_hostname }}"
