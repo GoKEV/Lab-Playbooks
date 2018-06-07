@@ -14,7 +14,11 @@
     hardware:
       memory_mb: "{{ vmware_ram_mb }}"
       num_cpus: "{{ vm_cpu_count }}"
-      num_cpu_cores_per_socket: "{{ vm_core_per_cpu }}"
+#      num_cpu_cores_per_socket: "{{ vm_core_per_cpu }}"
+    networks:
+    - name: VLAN20
+#      mac: aa:bb:dd:aa:00:14
+    wait_for_ip_address: yes
     state: "{{ vmware_state }}"
   register: newvminfo
   delegate_to: localhost
@@ -24,4 +28,9 @@
     data:
       newvminfo: "{{ newvminfo }}"
       vmware_new_hostname: "{{ vmware_new_hostname }}"
+
+- name: debug newvminfo
+  debug:
+    msg: "newvminfo is {{ newvminfo }}"
+  when: newvminfo is defined
 
