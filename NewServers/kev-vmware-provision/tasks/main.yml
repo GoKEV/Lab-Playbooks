@@ -23,12 +23,6 @@
   register: newvminfo
   delegate_to: localhost
 
-- name: "Using set_stats to save info from {{ vmware_new_hostname }} provisioning"
-  set_stats:
-    data:
-      newvminfo: "{{ newvminfo }}"
-      vmware_new_hostname: "{{ vmware_new_hostname }}"
-
 - name: debug newvminfo
   debug:
     msg: "newvminfo is {{ newvminfo }}"
@@ -36,13 +30,13 @@
 
 - name: debug newvminfo.instance.ipv4
   debug:
-    msg: "newvminfo is {{ newvminfo.instance.ipv4 }}"
+    msg: "New IP address is {{ newvminfo.instance.ipv4 }}"
   when: newvminfo.instance.ipv4 is defined
   ignore_errors: true
 
-- name: debug newvminfo.ipv4
-  debug:
-    msg: "newvminfo is {{ newvminfo.ipv4 }}"
-  when: newvminfo.ipv4 is defined
-  ignore_errors: true
-
+- name: "Using set_stats to save info from {{ vmware_new_hostname }} provisioning"
+  set_stats:
+    data:
+      vmware_new_ip: "{{ newvminfo.instance.ipv4 }}"
+      vmware_new_hostname: "{{ vmware_new_hostname }}"
+    ignore_errors: true
