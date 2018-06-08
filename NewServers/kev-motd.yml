@@ -3,7 +3,7 @@
   hosts: all
   remote_user: root
   gather_facts: yes
-  become: yes
+#  become: yes
 
   roles:
   - kev-motd
