@@ -4,9 +4,12 @@
   connection: local
 
   vars:
-    - kev_message: This is a message I'm passing between playbooks in a Tower workflow.
+    - kev_message: This message starts in the playbook and is passed in a workflow
 
   tasks:
+  - debug:
+      msg: "STEP 1 kev_message is {{ kev_message }}"
+
   - set_stats:
       data:
         kev_message: "{{ kev_message }}"
