@@ -1,7 +1,7 @@
 ---
 - name: Set the MOTD
   hosts: all
-  remote_user: root
+#  remote_user: root
   gather_facts: yes
 #  become: yes
 
