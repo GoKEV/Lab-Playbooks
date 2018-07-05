@@ -1,10 +1,7 @@
 ---
 - name: Build a VMware guest from template
-  hosts: all
-  remote_user: root
   connection: local
   gather_facts: no
-
 
   roles:
   - kev-vmware-provision
