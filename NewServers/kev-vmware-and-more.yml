@@ -1,6 +1,6 @@
 ---
 - name: Build a VMware guest from template
-  hosts: localhost
+  hosts: all
   connection: local
   gather_facts: no
 
