@@ -1,0 +1,13 @@
+---
+- name: Build a VMware guest from template
+  connection: local
+  gather_facts: no
+
+  roles:
+  - kev-vmware-provision
+  - kev-motd
+
+- hosts: brandnewvm
+  roles:
+    - kev-motd
+
