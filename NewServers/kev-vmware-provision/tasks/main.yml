@@ -45,6 +45,7 @@
 # ADD TO INVENTORY brandnewvm
 - name: add host to group 'brandnewvm' with ansible_host variable set to "{{ newvminfo.instance.ipv4 }}"
   add_host:
+    groups: brandnewvm
     name: "{{ vmware_new_hostname }}"
     ansible_host: "{{ newvminfo.instance.ipv4 }}"
 
