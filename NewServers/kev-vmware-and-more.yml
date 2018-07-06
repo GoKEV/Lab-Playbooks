@@ -4,8 +4,21 @@
   connection: local
   gather_facts: no
 
-  roles:
-  - kev-vmware-provision
+  tasks:
+    - block:
+        roles:
+        - kev-vmware-provision
+      when: newvmip is not defined
+
+
+  tasks:
+    - block:
+      - name: applying remaining roles to "{{ newvmip }}"
+        add_host:
+          name: "{{ newvmip }}"
+          groups: brandnewvm
+      when: newvmip is defined
+
 
 - hosts: brandnewvm
   roles:
