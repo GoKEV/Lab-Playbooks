@@ -9,5 +9,11 @@
 
 - hosts: brandnewvm
   roles:
+    - kev-figlet
     - kev-motd
+    - kev-nano
+#    - kev-satelliteclientreg
+    - kev-screen
+    - kev-standardsoftware
+    - kev-users
 
