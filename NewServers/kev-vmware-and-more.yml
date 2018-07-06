@@ -8,7 +8,7 @@
   - name: "kev-vmware-provision if {{ newvmip } is not defined"
     include_role:
       name: kev-vmware-provision
-    when: newvmip is not defined
+    when: ! newvmip is defined
 
   - name: applying remaining roles to "{{ newvmip }}"
     add_host:
