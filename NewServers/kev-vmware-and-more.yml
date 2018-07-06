@@ -5,19 +5,17 @@
   gather_facts: no
 
   tasks:
-    - block:
-        roles:
-        - kev-vmware-provision
-      when: newvmip is not defined
+  - name: "kev-vmware-provision if {{ newvmip } is not defined"
+    include_role:
+      name: kev-vmware-provision
+    when: newvmip is not defined
 
+  - name: applying remaining roles to "{{ newvmip }}"
+    add_host:
+      name: "{{ newvmip }}"
+      groups: brandnewvm
+    when: newvmip is defined
 
-  tasks:
-    - block:
-      - name: applying remaining roles to "{{ newvmip }}"
-        add_host:
-          name: "{{ newvmip }}"
-          groups: brandnewvm
-      when: newvmip is defined
 
 
 - hosts: brandnewvm
@@ -25,7 +23,6 @@
     - kev-figlet
     - kev-motd
     - kev-nano
-#    - kev-satelliteclientreg
     - kev-screen
     - kev-standardsoftware
     - kev-users
