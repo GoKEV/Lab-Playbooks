@@ -46,7 +46,7 @@
       vmware_new_hostname: "{{ vmware_new_hostname }}"
     ignore_errors: true
 
-- name: "add {{ newvminfo.instance.ipv4 }} host to group 'brandnewvm'
+- name: "add {{ newvminfo.instance.ipv4 }} host to group brandnewvm"
   add_host:
     name: "{{ newvminfo.instance.ipv4 }}"
     groups: brandnewvm
