@@ -1,0 +1,54 @@
+---
+# tasks file for kev-vmware-provision/
+
+- name: "Deploy new VM called {{ vmware_new_hostname }} with {{ vm_cpu_count }} CPUs, {{ vmware_disk_size }} HDD, {{ vmware_ram_mb }} RAM with {{ vmware_network }} network from {{ vmware_template_name }} template."
+  vmware_guest:
+    datacenter: "{{ vmware_datacenter }}"
+    name: "{{ vmware_new_hostname }}"
+    template: "{{ vmware_template_name }}"
+    folder: "{{ vmware_folder }}"
+    disk:
+    - size_gb: "{{ vmware_disk_size }}"
+      type: thin
+      datastore: "{{ vmware_datastore }}"
+    hardware:
+      memory_mb: "{{ vmware_ram_mb }}"
+      num_cpus: "{{ vm_cpu_count }}"
+#      num_cpu_cores_per_socket: "{{ vm_core_per_cpu }}"
+    networks:
+    - name: "{{ vmware_network }}"
+#      mac: aa:bb:dd:aa:00:14
+    wait_for_ip_address: yes
+    state: "{{ vmware_state }}"
+  register: newvminfo
+  delegate_to: localhost
+
+- name: debug newvminfo
+  debug:
+    msg: "newvminfo is {{ newvminfo }}"
+  when: newvminfo is defined
+
+- name: debug newvminfo.instance.ipv4
+  debug:
+    msg: "New IP address is {{ newvminfo.instance.ipv4 }}"
+  when: newvminfo.instance.ipv4 is defined
+  ignore_errors: true
+
+- name: "Using set_stats to save info from {{ vmware_new_hostname }} provisioning"
+  set_stats:
+    data:
+      vmware_new_ip: "{{ newvminfo.instance.ipv4 }}"
+      vmware_new_hostname: "{{ vmware_new_hostname }}"
+    ignore_errors: true
+
+
+# ADD TO INVENTORY brandnewvm
+- name: add host to group 'brandnewvm' with ansible_host variable set to "{{ newvminfo.instance.ipv4 }}"
+  add_host:
+
+
+    name: "{{ newvminfo.instance.ipv4 }}"
+#    name: "{{ vmware_new_hostname }}"
+    groups: brandnewvm
+#    ansible_host: "{{ newvminfo.instance.ipv4 }}"
+

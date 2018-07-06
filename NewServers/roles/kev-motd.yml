@@ -1,0 +1,8 @@
+---
+- name: Set the MOTD
+  hosts: all
+#  remote_user: root
+  gather_facts: yes
+
+  roles:
+  - kev-motd
