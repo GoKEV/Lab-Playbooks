@@ -14,8 +14,8 @@
     name: figlet
     state: latest
 
-- name: synchronize extra fonts
-  synchronize:
+- name: copy over the extra fonts
+  copy:
     src: files/figletfonts/
     dest: /usr/share/figlet/
 
