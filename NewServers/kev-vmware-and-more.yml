@@ -2,7 +2,6 @@
 - name: Build a VMware guest from template
   hosts: localhost
   gather_facts: no
-  ansible_ssh_pipelining: True
 
   tasks:
   - name: "kev-vmware-provision if {{ newvmip } is not defined"
