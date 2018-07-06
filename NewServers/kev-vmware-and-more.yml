@@ -2,7 +2,7 @@
 - name: Build a VMware guest from template
   hosts: localhost
   gather_facts: no
-  pipelining=True
+  pipelining: True
 
   tasks:
   - name: "kev-vmware-provision if {{ newvmip } is not defined"
