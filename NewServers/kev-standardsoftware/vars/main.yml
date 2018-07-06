@@ -1,5 +1,0 @@
-install_packages:
-  - libselinux-python
-  - nmap
-  - sysstat
-

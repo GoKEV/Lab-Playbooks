@@ -1,9 +1,0 @@
-[webservers]
-webservers[1:5]
-
-[dbservers]
-dbserver[1:5]
-
-[utility]
-webservers[4:5]
-dbserver[4:5]
