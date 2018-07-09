@@ -11,6 +11,6 @@ vmware_ram_mb: 512
 vm_cpu_count: 1
 vm_core_per_cpu: 1
 vmware_network: VLAN20
-vmware_state: poweredoff
+vmware_state: poweredon
 
 
