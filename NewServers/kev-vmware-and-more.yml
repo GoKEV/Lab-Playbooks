@@ -3,16 +3,66 @@
   hosts: localhost
   gather_facts: no
 
-  roles:
-  - kev-vmware-provision
-#  - kev-vmware-tag
+
+  tasks:
+  - name: ROLE kev-vmware-provision
+    include_role:
+      name: kev-vmware-provision
+    tags:
+    - kev-vmware-provision
+
+  - name: ROLE kev-vmware-tag
+    include_role:
+      name: kev-vmware-tag
+    tags:
+    - kev-vmware-tag
+
+
+#- hosts: brandnewvm
+#  roles:
+#    - kev-figlet
+#    - kev-motd
+#    - kev-nano
+#    - kev-screen
+#    - kev-standardsoftware
+#    - kev-users
 
 - hosts: brandnewvm
-  roles:
+  tasks:
+
+  - name: ROLE kev-figlet
+    include_role:
+      name: kev-figlet
+    tags:
     - kev-figlet
+
+  - name: ROLE kev-motd
+    include_role:
+      name: kev-motd
+    tags:
     - kev-motd
+
+  - name: ROLE kev-nano
+    include_role:
+      name: kev-nano
+    tags:
     - kev-nano
+
+  - name: ROLE kev-screen
+    include_role:
+      name: kev-screen
+    tags:
     - kev-screen
+
+  - name: ROLE kev-standardsoftware
+    include_role:
+      name: kev-standardsoftware
+    tags:
     - kev-standardsoftware
+
+  - name: ROLE kev-users
+    include_role:
+      name: kev-users
+    tags:
     - kev-users
 
