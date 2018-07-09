@@ -1,6 +1,7 @@
 ---
 - name: Update tag description
   vmware_tag:
+    category_id: "urn:vmomi:InventoryServiceCategory:{{ vmware_new_uuid }}:GLOBAL"
     tag_name: "{{ kev_tag }}"
     tag_description: "{{ kev_tag_value }}"
     state: present
