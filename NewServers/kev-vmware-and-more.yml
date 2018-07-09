@@ -3,14 +3,12 @@
   hosts: localhost
   gather_facts: no
 
-  tasks:
-  - name: "kev-vmware-provision if {{ newvmip } is not defined"
-    include_role:
-      name: kev-vmware-provision
+  roles:
+  - kev-vmware-provision
+  - kev-vmware-tag
 
 - hosts: brandnewvm
   roles:
-    - kev-vmware-tag
     - kev-figlet
     - kev-motd
     - kev-nano
