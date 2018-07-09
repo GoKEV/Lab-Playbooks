@@ -1,0 +1,5 @@
+---
+# vars file for kev-vmware-tag---
+
+kev_tag: AnsibleRoleTagName
+kev_tag_value: AnsibleRoleTagValue

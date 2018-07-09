@@ -51,10 +51,9 @@
     name: "{{ newvminfo.instance.ipv4 }}"
     groups: brandnewvm
 
-- name: Update tag description
-  vmware_tag:
-    hostname: "{{ newvminfo.instance.ipv4 }}"
-    tag_name: Kev_Ansible_Tag
-    tag_description: This is a tag that was created by Ansible
-    state: present
+#- name: Update tag description
+#  vmware_tag:
+#    tag_name: Kev_Ansible_Tag
+#    tag_description: This is a tag that was created by Ansible
+#    state: present
 

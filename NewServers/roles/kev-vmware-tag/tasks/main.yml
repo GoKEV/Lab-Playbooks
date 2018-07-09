@@ -1,0 +1,7 @@
+---
+- name: Update tag description
+  vmware_tag:
+    tag_name: "{{ kev_tag }}"
+    tag_description: "{{ kev_tag_value }}"
+    state: present
+

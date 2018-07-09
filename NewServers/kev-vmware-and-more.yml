@@ -10,6 +10,7 @@
 
 - hosts: brandnewvm
   roles:
+    - kev-vmware-tag
     - kev-figlet
     - kev-motd
     - kev-nano
