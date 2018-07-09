@@ -18,51 +18,12 @@
     - kev-vmware-tag
 
 
-#- hosts: brandnewvm
-#  roles:
-#    - kev-figlet
-#    - kev-motd
-#    - kev-nano
-#    - kev-screen
-#    - kev-standardsoftware
-#    - kev-users
-
 - hosts: brandnewvm
-  tasks:
-
-  - name: ROLE kev-figlet
-    include_role:
-      name: kev-figlet
-    tags:
-    - kev-figlet
-
-  - name: ROLE kev-motd
-    include_role:
-      name: kev-motd
-    tags:
+  roles:
+#    - kev-figlet
     - kev-motd
-
-  - name: ROLE kev-nano
-    include_role:
-      name: kev-nano
-    tags:
     - kev-nano
-
-  - name: ROLE kev-screen
-    include_role:
-      name: kev-screen
-    tags:
     - kev-screen
-
-  - name: ROLE kev-standardsoftware
-    include_role:
-      name: kev-standardsoftware
-    tags:
     - kev-standardsoftware
-
-  - name: ROLE kev-users
-    include_role:
-      name: kev-users
-    tags:
     - kev-users
 
