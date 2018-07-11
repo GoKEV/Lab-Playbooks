@@ -19,12 +19,6 @@
   register: newvminfo
   delegate_to: localhost
 
-#	This spits out all known info about this VM if we want it.
-#- name: debug newvminfo
-#  debug:
-#    msg: "newvminfo is {{ newvminfo }}"
-#  when: newvminfo is defined
-
 - name: debug newvminfo.instance.ipv4
   debug:
     msg: "New IP address is {{ newvminfo.instance.ipv4 }}"
@@ -38,7 +32,7 @@
   ignore_errors: true
 
 
-- name: "Using set_stats to save info from {{ vmware_new_hostname }} provisioning"
+- name: "Using set_stats to save info from the newly provisionined VM"
   set_stats:
     data:
       vmware_new_uuid: "{{ newvminfo.instance.hw_product_uuid }}"
@@ -50,10 +44,4 @@
   add_host:
     name: "{{ newvminfo.instance.ipv4 }}"
     groups: brandnewvm
-
-#- name: Update tag description
-#  vmware_tag:
-#    tag_name: Kev_Ansible_Tag
-#    tag_description: This is a tag that was created by Ansible
-#    state: present
 
