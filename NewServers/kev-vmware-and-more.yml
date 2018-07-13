@@ -11,11 +11,11 @@
     tags:
     - kev-vmware-provision
 
-  - name: ROLE kev-vmware-tag
-    include_role:
-      name: kev-vmware-tag
-    tags:
-    - kev-vmware-tag
+#  - name: ROLE kev-vmware-tag
+#    include_role:
+#      name: kev-vmware-tag
+#    tags:
+#    - kev-vmware-tag
 
 
 - hosts: brandnewvm
