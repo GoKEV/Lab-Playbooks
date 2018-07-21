@@ -26,6 +26,7 @@
 
   register: newvminfo
   delegate_to: localhost
+  changed_when: False
 
 - name: debug newvminfo.instance.ipv4
   debug:
