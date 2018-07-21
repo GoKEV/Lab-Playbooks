@@ -6,7 +6,7 @@
   roles:
     - kev-vmware-provision
 
-- hosts: brandnewvm
+- hosts: newlyprovisionedvm
   roles:
     - kev-motd
     - kev-nano
