@@ -7,7 +7,6 @@
     wait_for_ip_address: yes
     folder: "{{ vmware_folder }}"
     state: "{{ vmware_state }}"
-    guest_id: "{{ vmware_guest_type }}"
 
     disk:
     - size_gb: "{{ vmware_disk_size }}"
