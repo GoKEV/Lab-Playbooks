@@ -28,6 +28,12 @@
   delegate_to: localhost
   changed_when: False
 
+- name: debug newvminfo raw
+  debug:
+    msg: "New IP address is {{ newvminfo }}"
+  when: newvminfo is defined
+  ignore_errors: true
+
 - name: debug newvminfo.instance.ipv4
   debug:
     msg: "New IP address is {{ newvminfo.instance.ipv4 }}"
