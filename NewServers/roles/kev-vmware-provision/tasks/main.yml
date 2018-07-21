@@ -20,9 +20,9 @@
 
     networks:
     - name: "{{ vmware_network }}"
-#      ip: 192.168.1.100
-#      netmask: 255.255.255.0
-#      mac: 'aa:bb:dd:aa:00:14'
+      ip: "{{ vmware_manual_ip | default(omit) }}"
+      netmask: "{{ vmware_manual_netmask | default(omit) }}"
+      mac: "{{ vmware_manual_mac | default(omit) }}"
 
   register: newvminfo
   delegate_to: localhost

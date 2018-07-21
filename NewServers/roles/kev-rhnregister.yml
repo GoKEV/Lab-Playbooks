@@ -1,0 +1,7 @@
+---
+- name: Launch the kev-rhnregister role
+  hosts: all
+  gather_facts: no
+
+  roles:
+  - kev-rhnregister

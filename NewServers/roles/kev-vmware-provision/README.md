@@ -1,22 +1,57 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+This role allows a user to leverage an existing VMware template to deploy and customize to a new VM
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html
+vmware_guest module documentation shows requirements of python >= 2.6 and PyVmomi
+
 
 Role Variables
 --------------
+---
+# defaults file for kev-vmware-provision/---
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+vmware_datacenter: 'KEV Datacenter'
+vmware_new_hostname: AnsiBuilt001
+vmware_template_name: CentOS7-64-Tempalte
+vmware_guest_type: centos7_64Guest
+vmware_datastore: VMNFS
+vmware_folder: '/'
+vmware_disk_size: 20
+vmware_ram_mb: 512
+vm_cpu_count: 1
+vm_core_per_cpu: 1
+vmware_network: VLAN20
+vmware_state: poweredon
+
+# optional network variables.  Use one, some, or all of them as you desire.
+# Without these, your new VM will ask for automatic values from VMware or DHCP:
+
+vmware_manual_ip: 10.10.10.100
+vmware_manual_netmask: 255.255.255.0
+vmware_manual_mac: aa:bb:dd:aa:00:14
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+no galaxy or external role dependencies.
 
 Example Playbook
 ----------------

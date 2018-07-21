@@ -3,7 +3,6 @@
   hosts: localhost
   gather_facts: no
 
-
   tasks:
   - name: ROLE kev-vmware-provision
     include_role:
@@ -11,16 +10,8 @@
     tags:
     - kev-vmware-provision
 
-#  - name: ROLE kev-vmware-tag
-#    include_role:
-#      name: kev-vmware-tag
-#    tags:
-#    - kev-vmware-tag
-
-
 - hosts: brandnewvm
   roles:
-#    - kev-figlet
     - kev-motd
     - kev-nano
     - kev-screen

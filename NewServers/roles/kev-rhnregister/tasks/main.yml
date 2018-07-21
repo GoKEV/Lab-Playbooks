@@ -1,0 +1,27 @@
+---
+- name: Register to RHN with a pool ID
+  redhat_subscription:
+    state: present
+    username: "{{ rhn_username }}"
+    password: "{{ rhn_password }}"
+    pool_ids: "{{ rhn_poolid }}"
+
+- name: Disable all repositories except rhel-7-server-rpms
+  rhsm_repository:
+    name: "{{ item }}"
+    state: disabled
+  with_items: "{{
+    rhsm_repository.repositories |
+    map(attribute='id') |
+    difference(['rhel-7-server-rpms']) }}"
+
+#  - rhel-7-server-rpms
+#  - rhel-7-server-extras-rpms
+
+- name: with_list
+  debug:
+    msg: "{{ item }}"
+  with_list:
+    - one
+    - two
+
