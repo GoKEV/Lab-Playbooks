@@ -4,18 +4,26 @@
     datacenter: "{{ vmware_datacenter }}"
     name: "{{ vmware_new_hostname }}"
     template: "{{ vmware_template_name }}"
+    wait_for_ip_address: yes
     folder: "{{ vmware_folder }}"
+    state: "{{ vmware_state }}"
+    guest_id: "{{ vmware_guest_type }}"
+
     disk:
     - size_gb: "{{ vmware_disk_size }}"
       type: thin
       datastore: "{{ vmware_datastore }}"
+
     hardware:
       memory_mb: "{{ vmware_ram_mb }}"
       num_cpus: "{{ vm_cpu_count }}"
+
     networks:
     - name: "{{ vmware_network }}"
-    wait_for_ip_address: yes
-    state: "{{ vmware_state }}"
+#      ip: 192.168.1.100
+#      netmask: 255.255.255.0
+#      mac: 'aa:bb:dd:aa:00:14'
+
   register: newvminfo
   delegate_to: localhost
 

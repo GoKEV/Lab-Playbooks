@@ -1,16 +1,2 @@
 ---
 # vars file for kev-vmware-provision/
-
-vmware_datacenter: 'KEV Datacenter'
-vmware_new_hostname: AnsiBuilt001
-vmware_template_name: CentOS7-64-Tempalte
-vmware_datastore: VMNFS
-vmware_folder: '/'
-vmware_disk_size: 20
-vmware_ram_mb: 512
-vm_cpu_count: 1
-vm_core_per_cpu: 1
-vmware_network: VLAN20
-vmware_state: poweredon
-
-
