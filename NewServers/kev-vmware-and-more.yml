@@ -3,11 +3,7 @@
   hosts: localhost
   gather_facts: no
 
-  tasks:
-  - name: ROLE kev-vmware-provision
-    include_role:
-      name: kev-vmware-provision
-    tags:
+  roles:
     - kev-vmware-provision
 
 - hosts: brandnewvm
