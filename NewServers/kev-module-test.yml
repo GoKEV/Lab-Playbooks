@@ -1,0 +1,7 @@
+---
+- name: Test the kev-module-test role and kev_module module
+  hosts: localhost
+  gather_facts: no
+
+  roles:
+    - kev-module-test

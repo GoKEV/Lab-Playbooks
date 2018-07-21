@@ -1,0 +1,9 @@
+---
+# tasks file for kev-module-test
+
+- name: Test that my module works
+  kev_module:
+  register: result
+
+- debug: var=result
+
