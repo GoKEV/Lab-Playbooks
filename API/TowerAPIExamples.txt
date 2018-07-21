@@ -1,0 +1,28 @@
+##	Launch a job template in Ansible Tower
+curl -s -f -k -H 'Content-Type: application/json' -XPOST -d '{}' --user kev:kev https://ansibletower.kev/api/v2/job_templates/27/launch/
+
+
+##	Launch a job template in Ansible Tower with variables pushed
+##	Remember to set the variables box in the job template to [ x ] PROMPT ON LAUNCH to allow these vars to be passed.  Otherwise, default vars (if available) will be used.
+curl -s -f -k -H 'Content-Type: application/json' -XPOST -d '{"vmware_new_hostname": "API-Server-Test", "Some_other_ambiguous_variable": "really cool value goes here"}' --user kev:kev https://ansibletower.kev/api/v2/job_templates/27/launch/
+
+
+
+
+##	Add a host to an inventory
+##	Hint -- if you want to delete this later, keep track of (and parse) the new server ID.  In this instance, it was number 58 and the reply from Tower starts with this:
+##	{"id":58,"type":"host","url":"/api/v2/hosts/58/",..... (long string of stuff after this)
+curl -s -f -k -H 'Content-Type: application/json' -XPOST -d '{ "name": "1.2.3.4", "description": "This is my new server", "inventory": "5", "enabled": true}' --user kev:kev https://ansibletower.kev/api/v2/hosts/
+
+
+
+##	Delete a host from tower via node ID
+##	Make sure to replace XXX with the actual ID.
+curl -k -H 'Content-Type: application/json' -XDELETE --user kev:kev https://ansibletower.kev/api/v2/hosts/XXX/
+
+
+
+
+##	Update an existing project in Ansible Tower (cause a git pull)
+curl -s -f -k -H 'Content-Type: application/json' -XPOST -d '{}' --user kev:kev https://ansibletower.kev/api/v2/projects/9/update/
+
