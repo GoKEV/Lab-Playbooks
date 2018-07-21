@@ -33,13 +33,14 @@
     msg: "New IP address is {{ newvminfo.instance.ipv4 }}"
   when: newvminfo.instance.ipv4 is defined
   ignore_errors: true
+  changed_when: False
 
 - name: debug newvminfo.instance.ipv4
   debug:
     msg: "New UUID is {{ newvminfo.instance.hw_product_uuid }}"
   when: newvminfo.instance.hw_product_uuid is defined
   ignore_errors: true
-
+  changed_when: False
 
 - name: "Using set_stats to save info from the newly provisionined VM"
   set_stats:
@@ -48,9 +49,11 @@
       vmware_new_ip: "{{ newvminfo.instance.ipv4 }}"
       vmware_new_hostname: "{{ vmware_new_hostname }}"
     ignore_errors: true
+  changed_when: False
 
 - name: "add {{ newvminfo.instance.ipv4 }} host to group brandnewvm"
   add_host:
     name: "{{ newvminfo.instance.ipv4 }}"
     groups: brandnewvm
+  changed_when: False
 
