@@ -1,0 +1,12 @@
+PLAY [Rush back to airport] ****************************************************
+
+TASK [driving : No time for coffee] ********************************************
+An exception occurred during task execution. To see the full traceback, use -vvv. 
+The error was: Not enough coffee in Kev's belly to translate this silliness
+
+fatal: [127.0.0.1]: FAILED! => {"msg": "Not enough coffee.", "stdout": ""}
+	to retry, use: --limit @/etc/ansible/playbooks/pavery/memphis.retry
+
+PLAY RECAP *********************************************************************
+PhilAvery                  : ok=0    changed=0    unreachable=0    failed=1   
+

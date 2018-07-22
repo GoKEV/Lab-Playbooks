@@ -19,8 +19,10 @@
 
     networks:
     - name: "{{ vmware_network }}"
-#      ip: "{{ vmware_manual_ip | default(omit) }}"
-#      netmask: "{{ vmware_manual_netmask | default(omit) }}"
+      ip: "{{ vmware_manual_ip }}"
+      netmask: "{{ vmware_manual_netmask }}"
+      mac: "{{ vmware_manual_mac }}"
+
 #      mac: "{{ vmware_manual_mac | default(omit) }}"
 
   register: newvminfo
