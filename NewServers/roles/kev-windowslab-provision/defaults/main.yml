@@ -18,12 +18,9 @@ vmware_new_machines:
   - vm_name: WindowsLab01
     vm_ip: 10.0.20.201
     vm_mask: 255.255.255.0
-    vm_mac: FF:FF:FF:FF:00:01
   - vm_name: WindowsLab02
     vm_ip: 10.0.20.202
     vm_mask: 255.255.255.0
-    vm_mac: FF:FF:FF:FF:00:02
   - vm_name: WindowsLab03
     vm_ip: 10.0.20.203
     vm_mask: 255.255.255.0
-    vm_mac: FF:FF:FF:FF:00:03
