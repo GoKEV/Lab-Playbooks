@@ -1,7 +1,6 @@
 - name: Run our security hardening against a server
   hosts: all
   vars:
-    ansible_port: 5986
-    ansible_connection: winrm
+
   roles:
   - harden-windows2012

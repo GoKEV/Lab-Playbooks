@@ -21,3 +21,4 @@ vmware_new_machines:
     vm_ip: NULL
     vm_mask: NULL
     vm_gw: NULL
+    vm_mac: NULL

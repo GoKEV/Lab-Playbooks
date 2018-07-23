@@ -22,9 +22,11 @@
 
     networks:
     - name: "{{ vmware_network }}"
+      mac: "{{ item.vm_mac }}"
       ip: "{{ item.vm_ip }}"
       netmask: "{{ item.vm_mask }}"
       gateway: "{{ item.vm_gw }}"
+
       start_connected: "{{ vmware_net_start_connected }}"
 
   with_items:  "{{ vmware_new_machines }}"
