@@ -13,7 +13,7 @@
     loop_var: filename
   with_items:
     - password
-    - logging
+#    - logging
     - system
 #    - network
     - resources
