@@ -1,0 +1,10 @@
+[windows]
+win2012 ansible_host=10.77.1.44
+
+[windows:vars]
+ansible_port = 5985
+ansible_connection = winrm
+ansible_winrm_server_cert_validation = ignore
+ansible_winrm_kerberos_delegation = yes
+ansible_user = Vagrant
+ansible_password = vagrant

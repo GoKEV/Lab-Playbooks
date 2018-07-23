@@ -1,0 +1,2276 @@
+# This is a duplicate of ED.1.2.1
+- name: ED.99.3.1 | PATCH_WIN | ADVANCED | Audit Policy - Account Logon - Credential Validation to Success and Failure SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Credential Validation\" /success:enable /failure:enable
+  when: 
+    - ed_99_3_1
+  register: __ed_99_3_1
+  tags: 
+    - ED.99.3.1
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.1 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Credential Validation\"
+  when: 
+    - ed_99_3_1
+  check_mode: no
+  register: __ed_99_3_1_audit
+  tags: 
+    - ED.99.3.1
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.1 | AUDIT_WIN | ADVANCED | Audit Policy - Account Logon - Credential Validation to Success and Failure
+  debug: 
+    msg: "Current:{{ __ed_99_3_1_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_99_3_1_audit and 'skipped' not in __ed_99_3_1_audit and 'Success and Failure' not in __ed_99_3_1_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.1
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.2 | PATCH_WIN | ADVANCED | Audit Policy - Logon-Logoff - Account Lockout to No Auditing SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Account Lockout\" /success:disable /failure:disable
+  when: 
+    - ed_99_3_2
+  register: __ed_99_3_2
+  tags: 
+    - ED.99.3.2
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.2 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Account Lockout\"
+  when: 
+    - ed_99_3_2
+  check_mode: no
+  register: __ed_99_3_2_audit
+  tags: 
+    - ED.99.3.2
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.2 | AUDIT_WIN | ADVANCED | Audit Policy - Logon-Logoff - Account Lockout to No Auditing
+  debug: 
+    msg: "Current:{{ __ed_99_3_2_audit.stdout_lines[4] }}, Desired: No Auditing"
+  when: __ed_99_3_2_audit and 'skipped' not in __ed_99_3_2_audit and 'No Auditing' not in __ed_99_3_2_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.2
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.3 | PATCH_WIN | ADVANCED | Audit Policy - Logon-Logoff - Account Logoff to Success SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Logoff\" /success:enable /failure:disable
+  when: 
+    - ed_99_3_3
+  register: __ed_99_3_3
+  tags: 
+    - ED.99.3.3
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.3 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Logoff\"
+  when: 
+    - ed_99_3_3
+  check_mode: no
+  register: __ed_99_3_3_audit
+  tags: 
+    - ED.99.3.3
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.3 | AUDIT_WIN | ADVANCED | Audit Policy - Logon-Logoff - Account Logoff to Success
+  debug: 
+    msg: "Current:{{ __ed_99_3_3_audit.stdout_lines[4] }}, Desired: Success"
+  when: __ed_99_3_3_audit and 'skipped' not in __ed_99_3_3_audit and 'Success' not in __ed_99_3_3_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.3
+    - audit
+    - advanced
+    - B
+
+########################################
+# Duplicate of ED.1.2.5
+ 
+- name: ED.99.3.4 | PATCH_WIN | ADVANCED | Audit Policy - Logon-Logoff - Account Logon to Success and Failure SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Logon\" /success:enable /failure:enable
+  when: 
+    - ed_99_3_4
+  register: __ed_99_3_4
+  tags: 
+    - ED.99.3.4
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.4 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Logon\"
+  when: 
+    - ed_99_3_4
+  check_mode: no
+  register: __ed_99_3_4_audit
+  tags: 
+    - ED.99.3.4
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.4 | AUDIT_WIN | ADVANCED | Audit Policy - Logon-Logoff - Account Logon to Success and Failure
+  debug: 
+    msg: "Current:{{ __ed_99_3_4_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_99_3_4_audit and 'skipped' not in __ed_99_3_4_audit and 'Success and Failure' not in __ed_99_3_4_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.4
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.5 | PATCH_WIN | ADVANCED | Audit Policy - Logon-Logoff - Special Logon to Success SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Logon\" /success:enable /failure:disable
+  when: 
+    - ed_99_3_5
+  register: __ed_99_3_5
+  tags: 
+    - ED.99.3.5
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.5 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Logon\"
+  when: 
+    - ed_99_3_5
+  check_mode: no
+  register: __ed_99_3_5_audit
+  tags: 
+    - ED.99.3.5
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.5 | AUDIT_WIN | ADVANCED | Audit Policy - Logon-Logoff - Special Logon to Success
+  debug: 
+    msg: "Current:{{ __ed_99_3_5_audit.stdout_lines[4] }}, Desired: Success"
+  when: __ed_99_3_5_audit and 'skipped' not in __ed_99_3_5_audit and 'Success' not in __ed_99_3_5_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.5
+    - audit
+    - advanced
+    - B
+
+########################################
+# Duplicate of ED.1.2.38
+ 
+- name: ED.99.3.6 | PATCH_WIN | ADVANCED | Audit Policy - Policy Change - Audit Policy Change to Success and Failure SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Audit Policy Change\" /success:enable /failure:enable
+  when: 
+    - ed_99_3_6
+  register: __ed_99_3_6
+  tags: 
+    - ED.99.3.6
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.6 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Audit Policy Change\"
+  when: 
+    - ed_99_3_6
+  check_mode: no
+  register: __ed_99_3_6_audit
+  tags: 
+    - ED.99.3.6
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.6 | AUDIT_WIN | ADVANCED | Audit Policy - Policy Change - Audit Policy Change to Success and Failure
+  debug: 
+    msg: "Current:{{ __ed_99_3_6_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_99_3_6_audit and 'skipped' not in __ed_99_3_6_audit and 'Success and Failure' not in __ed_99_3_6_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.6
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.7 | PATCH_WIN | ADVANCED | Audit Policy - Policy Change - Authentication Policy Change to Success  SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Authentication Policy Change\" /success:enable /failure:disable
+  when: 
+    - ed_99_3_7
+  register: __ed_99_3_7
+  tags: 
+    - ED.99.3.7
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.7 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Authentication Policy Change\"
+  when: 
+    - ed_99_3_7
+  check_mode: no
+  register: __ed_99_3_7_audit
+  tags: 
+    - ED.99.3.7
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.7 | AUDIT_WIN | ADVANCED | Audit Policy - Policy Change - Authentication Policy Change to Success
+  debug: 
+    msg: "Current:{{ __ed_99_3_7_audit.stdout_lines[4] }}, Desired: Success"
+  when: __ed_99_3_7_audit and 'skipped' not in __ed_99_3_7_audit and 'Success' not in __ed_99_3_7_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.7
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.8 | PATCH_WIN | ADVANCED | Audit Policy - System - Security State Change to Success and Failure SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Security State Change\" /success:enable /failure:enable
+  when: 
+    - ed_99_3_8
+  register: __ed_99_3_8
+  tags: 
+    - ED.99.3.8
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.8 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: auditpol /get /subcategory:\"Security State Change\"
+  when: 
+    - ed_99_3_8
+  check_mode: no
+  register: __ed_99_3_8_audit
+  tags: 
+    - ED.99.3.8
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.8 | AUDIT_WIN | ADVANCED | Audit Policy - System - Security State Change to Success and Failure
+  debug: 
+    msg: "Current:{{ __ed_99_3_8_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_99_3_8_audit and 'skipped' not in __ed_99_3_8_audit and 'Success and Failure' not in __ed_99_3_8_audit.stdout_lines[4]
+  tags:
+    - ED.99.3.8
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.9 | PATCH_WIN | ADVANCED | Accounts - Limit local account use of blank passwords to console logon only to Enabled
+  win_regedit:
+    key: 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
+    value: LimitBlankPasswordUse
+    data: 1
+    datatype: dword
+  when: ed_99_3_9
+  register: __ed_99_3_9
+  tags:
+    - ED.99.3.9
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.9 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
+    name: LimitBlankPasswordUse
+  register: __ed_99_3_9_audit
+  when:
+    - ed_99_3_9
+    - ansible_check_mode
+  tags:
+    - ED.99.3.9
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.9 | AUDIT_WIN | ADVANCED | Accounts - Limit local account use of blank passwords to console logon only to Enabled
+  debug:
+    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa Key:LimitBlankPasswordUse | Current:{{ ('value' in __ed_99_3_9_audit) |ternary(__ed_99_3_9_audit.value, 'Non-existent key') }} | Desired:0x01"
+  when: __ed_99_3_9_audit and 'skipped' not in __ed_99_3_9_audit
+  tags:
+    - ED.99.3.9
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.10 | PATCH_WIN | ADVANCED | Audit - Shut down system immediately if unable to log security audits to Disabled
+  win_regedit:
+    key: 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
+    value: CrashOnAuditFail
+    data: 0
+    datatype: dword
+  when: ed_99_3_10
+  register: __ed_99_3_10
+  tags:
+    - ED.99.3.10
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.10 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
+    name: CrashOnAuditFail
+  register: __ed_99_3_10_audit
+  when:
+    - ed_99_3_10
+    - ansible_check_mode
+  tags:
+    - ED.99.3.10
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.10 | AUDIT_WIN | ADVANCED | Audit - Shut down system immediately if unable to log security audits to Disabled
+  debug:
+    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa Key:CrashOnAuditFail | Current:{{ ('value' in __ed_99_3_10_audit) |ternary(__ed_99_3_10_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_10_audit and 'skipped' not in __ed_99_3_10_audit and __ed_99_3_10_audit.value != 0
+  tags:
+    - ED.99.3.10
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.11 | PATCH_WIN | ADVANCED | Devices - Allowed to format and eject removable media to Administrators
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon'
+    value: AllocateDASD
+    data: 0
+    datatype: dword
+  when: ed_99_3_11
+  register: __ed_99_3_11
+  tags:
+    - ED.99.3.11
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.11 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon'
+    name: AllocateDASD
+  register: __ed_99_3_11_audit
+  when:
+    - ed_99_3_11
+    - ansible_check_mode
+  tags:
+    - ED.99.3.11
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.11 | AUDIT_WIN | ADVANCED | Devices - Allowed to format and eject removable media to Administrators
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon Key: AllocateDASD | Current:{{ ('value' in __ed_99_3_11_audit) |ternary(__ed_99_3_11_audit.value, 'Non-existent key') }} | Desired:0x00"
+  when: __ed_99_3_11_audit and 'skipped' not in __ed_99_3_11_audit and (__ed_99_3_11_audit.exists == True) and __ed_99_3_11_audit.value != 0
+  tags:
+    - ED.99.3.11
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.12 | PATCH_WIN | ADVANCED | Set the value for “Domain Controller - Allow server operators to schedule tasks” to “Disabled”
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    value: SubmitControl
+    data: 0
+    datatype: dword
+  when: ed_99_3_12
+  register: __ed_99_3_12
+  tags:
+    - ED.99.3.12
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.12 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    name: SubmitControl
+  register: __ed_99_3_12_audit
+  when:
+    - ed_99_3_12
+    - ansible_check_mode
+  tags:
+    - ED.99.3.12
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.12 | AUDIT_WIN | ADVANCED | Set the value for “Domain Controller Allow server operators to schedule tasks” to “Disabled”
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Control\\LSA Key: SubmitControl | Current:{{ ('value' in __ed_99_3_12_audit) |ternary(__ed_99_3_12_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_12_audit and 'skipped' not in __ed_99_3_12_audit and (__ed_99_3_12_audit.exists == True) and __ed_99_3_12_audit.value != 0
+  tags:
+    - ED.99.3.12
+    - audit
+    - advanced
+    - B
+
+######################################## 
+
+- name: ED.99.3.13 | PATCH_WIN | ADVANCED | Set the value for “Domain Controller Refuse machine account password changes” to “Disabled”
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters'
+    value: RefusePasswordChange
+    data: 0
+    datatype: dword
+  when: ed_99_3_13
+  register: __ed_99_3_13
+  tags:
+    - ED.99.3.13
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.13 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters'
+    name: RefusePasswordChange
+  register: __ed_99_3_13_audit
+  when:
+    - ed_99_3_13
+    - ansible_check_mode
+  tags:
+    - ED.99.3.13
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.13 | AUDIT_WIN | ADVANCED | Set the value for “Domain Controller Refuse machine account password changes” to “Disabled”
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters Key: RefusePasswordChange | Current:{{ ('value' in __ed_99_3_13_audit) |ternary(__ed_99_3_13_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_13_audit and 'skipped' not in __ed_99_3_13_audit and (__ed_99_3_13_audit.exists == True) and __ed_99_3_13_audit.value != 0
+  tags:
+    - ED.99.3.13
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.14 | PATCH_WIN | ADVANCED | Domain Member - Digitally encrypt or sign secure channel data (always) is not set to “Enabled”
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters'
+    value: RequireSignOrSeal
+    data: 1
+    datatype: dword
+  when: ed_99_3_14
+  register: __ed_99_3_14
+  tags:
+    - ED.99.3.14
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.14 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters'
+    name: RequireSignOrSeal
+  register: __ed_99_3_14_audit
+  when:
+    - ed_99_3_14
+    - ansible_check_mode
+  tags:
+    - ED.99.3.14
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.14 | AUDIT_WIN | ADVANCED | Domain Member - Digitally encrypt or sign secure channel data (always) is not set to “Enabled”
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters Key: RequireSignOrSeal | Current:{{ ('value' in __ed_99_3_14_audit) |ternary(__ed_99_3_14_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_14_audit and 'skipped' not in __ed_99_3_14_audit and (__ed_99_3_14_audit.exists == True) and __ed_99_3_14_audit.value != 1
+  tags:
+    - ED.99.3.14
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.15 | PATCH_WIN | ADVANCED | Domain Member - Require Strong (Windows 2000 or Later) Session Key" to "Enabled"
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters'
+    value: RequireStrongKey
+    data: 1
+    datatype: dword
+  when: ed_99_3_15
+  register: __ed_99_3_15
+  tags:
+    - ED.99.3.15
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.15 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters'
+    name: RequireStrongKey
+  register: __ed_99_3_15_audit
+  when:
+    - ed_99_3_15
+    - ansible_check_mode
+  tags:
+    - ED.99.3.15
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.15 | AUDIT_WIN | ADVANCED | Domain Member - Require Strong (Windows 2000 or Later) Session Key" to "Enabled"
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters Key: RequireStrongKey | Current:{{ ('value' in __ed_99_3_15_audit) |ternary(__ed_99_3_15_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_15_audit and 'skipped' not in __ed_99_3_15_audit and (__ed_99_3_15_audit.exists == True) and __ed_99_3_15_audit.value != 1
+  tags:
+    - ED.99.3.15
+    - audit
+    - advanced
+    - B
+
+########################################
+# Duplicate of ED.2.0.1
+ 
+- name: ED.99.3.16 | NO_REMEDIATION_WIN | ADVANCED | Interactive Logon - Message text for users attempting to log on1
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: LegalNoticeText
+  check_mode: no
+  register: __ed_99_3_16
+  when:
+    - ed_99_3_16
+  tags:
+    - ED.99.3.16
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.16 | AUDIT_WIN | ADVANCED | Interactive Logon - Message text for users attempting to log on
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: LegalNoticeText | Current:{{ __ed_99_3_16.value != '' }} | Desired:True"
+  when: __ed_99_3_16 and 'skipped' not in __ed_99_3_16 and (__ed_99_3_16.exists == True) and __ed_99_3_16.value != ''
+  tags:
+    - ED.99.3.16
+    - audit
+    - advanced
+    - B
+
+########################################
+# Duplicate of ED.2.0.1
+ 
+- name: ED.99.3.17 | NO_REMEDIATION_WIN | ADVANCED | Interactive Logon - Message title for users attempting to log on
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: LegalNoticeCaption
+  check_mode: no
+  register: __ed_99_3_17
+  when:
+    - ed_99_3_17
+  tags:
+    - ED.99.3.17
+    - patch
+    - advanced
+    - B
+ 
+- name: ED.99.3.17 | AUDIT_WIN | ADVANCED | Interactive Logon - Message title for users attempting to log on
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: LegalNoticeCaption | Current:{{ __ed_99_3_17.value != '' }} | Desired:True"
+  when: __ed_99_3_17 and 'skipped' not in __ed_99_3_17 and (__ed_99_3_17.exists == True) and __ed_99_3_17.value != ''
+  tags:
+    - ED.99.3.17
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.18 | PATCH_WIN | ADVANCED | Interactive logon - Do not display last user name” to “Enabled”
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: DontDisplayLastUserName
+    data: 1
+    datatype: dword
+  when: ed_99_3_18
+  register: __ed_99_3_18
+  tags:
+    - ED.99.3.18
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.18 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: DontDisplayLastUserName
+  register: __ed_99_3_18_audit
+  when:
+    - ed_99_3_18
+    - ansible_check_mode
+  tags:
+    - ED.99.3.18
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.18 | AUDIT_WIN | ADVANCED | Interactive logon - Do not display last user name” to “Enabled”
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: DontDisplayLastUserName | Current:{{ ('value' in __ed_99_3_18_audit) |ternary(__ed_99_3_18_audit.value, 'Non-existent key') }}  }} | Desired:0x01"
+  when: __ed_99_3_18_audit and 'skipped' not in __ed_99_3_18_audit and (__ed_99_3_18_audit.exists == True) and __ed_99_3_18_audit.value != 1
+  tags:
+    - ED.99.3.18
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.19 | PATCH_WIN | ADVANCED | Interactive Logon - Do not require CTRL ALT DEL to “Disabled”
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: DisableCAD
+    data: 0
+    datatype: dword
+  when: ed_99_3_19
+  register: __ed_99_3_19
+  tags:
+    - ED.99.3.19
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.19 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: DisableCAD
+  register: __ed_99_3_19_audit
+  when:
+    - ed_99_3_19
+    - ansible_check_mode
+  tags:
+    - ED.99.3.19
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.19 | AUDIT_WIN | ADVANCED | Interactive Logon - Do not require CTRL ALT DEL to “Disabled”
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: DisableCAD | Current:{{ ('value' in __ed_99_3_19_audit) |ternary(__ed_99_3_19_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_19_audit and 'skipped' not in __ed_99_3_19_audit and (__ed_99_3_19_audit.exists == True) and __ed_99_3_19_audit.value != 0
+  tags:
+    - ED.99.3.19
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.20 | PATCH_WIN | ADVANCED | Network Security - Allow Local System to use computer identity for NTLM to “Enabled”
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    value: UseMachineId
+    data: 1
+    datatype: dword
+  when: ed_99_3_20
+  register: __ed_99_3_20
+  tags:
+    - ED.99.3.20
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.20 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    name: UseMachineId
+  register: __ed_99_3_20_audit
+  when:
+    - ed_99_3_20
+    - ansible_check_mode
+  tags:
+    - ED.99.3.20
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.20 | AUDIT_WIN | ADVANCED | Network Security - Allow Local System to use computer identity for NTLM to “Enabled”
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Control\\LSA Key: UseMachineId | Current:{{ ('value' in __ed_99_3_20_audit) |ternary(__ed_99_3_20_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_20_audit and 'skipped' not in __ed_99_3_20_audit and (__ed_99_3_20_audit.exists == True) and __ed_99_3_20_audit.value != 1
+  tags:
+    - ED.99.3.20
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.21 | PATCH_WIN | ADVANCED | Network security Do not store LAN Manager hash value on next password change” to “Enabled”
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    value: NoLMHash
+    data: 1
+    datatype: dword
+  when: ed_99_3_21
+  register: __ed_99_3_21
+  tags:
+    - ED.99.3.21
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.21 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    name: NoLMHash
+  register: __ed_99_3_21_audit
+  when:
+    - ed_99_3_21
+    - ansible_check_mode
+  tags:
+    - ED.99.3.21
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.21 | AUDIT_WIN | ADVANCED | Network security Do not store LAN Manager hash value on next password change” to “Enabled”
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Control\\LSA Key: NoLMHash | Current:{{ ('value' in __ed_99_3_21_audit) |ternary(__ed_99_3_21_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_21_audit and 'skipped' not in __ed_99_3_21_audit and (__ed_99_3_21_audit.exists == True) and __ed_99_3_21_audit.value != 1
+  tags:
+    - ED.99.3.21
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.22 | PATCH_WIN | ADVANCED | Send NTLMv2 response only. Refuse LM & NTLM 
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    value: LmCompatibilityLevel
+    data: 5
+    datatype: dword
+  when: ed_99_3_22
+  register: __ed_99_3_22
+  tags:
+    - ED.99.3.22
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.22 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Control\LSA'
+    name: LmCompatibilityLevel
+  register: __ed_99_3_22_audit
+  when:
+    - ed_99_3_22
+    - ansible_check_mode
+  tags:
+    - ED.99.3.22
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.22 | AUDIT_WIN | ADVANCED | Send NTLMv2 response only. Refuse LM & NTLM
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Control\\LSA Key: LmCompatibilityLevel | Current:{{ ('value' in __ed_99_3_22_audit) |ternary(__ed_99_3_22_audit.value, 'Non-existent key') }}  | Desired:0x05"
+  when: __ed_99_3_22_audit and 'skipped' not in __ed_99_3_22_audit and (__ed_99_3_22_audit.exists == True) and __ed_99_3_22_audit.value != 5
+  tags:
+    - ED.99.3.22
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.23 | PATCH_WIN | ADVANCED | Recovery Console - Allow automatic administrative logon” to “Disabled
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Setup\RecoveryConsole'
+    value: SecurityLevel
+    data: 0
+    datatype: dword
+  when: ed_99_3_23
+  register: __ed_99_3_23
+  tags:
+    - ED.99.3.23
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.23 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Setup\RecoveryConsole'
+    name: SecurityLevel
+  register: __ed_99_3_23_audit
+  when:
+    - ed_99_3_23
+    - ansible_check_mode
+  tags:
+    - ED.99.3.23
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.23 | AUDIT_WIN | ADVANCED | Recovery Console - Allow automatic administrative logon” to “Disabled
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Setup\\RecoveryConsole Key: SecurityLevel | Current:{{ ('value' in __ed_99_3_23_audit) |ternary(__ed_99_3_23_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_23_audit and 'skipped' not in __ed_99_3_23_audit and (__ed_99_3_23_audit.exists == True) and __ed_99_3_23_audit.value != 0
+  tags:
+    - ED.99.3.23
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.24 | PATCH_WIN | ADVANCED | Shutdown - Allow system to be shutdown without having to log on” to “Disabled”
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: ShutdownWithoutLogon
+    data: 0
+    datatype: dword
+  when: ed_99_3_24
+  register: __ed_99_3_24
+  tags:
+    - ED.99.3.24
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.24 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: ShutdownWithoutLogon
+  register: __ed_99_3_24_audit
+  when:
+    - ed_99_3_24
+    - ansible_check_mode
+  tags:
+    - ED.99.3.24
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.24 | AUDIT_WIN | ADVANCED | Shutdown - Allow system to be shutdown without having to log on” to “Disabled”
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: ShutdownWithoutLogon | Current:{{ ('value' in __ed_99_3_24_audit) |ternary(__ed_99_3_24_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_24_audit and 'skipped' not in __ed_99_3_24_audit and (__ed_99_3_24_audit.exists == True) and __ed_99_3_24_audit.value != 0
+  tags:
+    - ED.99.3.24
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.25 | PATCH_WIN | ADVANCED | Shutdown - Clear virtual memory pagefile to “Disabled”
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Control\Session Manager\Memory Management'
+    value: ClearPageFileAtShutdown
+    data: 0
+    datatype: dword
+  when: ed_99_3_25
+  register: __ed_99_3_25
+  tags:
+    - ED.99.3.25
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.25 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Control\Session Manager\Memory Management'
+    name: ClearPageFileAtShutdown
+  register: __ed_99_3_25_audit
+  when:
+    - ed_99_3_25
+    - ansible_check_mode
+  tags:
+    - ED.99.3.25
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.25 | AUDIT_WIN | ADVANCED | Shutdown - Clear virtual memory pagefile to “Disabled”
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Control\\Session Manager\\Memory Management Key: ClearPageFileAtShutdown | Current:{{ ('value' in __ed_99_3_25_audit) |ternary(__ed_99_3_25_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_25_audit and 'skipped' not in __ed_99_3_25_audit and (__ed_99_3_25_audit.exists == True) and __ed_99_3_25_audit.value != 0
+  tags:
+    - ED.99.3.25
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.26 | PATCH_WIN | ADVANCED | System cryptography - Use FIPS compliant algorithms for encryption, hashing, and signing” to “Enabled”
+  win_regedit:
+    key: 'HKLM:\System\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy'
+    value: Enabled
+    data: 0
+    datatype: dword
+  when: ed_99_3_26
+  register: __ed_99_3_26
+  tags:
+    - ED.99.3.26
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.26 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy'
+    name: Enabled
+  register: __ed_99_3_26_audit
+  when:
+    - ed_99_3_26
+    - ansible_check_mode
+  tags:
+    - ED.99.3.26
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.26 | AUDIT_WIN | ADVANCED | System cryptography - Use FIPS compliant algorithms for encryption, hashing, and signing” to “Enabled” 
+  debug:
+    msg: "HKLM:\\System\\CurrentControlSet\\Control\\Lsa\\FIPSAlgorithmPolicy Management Key: Enabled | Current:{{ ('value' in __ed_99_3_26_audit) |ternary(__ed_99_3_26_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_26_audit and 'skipped' not in __ed_99_3_26_audit and (__ed_99_3_26_audit.exists == True) and __ed_99_3_26_audit.value != 0
+  tags:
+    - ED.99.3.26
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.27 | PATCH_WIN | ADVANCED | System Settings - Use Certificate Rules on Windows Executables for Software Restriction Policies to “Enabled”
+  win_regedit:
+    key: 'HKLM:\Software\Policies\Microsoft\Windows\Safer\CodeIdentifiers'
+    value: AuthenticodeEnabled
+    data: 1
+    datatype: dword
+  when: ed_99_3_27
+  register: __ed_99_3_27
+  tags:
+    - ED.99.3.27
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.27 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Policies\Microsoft\Windows\Safer\CodeIdentifiers'
+    name: AuthenticodeEnabled
+  register: __ed_99_3_27_audit
+  when:
+    - ed_99_3_27
+    - ansible_check_mode
+  tags:
+    - ED.99.3.27
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.27 | AUDIT_WIN | ADVANCED | System Settings - Use Certificate Rules on Windows Executables for Software Restriction Policies to “Enabled”
+  debug:
+    msg: "HKLM:\\Software\\Policies\\Microsoft\\Windows\\Safer\\CodeIdentifiers Management Key: AuthenticodeEnabled | Current:{{ ('value' in __ed_99_3_27_audit) |ternary(__ed_99_3_27_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_27_audit and 'skipped' not in __ed_99_3_27_audit and (__ed_99_3_27_audit.exists == True) and __ed_99_3_27_audit.value != 1
+  tags:
+    - ED.99.3.27
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.28 | PATCH_WIN | ADVANCED | User Account Control - Admin Approval Mode for the Built-in Administrator account to "Enabled"
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: FilterAdministratorToken
+    data: 1
+    datatype: dword
+  when: ed_99_3_28
+  register: __ed_99_3_28
+  tags:
+    - ED.99.3.28
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.28 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: FilterAdministratorToken
+  register: __ed_99_3_28_audit
+  when:
+    - ed_99_3_28
+    - ansible_check_mode
+  tags:
+    - ED.99.3.28
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.28 | AUDIT_WIN | ADVANCED | User Account Control - Admin Approval Mode for the Built-in Administrator account to "Enabled"
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: FilterAdministratorToken | Current:{{ ('value' in __ed_99_3_28_audit) |ternary(__ed_99_3_28_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_28_audit and 'skipped' not in __ed_99_3_28_audit and (__ed_99_3_28_audit.exists == True) and __ed_99_3_28_audit.value != 1
+  tags:
+    - ED.99.3.28
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.29 | PATCH_WIN | ADVANCED | User Account Control - Allow UIAccess applications to prompt for elevation without using the secure desktop” to “Disabled”
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: EnableUIADesktopToggle
+    data: 0
+    datatype: dword
+  when: ed_99_3_29
+  register: __ed_99_3_29
+  tags:
+    - ED.99.3.29
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.29 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: EnableUIADesktopToggle
+  register: __ed_99_3_29_audit
+  when:
+    - ed_99_3_29
+    - ansible_check_mode
+  tags:
+    - ED.99.3.29
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.29 | AUDIT_WIN | ADVANCED | User Account Control - Allow UIAccess applications to prompt for elevation without using the secure desktop” to “Disabled”
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: EnableUIADesktopToggle | Current:{{ ('value' in __ed_99_3_29_audit) |ternary(__ed_99_3_29_audit.value, 'Non-existent key') }}  | Desired:0x00"
+  when: __ed_99_3_29_audit and 'skipped' not in __ed_99_3_29_audit and (__ed_99_3_29_audit.exists == True) and __ed_99_3_29_audit.value != 0
+  tags:
+    - ED.99.3.29
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.3.30 | PATCH_WIN | ADVANCED | User Account Control - Detect application installations and prompt for elevation to “Enabled”
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: EnableInstallerDetection
+    data: 1
+    datatype: dword
+  when: ed_99_3_30
+  register: __ed_99_3_30
+  tags:
+    - ED.99.3.30
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.30 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: EnableInstallerDetection
+  register: __ed_99_3_30_audit
+  when:
+    - ed_99_3_30
+    - ansible_check_mode
+  tags:
+    - ED.99.3.30
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.30 | AUDIT_WIN | ADVANCED | User Account Control - Detect application installations and prompt for elevation to “Enabled”
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: EnableInstallerDetection | Current:{{ ('value' in __ed_99_3_30_audit) |ternary(__ed_99_3_30_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_30_audit and 'skipped' not in __ed_99_3_30_audit and (__ed_99_3_30_audit.exists == True) and __ed_99_3_30_audit.value != 1
+  tags:
+    - ED.99.3.30
+    - audit
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.31 | PATCH_WIN | ADVANCED | User Account Control - Switch to the secure desktop when prompting for elevation" to "Enabled"
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: PromptOnSecureDesktop
+    data: 1
+    datatype: dword
+  when: ed_99_3_31
+  register: __ed_99_3_31
+  tags:
+    - ED.99.3.31
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.31 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: PromptOnSecureDesktop
+  register: __ed_99_3_31_audit
+  when:
+    - ed_99_3_31
+    - ansible_check_mode
+  tags:
+    - ED.99.3.31
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.31 | AUDIT_WIN | ADVANCED | User Account Control - Switch to the secure desktop when prompting for elevation" to "Enabled"
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: PromptOnSecureDesktop | Current:{{ ('value' in __ed_99_3_31_audit) |ternary(__ed_99_3_31_audit.value, 'Non-existent key') }}  | Desired:0x01"
+  when: __ed_99_3_31_audit and 'skipped' not in __ed_99_3_31_audit and (__ed_99_3_31_audit.exists == True) and __ed_99_3_31_audit.value != 1
+  tags:
+    - ED.99.3.31
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.3.35 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99335
+  tags:
+    - ED.99.3.35
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.35 | GATHER_INFO_WIN | ADVANCED | Get Administrators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Administrators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: admins_sid_99335
+  tags:
+    - ED.99.3.35
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.35 | GATHER_INFO_WIN | ADVANCED | Get Remote Desktop Users SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Remote Desktop Users")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: rdu_sid_99335
+  tags:
+    - ED.99.3.35
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.35 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  vars: 
+    my_file: "{{ tmp_dir_99335.stdout_lines[0] }}\\ed_99_3_35.txt"
+  tags:
+    - ED.99.3.35
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.35 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeInteractiveLogonRight"'
+  vars: 
+    my_file: "{{ tmp_dir_99335.stdout_lines[0] }}\\ed_99_3_35.txt"
+  register: user_rights_99335
+  tags:
+    - ED.99.3.35
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.35 | PATCH_WIN | ADVANCED | Edit permissions dump file
+  win_lineinfile:
+    path: "{{ my_file }}"
+    regexp: "^.*SeInteractiveLogonRight.*$"
+    line: "{{ my_value }}"
+  when: ('skipped' not in user_rights_99335) and (user_rights_99335.stdout_lines[0]  != my_value)
+  vars: 
+    my_value: "SeInteractiveLogonRight = *{{ admins_sid_99335.stdout_lines[0] }},*{{ rdu_sid_99335.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99335.stdout_lines[0] }}\\ed_99_3_35.txt"
+  tags:
+    - ED.99.3.35
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.35 | PATCH_WIN | ADVANCED | Set SeInteractiveLogonRight SKIPCM_WIN
+  win_shell: secedit /configure /db hisecws.sdb  /cfg  {{ my_file }} /overwrite /quiet
+  when: ('skipped' not in user_rights_99335) and (user_rights_99335.stdout_lines[0]  != my_value)
+  register: __ed_99_3_35
+  vars: 
+    my_value: "SeInteractiveLogonRight = {{ admins_sid_99335.stdout_lines[0] }},{{ rdu_sid_99335.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99335.stdout_lines[0] }}\\ed_99_3_35.txt"
+  tags:
+    - ED.99.3.35
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.35 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  when: ('skipped' not in user_rights_99335)
+  vars: 
+    my_value: "SeInteractiveLogonRight = {{ admins_sid_99335.stdout_lines[0] }},{{ rdu_sid_99335.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99335.stdout_lines[0] }}\\ed_99_3_35.txt"
+  tags:
+    - ED.99.3.35
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.36 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99336
+  tags:
+    - ED.99.3.36
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.36 | GATHER_INFO_WIN | ADVANCED | Get Administrators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Administrators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: admins_sid_99336
+  tags:
+    - ED.99.3.36
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.36 | GATHER_INFO_WIN | ADVANCED | Get Backup Operators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Backup Operators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: buo_sid_99336
+  tags:
+    - ED.99.3.36
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.36 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  vars: 
+    my_file: "{{ tmp_dir_99336.stdout_lines[0] }}\\ed_99_3_36.txt"
+  tags:
+    - ED.99.3.36
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.36 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeBackupPrivilege"'
+  vars: 
+    my_file: "{{ tmp_dir_99336.stdout_lines[0] }}\\ed_99_3_36.txt"
+  register: user_rights_99336
+  tags:
+    - ED.99.3.36
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.36 | PATCH_WIN | ADVANCED | Edit permissions dump file
+  win_lineinfile:
+    path: "{{ my_file }}"
+    regexp: "^.*SeBackupPrivilege.*$"
+    line: "{{ my_value }}"
+  when: ('skipped' not in user_rights_99336) and (user_rights_99336.stdout_lines[0]  != my_value)
+  vars: 
+    my_value: "SeBackupPrivilege = *{{ admins_sid_99336.stdout_lines[0] }},*{{ buo_sid_99336.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99336.stdout_lines[0] }}\\ed_99_3_36.txt"
+  tags:
+    - ED.99.3.36
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.36 | PATCH_WIN | ADVANCED | Set SeBackupPrivilege SKIPCM_WIN
+  win_shell: secedit /configure /db hisecws.sdb  /cfg  {{ my_file }} /overwrite /quiet
+  when: ('skipped' not in user_rights_99336) and (user_rights_99336.stdout_lines[0]  != my_value)
+  register: __ed_99_3_36
+  vars: 
+    my_value: "SeBackupPrivilege = {{ admins_sid_99336.stdout_lines[0] }},{{ buo_sid_99336.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99336.stdout_lines[0] }}\\ed_99_3_36.txt"
+  tags:
+    - ED.99.3.36
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.36 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  when: ('skipped' not in user_rights_99336)
+  vars: 
+    my_value: "SeBackupPrivilege = {{ admins_sid_99336.stdout_lines[0] }},{{ buo_sid_99336.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99336.stdout_lines[0] }}\\ed_99_3_36.txt"
+  tags:
+    - ED.99.3.36
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.37 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99337
+  tags:
+    - ED.99.3.37
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.37 | GATHER_INFO_WIN | ADVANCED | Get Administrators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Administrators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: admins_sid_99337
+  tags:
+    - ED.99.3.37
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.37 | GATHER_INFO_WIN | ADVANCED | Get LocalService SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("LocalService")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: ls_sid_99337
+  tags:
+    - ED.99.3.37
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.37 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  vars: 
+    my_file: "{{ tmp_dir_99337.stdout_lines[0] }}\\ed_99_3_37.txt"
+  tags:
+    - ED.99.3.37
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.37 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeSystemtimePrivilege"'
+  vars: 
+    my_file: "{{ tmp_dir_99337.stdout_lines[0] }}\\ed_99_3_37.txt"
+  register: user_rights_99337
+  tags:
+    - ED.99.3.37
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.37 | PATCH_WIN | ADVANCED | Edit permissions dump file
+  win_lineinfile:
+    path: "{{ my_file }}"
+    regexp: "^.*SeSystemtimePrivilege.*$"
+    line: "{{ my_value }}"
+  when: ('skipped' not in user_rights_99337) and (user_rights_99337.stdout_lines[0]  != my_value)
+  vars: 
+    my_value: "SeSystemtimePrivilege = *{{ admins_sid_99337.stdout_lines[0] }},*{{ ls_sid_99337.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99337.stdout_lines[0] }}\\ed_99_3_37.txt"
+  tags:
+    - ED.99.3.37
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.37 | PATCH_WIN | ADVANCED | Set SeSystemtimePrivilege SKIPCM_WIN
+  win_shell: secedit /configure /db hisecws.sdb  /cfg  {{ my_file }} /overwrite /quiet
+  when: ('skipped' not in user_rights_99337) and (user_rights_99337.stdout_lines[0]  != my_value)
+  register: __ed_99_3_37
+  vars: 
+    my_value: "SeSystemtimePrivilege = {{ admins_sid_99337.stdout_lines[0] }},{{ ls_sid_99337.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99337.stdout_lines[0] }}\\ed_99_3_37.txt"
+  tags:
+    - ED.99.3.37
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.37 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  when: ('skipped' not in user_rights_99337)
+  vars: 
+    my_value: "SeSystemtimePrivilege = {{ admins_sid_99337.stdout_lines[0] }},{{ ls_sid_99337.stdout_lines[0]}}"
+    my_file: "{{ tmp_dir_99337.stdout_lines[0] }}\\ed_99_3_37.txt"
+  tags:
+    - ED.99.3.37
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.38 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99338
+  tags:
+    - ED.99.3.38
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.38 | GATHER_INFO_WIN | ADVANCED | Get Administrators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Administrators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: admins_sid_99338
+  tags:
+    - ED.99.3.38
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.38 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  vars: 
+    my_file: "{{ tmp_dir_99338.stdout_lines[0] }}\\ed_99_3_38.txt"
+  tags:
+    - ED.99.3.38
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.38 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeCreateSymbolicLinkPrivilege"'
+  vars: 
+    my_file: "{{ tmp_dir_99338.stdout_lines[0] }}\\ed_99_3_38.txt"
+  register: user_rights_99338
+  tags:
+    - ED.99.3.38
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.38 | PATCH_WIN | ADVANCED | Edit permissions dump file
+  win_lineinfile:
+    path: "{{ my_file }}"
+    regexp: "^.*SeCreateSymbolicLinkPrivilege.*$"
+    line: "{{ my_value }}"
+  when: ('skipped' not in user_rights_99338) and (user_rights_99338.stdout_lines[0]  != my_value)
+  vars: 
+    my_value: "SeCreateSymbolicLinkPrivilege = *{{ admins_sid_99338.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99338.stdout_lines[0] }}\\ed_99_3_38.txt"
+  tags:
+    - ED.99.3.38
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.38 | PATCH_WIN | ADVANCED | Set SeCreateSymbolicLinkPrivilege SKIPCM_WIN
+  win_shell: secedit /configure /db hisecws.sdb  /cfg  {{ my_file }} /overwrite /quiet
+  when: ('skipped' not in user_rights_99338) and (user_rights_99338.stdout_lines[0]  != my_value)
+  register: __ed_99_3_38
+  vars: 
+    my_value: "SeCreateSymbolicLinkPrivilege = {{ admins_sid_99338.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99338.stdout_lines[0] }}\\ed_99_3_38.txt"
+  tags:
+    - ED.99.3.38
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.38 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  when: ('skipped' not in user_rights_99338)
+  vars: 
+    my_value: "SeCreateSymbolicLinkPrivilege = {{ admins_sid_99338.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99338.stdout_lines[0] }}\\ed_99_3_38.txt"
+  tags:
+    - ED.99.3.38
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.39 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99339
+  tags:
+    - ED.99.3.39
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.39 | GATHER_INFO_WIN | ADVANCED | Get Administrators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Administrators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: admins_sid_99339
+  tags:
+    - ED.99.3.39
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.39 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  vars: 
+    my_file: "{{ tmp_dir_99339.stdout_lines[0] }}\\ed_99_3_39.txt"
+  tags:
+    - ED.99.3.39
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.39 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeDebugPrivilege"'
+  vars: 
+    my_file: "{{ tmp_dir_99339.stdout_lines[0] }}\\ed_99_3_39.txt"
+  register: user_rights_99339
+  tags:
+    - ED.99.3.39
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.39 | PATCH_WIN | ADVANCED | Edit permissions dump file
+  win_lineinfile:
+    path: "{{ my_file }}"
+    regexp: "^.*SeDebugPrivilege.*$"
+    line: "{{ my_value }}"
+  when: ('skipped' not in user_rights_99339) and (user_rights_99339.stdout_lines[0]  != my_value)
+  vars: 
+    my_value: "SeDebugPrivilege = *{{ admins_sid_99339.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99339.stdout_lines[0] }}\\ed_99_3_39.txt"
+  tags:
+    - ED.99.3.39
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.39 | PATCH_WIN | ADVANCED | Set SeDebugPrivilege SKIPCM_WIN
+  win_shell: secedit /configure /db hisecws.sdb  /cfg  {{ my_file }} /overwrite /quiet
+  when: ('skipped' not in user_rights_99339) and (user_rights_99339.stdout_lines[0]  != my_value)
+  register: __ed_99_3_39
+  vars: 
+    my_value: "SeDebugPrivilege = {{ admins_sid_99339.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99339.stdout_lines[0] }}\\ed_99_3_39.txt"
+  tags:
+    - ED.99.3.39
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.39 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  when: ('skipped' not in user_rights_99339)
+  vars: 
+    my_value: "SeDebugPrivilege = {{ admins_sid_99339.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99339.stdout_lines[0] }}\\ed_99_3_39.txt"
+  tags:
+    - ED.99.3.39
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.40 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99340
+  tags:
+    - ED.99.3.40
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.40 | GATHER_INFO_WIN | ADVANCED | Get Guest SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Guest")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: guest_sid_99340
+  tags:
+    - ED.99.3.40
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.40 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  check_mode: no
+  register: __ed_99_3_40_p
+  vars: 
+    my_file: "{{ tmp_dir_99340.stdout_lines[0] }}\\ed_99_3_40.txt"
+  tags:
+    - ED.99.3.40
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.40 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeNetworkLogonRight"'
+  check_mode: no
+  vars: 
+    my_file: "{{ tmp_dir_99340.stdout_lines[0] }}\\ed_99_3_40.txt"
+  register: user_rights_99340
+  tags:
+    - ED.99.3.40
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.40 | NO_REMEDIATION_WIN | ADVANCED | Guest remote logon access permission
+  debug:
+    msg: "ERROR - Guest has remote logon perms"
+  when: ('skipped' not in user_rights_99340) and (my_sid in my_line)
+  vars:
+    my_sid: "{{ guest_sid_99340.stdout_lines[0] }}"
+    my_line: "{{ user_rights_99340.stdout_lines[0] }}"
+
+- name: ED.99.3.40 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  check_mode: no
+  when: ('skipped' not in user_rights_99340)
+  vars: 
+    my_value: "SeNetworkLogonRight = {{ guest_sid_99340.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99340.stdout_lines[0] }}\\ed_99_3_40.txt"
+  tags:
+    - ED.99.3.40
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.41 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99341
+  tags:
+    - ED.99.3.41
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.41 | GATHER_INFO_WIN | ADVANCED | Get Administrators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Administrators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: admins_sid_99341
+  tags:
+    - ED.99.3.41
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.41 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  check_mode: no
+  vars: 
+    my_file: "{{ tmp_dir_99341.stdout_lines[0] }}\\ed_99_3_41.txt"
+  tags:
+    - ED.99.3.41
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.41 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeRemoteShutdownPrivilege"'
+  check_mode: no
+  vars: 
+    my_file: "{{ tmp_dir_99341.stdout_lines[0] }}\\ed_99_3_41.txt"
+  register: user_rights_99341
+  tags:
+    - ED.99.3.41
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.41 | PATCH_WIN | ADVANCED | Edit permissions dump file
+  win_lineinfile:
+    path: "{{ my_file }}"
+    regexp: "^.*SeRemoteShutdownPrivilege.*$"
+    line: "{{ my_value }}"
+  when: ('skipped' not in user_rights_99341)
+  vars: 
+    my_value: "SeRemoteShutdownPrivilege = *{{ admins_sid_99341.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99341.stdout_lines[0] }}\\ed_99_3_41.txt"
+  tags:
+    - ED.99.3.41
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.41 | PATCH_WIN | ADVANCED | Set SeRemoteShutdownPrivilege SKIPCM_WIN
+  win_shell: secedit /configure /db hisecws.sdb  /cfg  {{ my_file }} /overwrite /quiet
+  when: ('skipped' not in user_rights_99341) and (user_rights_99341.stdout_lines[0]  != my_value)
+  register: __ed_99_3_41
+  vars: 
+    my_value: "SeRemoteShutdownPrivilege = {{ admins_sid_99341.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99341.stdout_lines[0] }}\\ed_99_3_41.txt"
+  tags:
+    - ED.99.3.41
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.41 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  check_mode: no
+  when: ('skipped' not in user_rights_99341)
+  vars: 
+    my_value: "SeRemoteShutdownPrivilege = {{ admins_sid_99341.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99341.stdout_lines[0] }}\\ed_99_3_41.txt"
+  tags:
+    - ED.99.3.41
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.42 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:TEMP"
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  register: tmp_dir_99342
+  tags:
+    - ED.99.3.42
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.42 | GATHER_INFO_WIN | ADVANCED | Get Administrators SID
+  win_shell: (New-Object System.Security.Principal.NTAccount("Administrators")).Translate([System.Security.Principal.SecurityIdentifier]).value
+  check_mode: no
+  register: admins_sid_99342
+  tags:
+    - ED.99.3.42
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.42 | PATCH_WIN | ADVANCED | Dump existing permission values into TEMP SKIPCM_WIN
+  win_shell: secedit /export /areas USER_RIGHTS /cfg {{ my_file }}
+  check_mode: no
+  vars: 
+    my_file: "{{ tmp_dir_99342.stdout_lines[0] }}\\ed_99_3_42.txt"
+  tags:
+    - ED.99.3.42
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.42 | PATCH_WIN | ADVANCED | Extract interesting permissions from dump file 
+  win_shell: cat {{ my_file }} | findstr '/C:"SeShutdownPrivilege"'
+  check_mode: no
+  vars: 
+    my_file: "{{ tmp_dir_99342.stdout_lines[0] }}\\ed_99_3_42.txt"
+  register: user_rights_99342
+  tags:
+    - ED.99.3.42
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.42 | PATCH_WIN | ADVANCED | Edit permissions dump file
+  win_lineinfile:
+    path: "{{ my_file }}"
+    regexp: "^.*SeShutdownPrivilege.*$"
+    line: "{{ my_value }}"
+  when: ('skipped' not in user_rights_99342) and (user_rights_99342.stdout_lines[0]  != my_value)
+  vars: 
+    my_value: "SeShutdownPrivilege = *{{ admins_sid_99342.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99342.stdout_lines[0] }}\\ed_99_3_42.txt"
+  tags:
+    - ED.99.3.42
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.42 | PATCH_WIN | ADVANCED | Set SeShutdownPrivilege SKIPCM_WIN
+  win_shell: secedit /configure /db hisecws.sdb  /cfg  {{ my_file }} /overwrite /quiet
+  when: ('skipped' not in user_rights_99342) and (user_rights_99342.stdout_lines[0]  != my_value)
+  register: __ed_99_3_42
+  vars: 
+    my_value: "SeShutdownPrivilege = {{ admins_sid_99342.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99342.stdout_lines[0] }}\\ed_99_3_42.txt"
+  tags:
+    - ED.99.3.42
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.42 | PATCH_WIN | ADVANCED | Clean up output file SKIPCM_WIN
+  win_file:
+    path: "{{ my_file }}"
+    state: absent
+  check_mode: no
+  when: ('skipped' not in user_rights_99342)
+  vars: 
+    my_value: "SeShutdownPrivilege = {{ admins_sid_99342.stdout_lines[0] }}"
+    my_file: "{{ tmp_dir_99342.stdout_lines[0] }}\\ed_99_3_42.txt"
+  tags:
+    - ED.99.3.42
+    - patch
+    - advanced
+    - B
+ 
+########################################
+ 
+- name: ED.99.3.43 | PATCH_WIN | ADVANCED | Turn off AutoPlay to “Enabled -All Drives”
+  win_regedit:
+    key: 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer'
+    value: NoDriveTypeAutorun
+    data: 255
+    datatype: dword
+  when: ed_99_3_43
+  register: __ed_99_3_43
+  tags:
+    - ED.99.3.43
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.3.43 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer'
+    name: NoDriveTypeAutorun
+  register: __ed_99_3_43_audit
+  when:
+    - ed_99_3_43
+    - ansible_check_mode
+  tags:
+    - ED.99.3.43
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.3.43 | AUDIT_WIN | ADVANCED | Turn off AutoPlay to “Enabled -All Drives”
+  debug:
+    msg: "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\policies\\Explorer Key: NoDriveTypeAutorun | Current:{{ ('value' in __ed_99_3_43_audit) |ternary(__ed_99_3_43_audit.value, 'Non-existent key') }}  | Desired:255"
+  when: __ed_99_3_43_audit and 'skipped' not in __ed_99_3_43_audit and __ed_99_3_43_audit.value != 255
+  tags:
+    - ED.99.3.43
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.4.1 | PATCH_WIN | ADVANCED | Set timezone to UTC SKIPCM_WIN
+  win_command: tzutil /s UTC
+  when:
+    - ed_99_4_1
+  register: __ed_99_4_1
+  tags:
+    - ED.99.4.1
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.4.1 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_command: tzutil /g 
+  when:
+    - ed_99_4_1
+  check_mode: no
+  register: __ed_99_4_1_audit
+  tags:
+    - ED.99.4.1
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.4.1 | AUDIT_WIN | ADVANCED | Set timezone to UTC
+  debug:
+    msg: "Current:{{ __ed_99_4_1_audit.stdout_lines[0] }}, Desired: UTC"
+  when:
+    - __ed_99_4_1_audit and 'skipped' not in __ed_99_4_1_audit and 'UTC' not in __ed_99_4_1_audit.stdout_lines[0]
+  tags:
+    - ED.99.4.1
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.4.2 | NO_REMEDIATION_WIN | ADVANCED | Is NTP running? SKIPCM_WIN
+  win_command: w32tm /query /peers
+  when:
+    - ed_99_4_2
+  check_mode: no
+  register: __ed_99_4_2
+  tags:
+    - ED.99.4.2
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.4.2 | AUDIT_WIN | ADVANCED | Is NTP running?
+  debug:
+    msg: "Current:{{ __ed_99_4_2.stdout_lines[0] }}, Desired: 1 or more"
+  when:
+    - __ed_99_4_2 and 'skipped' not in __ed_99_4_2 and '0' not in __ed_99_4_2.stdout_lines[0]
+  tags:
+    - ED.99.4.2
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.4.3 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_shell: Get-Service -DisplayName "SNMP" -ErrorAction "SilentlyContinue" | Format-List -Property Status -ErrorAction "SilentlyContinue"
+  check_mode: no
+  ignore_errors: yes
+  when: 
+    - ed_99_4_3
+    - ansible_check_mode
+  register: __ed_99_4_3_audit
+  tags: 
+    - ED.99.4.3
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.4.3 | NO_REMEDIATION_WIN | ADVANCED | Is the SNMP service installed?
+  debug: 
+    msg: "The SNMP service is NOT installed"
+  when: __ed_99_4_3_audit and 'skipped' not in __ed_99_4_3_audit and 'failed' in  __ed_99_4_3_audit
+  tags:
+    - ED.99.4.3
+    - audit
+    - advanced
+    - B
+ 
+
+- name: ED.99.4.3 | AUDIT_WIN | ADVANCED | Is the SNMP service running?
+  debug: 
+    msg: "Current {{ __ed_99_4_3_audit.stdout_lines[2] }}, Desired: Running" 
+  when: __ed_99_4_3_audit and 'skipped' not in __ed_99_4_3_audit and 'failed' not in  __ed_99_4_3_audit and 'Running' not in __ed_99_4_3_audit.stdout_lines[2]
+  tags:
+    - ED.99.4.3
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.4.4 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_shell: Get-Service -DisplayName "Windows Update" -ErrorAction "SilentlyContinue" | Format-List -Property Status -ErrorAction "SilentlyContinue"
+  check_mode: no
+  ignore_errors: yes
+  when: 
+    - ed_99_4_4
+    - ansible_check_mode
+  register: __ed_99_4_4_audit
+  tags: 
+    - ED.99.4.4
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.4.4 | NO_REMEDIATION_WIN | ADVANCED | Is the Windows Update service installed?
+  debug: 
+    msg: "The Windows Update service is NOT installed"
+  when: __ed_99_4_4_audit and 'skipped' not in __ed_99_4_4_audit and 'failed' in  __ed_99_4_4_audit
+  tags:
+    - ED.99.4.4
+    - audit
+    - advanced
+    - B
+ 
+
+- name: ED.99.4.4 | AUDIT_WIN | ADVANCED | Is the Windows Update service running?
+  debug: 
+    msg: "Current {{ __ed_99_4_4_audit.stdout_lines[2] }}, Desired: Running"
+  when: __ed_99_4_4_audit and 'skipped' not in __ed_99_4_4_audit and 'failed' not in  __ed_99_4_4_audit and 'Running' not in __ed_99_4_4_audit.stdout_lines[2]
+  tags:
+    - ED.99.4.4
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.4.5 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_shell: Get-Service -DisplayName "Windows Time" -ErrorAction "SilentlyContinue" | Format-List -Property Status -ErrorAction "SilentlyContinue"
+  check_mode: no
+  ignore_errors: yes
+  when: 
+    - ed_99_4_5
+    - ansible_check_mode
+  register: __ed_99_4_5_audit
+  tags: 
+    - ED.99.4.5
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.4.5 | NO_REMEDIATION_WIN | ADVANCED | Is the Windows Time service installed?
+  debug: 
+    msg: "The Windows Time service is NOT installed"
+  when: __ed_99_4_5_audit and 'skipped' not in __ed_99_4_5_audit and 'failed' in  __ed_99_4_5_audit
+  tags:
+    - ED.99.4.5
+    - audit
+    - advanced
+    - B
+ 
+
+- name: ED.99.4.5 | AUDIT_WIN | ADVANCED | Is the Windows Time service running?
+  debug: 
+    msg: "Current {{ __ed_99_4_5_audit.stdout_lines[2] }}, Desired: Running"
+  when: __ed_99_4_5_audit and 'skipped' not in __ed_99_4_5_audit and 'failed' not in  __ed_99_4_5_audit and 'Running' not in __ed_99_4_5_audit.stdout_lines[2]
+  tags:
+    - ED.99.4.5
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.4.6 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_shell: Get-Service -DisplayName "Windows Firewall" -ErrorAction "SilentlyContinue" | Format-List -Property Status -ErrorAction "SilentlyContinue"
+  check_mode: no
+  ignore_errors: yes
+  when: 
+    - ed_99_4_6
+    - ansible_check_mode
+  register: __ed_99_4_6_audit
+  tags: 
+    - ED.99.4.6
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.4.6 | NO_REMEDIATION_WIN | ADVANCED | Is the Windows Firewall service installed?
+  debug: 
+    msg: "The Windows Firewall service is NOT installed"
+  when: __ed_99_4_6_audit and 'skipped' not in __ed_99_4_6_audit and 'failed' in  __ed_99_4_6_audit
+  tags:
+    - ED.99.4.6
+    - audit
+    - advanced
+    - B
+ 
+
+- name: ED.99.4.6 | AUDIT_WIN | ADVANCED | Is the Windows Firewall service running?
+  debug: 
+    msg: "Current {{ __ed_99_4_6_audit.stdout_lines[2] }}, Desired: Running"
+  when: __ed_99_4_6_audit and 'skipped' not in __ed_99_4_6_audit and 'failed' not in  __ed_99_4_6_audit and 'Running' not in __ed_99_4_6_audit.stdout_lines[2]
+  tags:
+    - ED.99.4.6
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.4.7 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_shell: Get-Service -DisplayName "Windows Audio" -ErrorAction "SilentlyContinue" | Format-List -Property Status -ErrorAction "SilentlyContinue"
+  check_mode: no
+  ignore_errors: yes
+  when: 
+    - ed_99_4_7
+    - ansible_check_mode
+  register: __ed_99_4_7_audit
+  tags: 
+    - ED.99.4.7
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.4.7 | AUDIT_WIN | ADVANCED | Is the Windows Audio service installed?
+  debug: 
+    msg: "The Windows Audio service is NOT installed"
+  when: __ed_99_4_7_audit and 'skipped' not in __ed_99_4_7_audit and 'failed' in  __ed_99_4_7_audit
+  tags:
+    - ED.99.4.7
+    - audit
+    - advanced
+    - B
+ 
+
+- name: ED.99.4.7 | AUDIT_WIN | ADVANCED | Is the Windows Audio service running?
+  debug: 
+    msg: "Current {{ __ed_99_4_7_audit.stdout_lines[2] }}, Desired: Stopped"
+  when: __ed_99_4_7_audit and 'skipped' not in __ed_99_4_7_audit and 'failed' not in  __ed_99_4_7_audit and 'Stopped' not in __ed_99_4_7_audit.stdout_lines[2]
+  tags:
+    - ED.99.4.7
+    - audit
+    - advanced
+    - B
+
+########################################
+
+- name: ED.99.4.8 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_shell: Get-Service -DisplayName "Themes" -ErrorAction "SilentlyContinue" | Format-List -Property Status -ErrorAction "SilentlyContinue"
+  check_mode: no
+  ignore_errors: yes
+  when: 
+    - ed_99_4_8
+    - ansible_check_mode
+  register: __ed_99_4_8_audit
+  tags: 
+    - ED.99.4.8
+    - audit
+    - advanced
+    - B
+
+#- name: ED.99.4.8 | AUDIT_WIN | ADVANCED | Is the Themes service installed?
+#  debug: 
+#    msg: "The Themes service is NOT installed"
+#  when: __ed_99_4_8_audit and 'skipped' not in __ed_99_4_8_audit and 'failed' in  __ed_99_4_8_audit
+#  tags:
+#    - ED.99.4.8
+#    - audit
+#    - advanced
+#    - B
+ 
+
+- name: ED.99.4.8 | AUDIT_WIN | ADVANCED | Is the Themes service running?
+  debug: 
+    msg: "Current {{ __ed_99_4_8_audit.stdout_lines[2] }}, Desired: Stopped"
+  when: __ed_99_4_8_audit and 'skipped' not in __ed_99_4_8_audit and 'failed' not in  __ed_99_4_8_audit and 'Stopped' not in __ed_99_4_8_audit.stdout_lines[2]
+  tags:
+    - ED.99.4.8
+    - audit
+    - advanced
+    - B
+
+########################################
+ 
+- name: ED.99.4.10 | PATCH_WIN | ADVANCED | Disable auto logon - AutoLogonChecked
+  win_regedit:
+    key: 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+    value: AutoLogonChecked
+    data: 0
+    datatype: dword
+  when: ed_99_4_10
+  register: __ed_99_4_10
+  tags:
+    - ED.99.4.10
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.4.10 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+    name: AutoLogonChecked
+  register: __ed_99_4_10_audit
+  when:
+    - ed_99_4_10
+    - ansible_check_mode
+  tags:
+    - ED.99.4.10
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.4.10 | AUDIT_WIN | ADVANCED | Disable auto logon - AutoLogonChecked
+  debug:
+    msg: "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon: AutoLogonChecked | Current:{{ ('value' in __ed_99_4_10_audit) |ternary(__ed_99_4_10_audit.value, 'Non-existent key') }}  | Desired:0"
+  when: __ed_99_4_10_audit and 'skipped' not in __ed_99_4_10_audit and 'value' in __ed_99_4_10_audit
+  tags:
+    - ED.99.4.10
+    - audit
+    - advanced
+    - B
+ 
+- name: ED.99.4.10 | PATCH_WIN | ADVANCED | Disable auto logon - AutoAdminLogon
+  win_regedit:
+    key: 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+    value: AutoAdminLogon
+    data: 0
+    datatype: dword
+  when: ed_99_4_10
+  register: __ed_99_4_10_1
+  tags:
+    - ED.99.4.10
+    - patch
+    - advanced
+    - B
+
+- name: ED.99.4.10 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+    name: AutoAdminLogon
+  register: __ed_99_4_10_1_audit
+  when:
+    - ed_99_4_10
+    - ansible_check_mode
+  tags:
+    - ED.99.4.10
+    - audit
+    - advanced
+    - B
+
+- name: ED.99.4.10 | AUDIT_WIN | ADVANCED | Disable auto logon - AutoAdminLogon
+  debug:
+    msg: "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon: AutoAdminLogon | Current:{{ ('value' in __ed_99_4_10_1_audit) |ternary(__ed_99_4_10_1_audit.value, 'Non-existent key') }}  | Desired:0"
+  when: __ed_99_4_10_1_audit and 'skipped' not in __ed_99_4_10_1_audit and 'value' in __ed_99_4_10_1_audit
+  tags:
+    - ED.99.4.10
+    - audit
+    - advanced
+    - B
+########################################

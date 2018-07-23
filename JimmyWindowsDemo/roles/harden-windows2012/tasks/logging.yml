@@ -1,0 +1,2404 @@
+########################################
+# This is a duplicate of ED.99.3.1
+
+#- name: ED.1.2.1 | PATCH_WIN | LOGGING | Advanced Audit Policy - Account Logon Credential Validation
+#  win_command: auditpol /set /subcategory:\"Credential Validation\" /success:enable /failure:enable SKIPCM_WIN
+#  when: 
+#    - ed_1_2_1
+#  register: __ed_1_2_1
+#  tags: 
+#    - ED.1.2.1
+#    - patch
+#    - logging
+#    - S
+#
+#- name: ED.1.2.1 | GATHER_INFO_WIN | LOGGING | Gather audit data
+#  win_command: auditpol /get /subcategory:\"Credential Validation\"
+#  when: 
+#    - ed_1_2_1
+#  check_mode: no
+#  register: __ed_1_2_1_audit
+#  tags: 
+#    - ED.1.2.1
+#    - audit
+#    - logging
+#    - S
+#
+#- name: ED.1.2.1 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Account Logon Credential Validation
+#  debug: 
+#    msg: "Current:{{ __ed_1_2_1_audit.stdout_lines[4] }}, Desired: Success and Failure"
+#  when: __ed_1_2_1_audit and 'skipped' not in __ed_1_2_1_audit
+#  tags:
+#    - ED.1.2.1
+#    - audit
+#    - logging
+#    - S
+
+########################################
+
+- name: ED.1.2.2 | PATCH_WIN | LOGGING | Advanced Audit Policy - Account Logon Kerberos Service Ticket Operations SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Kerberos Service Ticket Operations\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_2
+  register: __ed_1_2_2
+  tags: 
+    - ED.1.2.2
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.2 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Kerberos Service Ticket Operations\"
+  when: 
+    - ed_1_2_2
+  check_mode: no
+  register: __ed_1_2_2_audit
+  tags: 
+    - ED.1.2.2
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.2 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Account Logon Kerberos Service Ticket Operations
+  debug: 
+    msg: "Current:{{ __ed_1_2_2_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_2_audit and 'skipped' not in __ed_1_2_2_audit and 'Success and Failure' not in __ed_1_2_2_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.2
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.3 | PATCH_WIN | LOGGING | Advanced Audit Policy - Other Account Logon Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Other Account Logon Events\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_3
+  register: __ed_1_2_3
+  tags: 
+    - ED.1.2.3
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.3 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Other Account Logon Events\"
+  when: 
+    - ed_1_2_3
+  check_mode: no
+  register: __ed_1_2_3_audit
+  tags: 
+    - ED.1.2.3
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.3 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Other Account Logon Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_3_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_3_audit and 'skipped' not in __ed_1_2_3_audit and 'Success and Failure' not in __ed_1_2_3_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.3
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.4 | PATCH_WIN | LOGGING | Advanced Audit Policy - Kerberos Authentication Service SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Kerberos Authentication Service\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_4
+  register: __ed_1_2_4
+  tags: 
+    - ED.1.2.4
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.4 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Kerberos Authentication Service\"
+  when: 
+    - ed_1_2_4
+  check_mode: no
+  register: __ed_1_2_4_audit
+  tags: 
+    - ED.1.2.4
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.4 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Kerberos Authentication Service
+  debug: 
+    msg: "Current:{{ __ed_1_2_4_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_4_audit and 'skipped' not in __ed_1_2_4_audit and 'Success and Failure' not in __ed_1_2_4_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.4
+    - audit
+    - logging
+    - S
+
+########################################
+# Duplicate of ED.99.3.4
+ 
+#- name: ED.1.2.5 | PATCH_WIN | LOGGING | Audit Policy - Logon-Logoff - Account Logon to Success and Failure SKIPCM_WIN
+#  win_command: auditpol /set /subcategory:\"Logon\" /success:enable /failure:enable 
+#  when: 
+#    - ed_1_2_5
+#  register: __ed_1_2_5
+#  tags: 
+#    - ED.1.2.5
+#    - patch
+#    - logging
+#    - S
+#
+#- name: ED.1.2.5 | GATHER_INFO_WIN | LOGGING | Gather audit data
+#  win_command: auditpol /get /subcategory:\"Logon\"
+#  when: 
+#    - ed_1_2_5
+#  check_mode: no
+#  register: __ed_1_2_5_audit
+#  tags: 
+#    - ED.1.2.5
+#    - audit
+#    - logging
+#    - S
+#
+#- name: ED.1.2.5 | AUDIT_WIN | LOGGING | Audit Policy - Logon-Logoff - Account Logon to Success and Failure
+#  debug: 
+#    msg: "Current:{{ __ed_1_2_5_audit.stdout_lines[4] }}, Desired: Success and Failure"
+#  when: __ed_1_2_5_audit and 'skipped' not in __ed_1_2_5_audit and 'Success and Failure' not in __ed_1_2_5_audit.stdout_lines[4]
+#  tags:
+#    - ED.1.2.5
+#    - audit
+#    - logging
+#    - S
+
+########################################
+# Skipping ED.1.2.6 
+# Skipping ED.1.2.7 
+########################################
+########################################
+
+- name: ED.1.2.8 | PATCH_WIN | LOGGING | Advanced Audit Policy - IPsec Main Mode SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"IPsec Main Mode\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_8
+  register: __ed_1_2_8
+  tags: 
+    - ED.1.2.8
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.8 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"IPsec Main Mode\"
+  when: 
+    - ed_1_2_8
+  check_mode: no
+  register: __ed_1_2_8_audit
+  tags: 
+    - ED.1.2.8
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.8 | AUDIT_WIN | LOGGING | Advanced Audit Policy - IPsec Main Mode
+  debug: 
+    msg: "Current:{{ __ed_1_2_8_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_8_audit and 'skipped' not in __ed_1_2_8_audit and 'Success and Failure' not in __ed_1_2_8_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.8
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.9 | PATCH_WIN | LOGGING | Advanced Audit Policy - IPsec Quick Mode SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"IPsec Quick Mode\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_9
+  register: __ed_1_2_9
+  tags: 
+    - ED.1.2.9
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.9 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"IPsec Quick Mode\"
+  when: 
+    - ed_1_2_9
+  check_mode: no
+  register: __ed_1_2_9_audit
+  tags: 
+    - ED.1.2.9
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.9 | AUDIT_WIN | LOGGING | Advanced Audit Policy - IPsec Quick Mode
+  debug: 
+    msg: "Current:{{ __ed_1_2_9_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_9_audit and 'skipped' not in __ed_1_2_9_audit and 'Success and Failure' not in __ed_1_2_9_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.9
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.10 | PATCH_WIN | LOGGING | Advanced Audit Policy - IPsec Extended Mode SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"IPsec Extended Mode\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_10
+  register: __ed_1_2_10
+  tags: 
+    - ED.1.2.10
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.10 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"IPsec Extended Mode\"
+  when: 
+    - ed_1_2_10
+  check_mode: no
+  register: __ed_1_2_10_audit
+  tags: 
+    - ED.1.2.10
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.10 | AUDIT_WIN | LOGGING | Advanced Audit Policy - IPsec Extended Mode
+  debug: 
+    msg: "Current:{{ __ed_1_2_10_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_10_audit and 'skipped' not in __ed_1_2_10_audit and 'Success and Failure' not in __ed_1_2_10_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.10
+    - audit
+    - logging
+    - S
+
+########################################
+# Skipping ED.1.2.11
+########################################
+
+- name: ED.1.2.12 | PATCH_WIN | LOGGING | Advanced Audit Policy - Other Logon/Logoff Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Other Logon/Logoff Events\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_12
+  register: __ed_1_2_12
+  tags: 
+    - ED.1.2.12
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.12 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Other Logon/Logoff Events\"
+  when: 
+    - ed_1_2_12
+  check_mode: no
+  register: __ed_1_2_12_audit
+  tags: 
+    - ED.1.2.12
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.12 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Other Logon/Logoff Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_12_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_12_audit and 'skipped' not in __ed_1_2_12_audit and 'Success and Failure' not in __ed_1_2_12_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.12
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.13 | PATCH_WIN | LOGGING | Advanced Audit Policy - Network Policy Server SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Network Policy Server\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_13
+  register: __ed_1_2_13
+  tags: 
+    - ED.1.2.13
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.13 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Network Policy Server\"
+  when: 
+    - ed_1_2_13
+  check_mode: no
+  register: __ed_1_2_13_audit
+  tags: 
+    - ED.1.2.13
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.13 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Network Policy Server
+  debug: 
+    msg: "Current:{{ __ed_1_2_13_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_13_audit and 'skipped' not in __ed_1_2_13_audit and 'Success and Failure' not in __ed_1_2_13_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.13
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.14 | PATCH_WIN | LOGGING | Advanced Audit Policy - User / Device Claims SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"User / Device Claims\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_14
+  register: __ed_1_2_14
+  tags: 
+    - ED.1.2.14
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.14 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"User / Device Claims\"
+  when: 
+    - ed_1_2_14
+  check_mode: no
+  register: __ed_1_2_14_audit
+  tags: 
+    - ED.1.2.14
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.14 | AUDIT_WIN | LOGGING | Advanced Audit Policy - User / Device Claims
+  debug: 
+    msg: "Current:{{ __ed_1_2_14_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_14_audit and 'skipped' not in __ed_1_2_14_audit and 'Success and Failure' not in __ed_1_2_14_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.14
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.15 | PATCH_WIN | LOGGING | Advanced Audit Policy - User Account Management SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"User Account Management\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_15
+  register: __ed_1_2_15
+  tags: 
+    - ED.1.2.15
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.15 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"User Account Management\"
+  when: 
+    - ed_1_2_15
+  check_mode: no
+  register: __ed_1_2_15_audit
+  tags: 
+    - ED.1.2.15
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.15 | AUDIT_WIN | LOGGING | Advanced Audit Policy - User Account Management
+  debug: 
+    msg: "Current:{{ __ed_1_2_15_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_15_audit and 'skipped' not in __ed_1_2_15_audit and 'Success and Failure' not in __ed_1_2_15_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.15
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.16 | PATCH_WIN | LOGGING | Advanced Audit Policy - Computer Account Management SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Computer Account Management\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_16
+  register: __ed_1_2_16
+  tags: 
+    - ED.1.2.16
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.16 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Computer Account Management\"
+  when: 
+    - ed_1_2_16
+  check_mode: no
+  register: __ed_1_2_16_audit
+  tags: 
+    - ED.1.2.16
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.16 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Computer Account Management
+  debug: 
+    msg: "Current:{{ __ed_1_2_16_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_16_audit and 'skipped' not in __ed_1_2_16_audit and 'Success and Failure' not in __ed_1_2_16_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.16
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.17 | PATCH_WIN | LOGGING | Advanced Audit Policy - Security Group Management SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Security Group Management\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_17
+  register: __ed_1_2_17
+  tags: 
+    - ED.1.2.17
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.17 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Security Group Management\"
+  when: 
+    - ed_1_2_17
+  check_mode: no
+  register: __ed_1_2_17_audit
+  tags: 
+    - ED.1.2.17
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.17 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Security Group Management
+  debug: 
+    msg: "Current:{{ __ed_1_2_17_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_17_audit and 'skipped' not in __ed_1_2_17_audit and 'Success and Failure' not in __ed_1_2_17_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.17
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.18 | PATCH_WIN | LOGGING | Advanced Audit Policy - Distribution Group Management SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Distribution Group Management\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_18
+  register: __ed_1_2_18
+  tags: 
+    - ED.1.2.18
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.18 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Distribution Group Management\"
+  when: 
+    - ed_1_2_18
+  check_mode: no
+  register: __ed_1_2_18_audit
+  tags: 
+    - ED.1.2.18
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.18 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Distribution Group Management
+  debug: 
+    msg: "Current:{{ __ed_1_2_18_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_18_audit and 'skipped' not in __ed_1_2_18_audit and 'Success and Failure' not in __ed_1_2_18_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.18
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.19 | PATCH_WIN | LOGGING | Advanced Audit Policy - Application Group Management SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Application Group Management\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_19
+  register: __ed_1_2_19
+  tags: 
+    - ED.1.2.19
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.19 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Application Group Management\"
+  when: 
+    - ed_1_2_19
+  register: __ed_1_2_19_audit
+  tags: 
+    - ED.1.2.19
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.19 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Application Group Management
+  debug: 
+    msg: "Current:{{ __ed_1_2_19_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_19_audit and 'skipped' not in __ed_1_2_19_audit and 'Success and Failure' not in __ed_1_2_19_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.19
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.20 | PATCH_WIN | LOGGING | Advanced Audit Policy - Other Account Management Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Other Account Management Events\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_20
+  register: __ed_1_2_20
+  tags: 
+    - ED.1.2.20
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.20 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Other Account Management Events\"
+  when: 
+    - ed_1_2_20
+  check_mode: no
+  register: __ed_1_2_20_audit
+  tags: 
+    - ED.1.2.20
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.20 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Other Account Management Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_20_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_20_audit and 'skipped' not in __ed_1_2_20_audit and 'Success and Failure' not in __ed_1_2_20_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.20
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.21 | PATCH_WIN | LOGGING | Advanced Audit Policy - Directory Service Access SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Directory Service Access\" /failure:enable 
+  when: 
+    - ed_1_2_21
+  register: __ed_1_2_21
+  tags: 
+    - ED.1.2.21
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.21 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Directory Service Access\"
+  when: 
+    - ed_1_2_21
+  check_mode: no
+  register: __ed_1_2_21_audit
+  tags: 
+    - ED.1.2.21
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.21 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Directory Service Access
+  debug: 
+    msg: "Current:{{ __ed_1_2_21_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_21_audit and 'skipped' not in __ed_1_2_21_audit and 'Failure' not in __ed_1_2_21_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.21
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.22 | PATCH_WIN | LOGGING | Advanced Audit Policy - Directory Service Changes SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Directory Service Changes\" /failure:enable 
+  when: 
+    - ed_1_2_22
+  register: __ed_1_2_22
+  tags: 
+    - ED.1.2.22
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.22 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Directory Service Changes\"
+  when: 
+    - ed_1_2_22
+  check_mode: no
+  register: __ed_1_2_22_audit
+  tags: 
+    - ED.1.2.22
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.22 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Directory Service Changes
+  debug: 
+    msg: "Current:{{ __ed_1_2_22_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_22_audit and 'skipped' not in __ed_1_2_22_audit and 'Failure' not in __ed_1_2_22_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.22
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.23 | PATCH_WIN | LOGGING | Advanced Audit Policy - Directory Service Replication SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Directory Service Replication\" /failure:enable 
+  when: 
+    - ed_1_2_23
+  register: __ed_1_2_23
+  tags: 
+    - ED.1.2.23
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.23 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Directory Service Replication\"
+  when: 
+    - ed_1_2_23
+  check_mode: no
+  register: __ed_1_2_23_audit
+  tags: 
+    - ED.1.2.23
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.23 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Directory Service Replication
+  debug: 
+    msg: "Current:{{ __ed_1_2_23_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_23_audit and 'skipped' not in __ed_1_2_23_audit and 'Failure' not in __ed_1_2_23_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.23
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.24 | PATCH_WIN | LOGGING | Advanced Audit Policy - Detailed Directory Service Replication SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Detailed Directory Service Replication\" /failure:enable 
+  when: 
+    - ed_1_2_24
+  register: __ed_1_2_24
+  tags: 
+    - ED.1.2.24
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.24 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Detailed Directory Service Replication\"
+  when: 
+    - ed_1_2_24
+  check_mode: no
+  register: __ed_1_2_24_audit
+  tags: 
+    - ED.1.2.24
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.24 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Detailed Directory Service Replication
+  debug: 
+    msg: "Current:{{ __ed_1_2_24_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_24_audit and 'skipped' not in __ed_1_2_24_audit and 'Failure' not in __ed_1_2_24_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.24
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.25 | PATCH_WIN | LOGGING | Advanced Audit Policy - File System SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"File System\" /failure:enable 
+  when: 
+    - ed_1_2_25
+  register: __ed_1_2_25
+  tags: 
+    - ED.1.2.25
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.25 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"File System\"
+  when: 
+    - ed_1_2_25
+  check_mode: no
+  register: __ed_1_2_25_audit
+  tags: 
+    - ED.1.2.25
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.25 | AUDIT_WIN | LOGGING | Advanced Audit Policy - File System
+  debug: 
+    msg: "Current:{{ __ed_1_2_25_audit }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_25_audit and 'skipped' not in __ed_1_2_25_audit and 'Failure' not in __ed_1_2_25_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.25
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.26 | PATCH_WIN | LOGGING | Advanced Audit Policy - Registry SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Registry\" /failure:enable 
+  when: 
+    - ed_1_2_26
+  register: __ed_1_2_26
+  tags: 
+    - ED.1.2.26
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.26 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Registry\"
+  when: 
+    - ed_1_2_26
+  check_mode: no
+  register: __ed_1_2_26_audit
+  tags: 
+    - ED.1.2.26
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.26 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Registry
+  debug: 
+    msg: "Current:{{ __ed_1_2_26_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_26_audit and 'skipped' not in __ed_1_2_26_audit and 'Failure' not in __ed_1_2_26_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.26
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.27 | PATCH_WIN | LOGGING | Advanced Audit Policy - Kernel Object SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Kernel Object\" /failure:enable 
+  when: 
+    - ed_1_2_27
+  register: __ed_1_2_27
+  tags: 
+    - ED.1.2.27
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.27 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Kernel Object\"
+  when: 
+    - ed_1_2_27
+  check_mode: no
+  register: __ed_1_2_27_audit
+  tags: 
+    - ED.1.2.27
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.27 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Kernel Object
+  debug: 
+    msg: "Current:{{ __ed_1_2_27_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_27_audit and 'skipped' not in __ed_1_2_27_audit and 'Failure' not in __ed_1_2_27_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.27
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.28 | PATCH_WIN | LOGGING | Advanced Audit Policy - SAM SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"SAM\" /failure:enable 
+  when: 
+    - ed_1_2_28
+  register: __ed_1_2_28
+  tags: 
+    - ED.1.2.28
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.28 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"SAM\"
+  when: 
+    - ed_1_2_28
+  check_mode: no
+  register: __ed_1_2_28_audit
+  tags: 
+    - ED.1.2.28
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.28 | AUDIT_WIN | LOGGING | Advanced Audit Policy - SAM
+  debug: 
+    msg: "Current:{{ __ed_1_2_28_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_28_audit and 'skipped' not in __ed_1_2_28_audit and 'Failure' not in __ed_1_2_28_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.28
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.29 | PATCH_WIN | LOGGING | Advanced Audit Policy - Certification Services SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Certification Services\" /failure:enable 
+  when: 
+    - ed_1_2_29
+  register: __ed_1_2_29
+  tags: 
+    - ED.1.2.29
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.29 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Certification Services\"
+  when: 
+    - ed_1_2_29
+  check_mode: no
+  register: __ed_1_2_29_audit
+  tags: 
+    - ED.1.2.29
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.29 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Certification Services
+  debug: 
+    msg: "Current:{{ __ed_1_2_29_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_29_audit and 'skipped' not in __ed_1_2_29_audit and 'Failure' not in __ed_1_2_29_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.29
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.30 | PATCH_WIN | LOGGING | Advanced Audit Policy - Application Generated SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Application Generated\" /failure:enable 
+  when: 
+    - ed_1_2_30
+  register: __ed_1_2_30
+  tags: 
+    - ED.1.2.30
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.30 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Application Generated\"
+  when: 
+    - ed_1_2_30
+  check_mode: no
+  register: __ed_1_2_30_audit
+  tags: 
+    - ED.1.2.30
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.30 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Application Generated
+  debug: 
+    msg: "Current:{{ __ed_1_2_30_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_30_audit and 'skipped' not in __ed_1_2_30_audit and 'Failure' not in __ed_1_2_30_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.30
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.31 | PATCH_WIN | LOGGING | Advanced Audit Policy - Handle Manipulation SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Handle Manipulation\" /failure:enable 
+  when: 
+    - ed_1_2_31
+  register: __ed_1_2_31
+  tags: 
+    - ED.1.2.31
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.31 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Handle Manipulation\"
+  when: 
+    - ed_1_2_31
+  check_mode: no
+  register: __ed_1_2_31_audit
+  tags: 
+    - ED.1.2.31
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.31 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Handle Manipulation
+  debug: 
+    msg: "Current:{{ __ed_1_2_31_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_31_audit and 'skipped' not in __ed_1_2_31_audit and 'Failure' not in __ed_1_2_31_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.31
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.32 | PATCH_WIN | LOGGING | Advanced Audit Policy - File Share SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"File Share\" /failure:enable 
+  when: 
+    - ed_1_2_32
+  register: __ed_1_2_32
+  tags: 
+    - ED.1.2.32
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.32 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"File Share\"
+  when: 
+    - ed_1_2_32
+  check_mode: no
+  register: __ed_1_2_32_audit
+  tags: 
+    - ED.1.2.32
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.32 | AUDIT_WIN | LOGGING | Advanced Audit Policy - File Share
+  debug: 
+    msg: "Current:{{ __ed_1_2_32_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_32_audit and 'skipped' not in __ed_1_2_32_audit and 'Failure' not in __ed_1_2_32_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.32
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.33 | PATCH_WIN | LOGGING | Advanced Audit Policy - Filtering Platform Packet Drop SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Filtering Platform Packet Drop\" /failure:enable 
+  when: 
+    - ed_1_2_33
+  register: __ed_1_2_33
+  tags: 
+    - ED.1.2.33
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.33 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Filtering Platform Packet Drop\"
+  when: 
+    - ed_1_2_33
+  check_mode: no
+  register: __ed_1_2_33_audit
+  tags: 
+    - ED.1.2.33
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.33 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Filtering Platform Packet Drop
+  debug: 
+    msg: "Current:{{ __ed_1_2_33_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_33_audit and 'skipped' not in __ed_1_2_33_audit and 'Failure' not in __ed_1_2_33_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.33
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.34 | PATCH_WIN | LOGGING | Advanced Audit Policy - Filtering Platform Connection SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Filtering Platform Connection\" /failure:enable 
+  when: 
+    - ed_1_2_34
+  register: __ed_1_2_34
+  tags: 
+    - ED.1.2.34
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.34 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Filtering Platform Connection\"
+  when: 
+    - ed_1_2_34
+  check_mode: no
+  register: __ed_1_2_34_audit
+  tags: 
+    - ED.1.2.34
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.34 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Filtering Platform Connection
+  debug: 
+    msg: "Current:{{ __ed_1_2_34_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_34_audit and 'skipped' not in __ed_1_2_34_audit and 'Failure' not in __ed_1_2_34_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.34
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.35 | PATCH_WIN | LOGGING | Advanced Audit Policy - Other Object Access Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Other Object Access Events\" /failure:enable 
+  when: 
+    - ed_1_2_35
+  register: __ed_1_2_35
+  tags: 
+    - ED.1.2.35
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.35 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Other Object Access Events\"
+  when: 
+    - ed_1_2_35
+  check_mode: no
+  register: __ed_1_2_35_audit
+  tags: 
+    - ED.1.2.35
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.35 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Other Object Access Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_35_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_35_audit and 'skipped' not in __ed_1_2_35_audit and 'Failure' not in __ed_1_2_35_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.35
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.36 | PATCH_WIN | LOGGING | Advanced Audit Policy - Detailed File Share SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Detailed File Share\" /failure:enable 
+  when: 
+    - ed_1_2_36
+  register: __ed_1_2_36
+  tags: 
+    - ED.1.2.36
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.36 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Detailed File Share\"
+  when: 
+    - ed_1_2_36
+  check_mode: no
+  register: __ed_1_2_36_audit
+  tags: 
+    - ED.1.2.36
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.36 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Detailed File Share
+  debug: 
+    msg: "Current:{{ __ed_1_2_36_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_36_audit and 'skipped' not in __ed_1_2_36_audit and 'Failure' not in __ed_1_2_36_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.36
+    - audit
+    - logging
+    - S
+
+########################################
+# NOTE shares ed_1_2_36 in when clause with the previous task
+
+- name: ED.1.2.36.1 | PATCH_WIN | LOGGING | Advanced Audit Policy - Removable Storage SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Removable Storage\" /failure:enable /success:enable 
+  when: 
+    - ed_1_2_36
+  register: __ed_1_2_36_1
+  tags: 
+    - ED.1.2.36.1
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.36.1 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Removable Storage\"
+  when: 
+    - ed_1_2_36
+  check_mode: no
+  register: __ed_1_2_36_1_audit
+  tags: 
+    - ED.1.2.36.1
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.36.1 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Removable Storage
+  debug: 
+    msg: "Current:{{ __ed_1_2_36_1_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_36_1_audit and 'skipped' not in __ed_1_2_36_1_audit and 'Success and Failure' not in __ed_1_2_36_1_audit.stdout_lines[4]
+
+  tags:
+    - ED.1.2.36.1
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.37 | PATCH_WIN | LOGGING | Advanced Audit Policy - Central Policy Staging SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Central Policy Staging\" /failure:enable 
+  when: 
+    - ed_1_2_37
+  register: __ed_1_2_37
+  tags: 
+    - ED.1.2.37
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.37 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Central Policy Staging\"
+  when: 
+    - ed_1_2_37
+  check_mode: no
+  register: __ed_1_2_37_audit
+  tags: 
+    - ED.1.2.37
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.37 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Central Access Policy Staging
+  debug: 
+    msg: "Current:{{ __ed_1_2_37_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_37_audit and 'skipped' not in __ed_1_2_37_audit and 'Success and Failure' not in __ed_1_2_37_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.37
+    - audit
+    - logging
+    - S
+
+########################################
+# Duplicate of ED.99.3.6
+#- name: ED.1.2.38 | PATCH_WIN | LOGGING | Advanced Audit Policy - Audit Policy Change SKIPCM_WIN
+#  win_command: auditpol /set /subcategory:\"Audit Policy Change\" /success:enable /failure:enable 
+#  when: 
+#    - ed_1_2_38
+#  register: __ed_1_2_38
+#  tags: 
+#    - ED.1.2.38
+#    - patch
+#    - logging
+#    - S
+#
+#- name: ED.1.2.38 | GATHER_INFO_WIN | LOGGING | Gather audit data
+#  win_command: auditpol /get /subcategory:\"Audit Policy Change\"
+#  when: 
+#    - ed_1_2_38
+#  check_mode: no
+#  register: __ed_1_2_38_audit
+#  tags: 
+#    - ED.1.2.38
+#    - audit
+#    - logging
+#    - S
+#
+#- name: ED.1.2.38 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Audit Policy Change
+#  debug: 
+#    msg: "Current:{{ __ed_1_2_38_audit.stdout_lines[4] }}, Desired: Success and Failure"
+#  when: __ed_1_2_38_audit and 'skipped' not in __ed_1_2_38_audit and 'Success and Failure' not in __ed_1_2_38_audit.stdout_lines[4]
+#  tags:
+#    - ED.1.2.38
+#    - audit
+#    - logging
+#    - S
+
+########################################
+# Skipping ED.1.2.39
+########################################
+ 
+- name: ED.1.2.40 | PATCH_WIN | LOGGING | Advanced Audit Policy - Authorization Policy Change SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Authorization Policy Change\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_40
+  register: __ed_1_2_40
+  tags: 
+    - ED.1.2.40
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.40 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Authorization Policy Change\"
+  when: 
+    - ed_1_2_40
+  check_mode: no
+  register: __ed_1_2_40_audit
+  tags: 
+    - ED.1.2.40
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.40 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Authorization Policy Change
+  debug: 
+    msg: "Current:{{ __ed_1_2_40_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_40_audit and 'skipped' not in __ed_1_2_40_audit and 'Success and Failure' not in __ed_1_2_40_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.40
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.41 | PATCH_WIN | LOGGING | Advanced Audit Policy - MPSSVC Rule-Level Policy Change SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"MPSSVC Rule-Level Policy Change\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_41
+  register: __ed_1_2_41
+  tags: 
+    - ED.1.2.41
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.41 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"MPSSVC Rule-Level Policy Change\"
+  when: 
+    - ed_1_2_41
+  check_mode: no
+  register: __ed_1_2_41_audit
+  tags: 
+    - ED.1.2.41
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.41 | AUDIT_WIN | LOGGING | Advanced Audit Policy - MPSSVC Rule-Level Policy Change
+  debug: 
+    msg: "Current:{{ __ed_1_2_41_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_41_audit and 'skipped' not in __ed_1_2_41_audit and 'Success and Failure' not in __ed_1_2_41_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.41
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.42 | PATCH_WIN | LOGGING | Advanced Audit Policy - Filtering Platform Policy Change SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Filtering Platform Policy Change\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_42
+  register: __ed_1_2_42
+  tags: 
+    - ED.1.2.42
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.42 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Filtering Platform Policy Change\"
+  when: 
+    - ed_1_2_42
+  check_mode: no
+  register: __ed_1_2_42_audit
+  tags: 
+    - ED.1.2.42
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.42 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Filtering Platform Policy Change
+  debug: 
+    msg: "Current:{{ __ed_1_2_42_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_42_audit and 'skipped' not in __ed_1_2_42_audit and 'Success and Failure' not in __ed_1_2_42_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.42
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.43 | PATCH_WIN | LOGGING | Advanced Audit Policy - Other Policy Change Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Other Policy Change Events\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_43
+  register: __ed_1_2_43
+  tags: 
+    - ED.1.2.43
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.43 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Other Policy Change Events\"
+  when: 
+    - ed_1_2_43
+  check_mode: no
+  register: __ed_1_2_43_audit
+  tags: 
+    - ED.1.2.43
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.43 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Other Policy Change Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_43_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_43_audit and 'skipped' not in __ed_1_2_43_audit and 'Success and Failure' not in __ed_1_2_43_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.43
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.44 | PATCH_WIN | LOGGING | Advanced Audit Policy - Sensitive Privilege Use
+  win_command: auditpol /set /subcategory:\"Sensitive Privilege Use\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_44
+  register: __ed_1_2_44
+  tags: 
+    - ED.1.2.44
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.44 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Sensitive Privilege Use\"
+  when: 
+    - ed_1_2_44
+  check_mode: no
+  register: __ed_1_2_44_audit
+  tags: 
+    - ED.1.2.44
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.44 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Sensitive Privilege Use
+  debug: 
+    msg: "Current:{{ __ed_1_2_44_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_44_audit and 'skipped' not in __ed_1_2_44_audit and 'Success and Failure' not in __ed_1_2_44_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.44
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.45 | PATCH_WIN | LOGGING | Advanced Audit Policy - Non Sensitive Privilege Use SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Non Sensitive Privilege Use\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_45
+  register: __ed_1_2_45
+  tags: 
+    - ED.1.2.45
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.45 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Non Sensitive Privilege Use\"
+  when: 
+    - ed_1_2_45
+  check_mode: no
+  register: __ed_1_2_45_audit
+  tags: 
+    - ED.1.2.45
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.45 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Non Sensitive Privilege Use
+  debug: 
+    msg: "Current:{{ __ed_1_2_45_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_45_audit and 'skipped' not in __ed_1_2_45_audit and 'Success and Failure' not in __ed_1_2_45_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.45
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.46 | PATCH_WIN | LOGGING | Advanced Audit Policy - Other Privilege Use Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Other Privilege Use Events\" /success:enable /failure:enable 
+  when: 
+    - ed_1_2_46
+  register: __ed_1_2_46
+  tags: 
+    - ED.1.2.46
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.46 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Other Privilege Use Events\"
+  when: 
+    - ed_1_2_46
+  check_mode: no
+  register: __ed_1_2_46_audit
+  tags: 
+    - ED.1.2.46
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.46 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Other Privilege Use Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_46_audit.stdout_lines[4] }}, Desired: Success and Failure"
+  when: __ed_1_2_46_audit and 'skipped' not in __ed_1_2_46_audit and 'Success and Failure' not in __ed_1_2_46_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.46
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.47 | PATCH_WIN | LOGGING | Advanced Audit Policy - Process Creation SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Process Creation\" /success:disable /failure:disable 
+  when: 
+    - ed_1_2_47
+  register: __ed_1_2_47
+  tags: 
+    - ED.1.2.47
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.47 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Process Creation\"
+  when: 
+    - ed_1_2_47
+  check_mode: no
+  register: __ed_1_2_47_audit
+  tags: 
+    - ED.1.2.47
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.47 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Process Creation
+  debug: 
+    msg: "Current:{{ __ed_1_2_47_audit.stdout_lines[4] }}, Desired: No Auditing"
+  when: __ed_1_2_47_audit and 'skipped' not in __ed_1_2_47_audit and 'No Auditing' not in __ed_1_2_47_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.47
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.48 | PATCH_WIN | LOGGING | Advanced Audit Policy - Process Termination SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Process Termination\" /success:disable /failure:disable 
+  when: 
+    - ed_1_2_48
+  register: __ed_1_2_48
+  tags: 
+    - ED.1.2.48
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.48 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Process Termination\"
+  when: 
+    - ed_1_2_48
+  check_mode: no
+  register: __ed_1_2_48_audit
+  tags: 
+    - ED.1.2.48
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.48 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Process Termination
+  debug: 
+    msg: "Current:{{ __ed_1_2_48_audit.stdout_lines[4] }}, Desired: No Auditing"
+  when: __ed_1_2_48_audit and 'skipped' not in __ed_1_2_48_audit and 'No Auditing' not in __ed_1_2_48_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.48
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.49 | PATCH_WIN | LOGGING | Advanced Audit Policy - DPAPI Activity SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"DPAPI Activity\" /success:disable /failure:disable 
+  when: 
+    - ed_1_2_49
+  register: __ed_1_2_49
+  tags: 
+    - ED.1.2.49
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.49 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"DPAPI Activity\"
+  when: 
+    - ed_1_2_49
+  check_mode: no
+  register: __ed_1_2_49_audit
+  tags: 
+    - ED.1.2.49
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.49 | AUDIT_WIN | LOGGING | Advanced Audit Policy - DPAPI Activity
+  debug: 
+    msg: "Current:{{ __ed_1_2_49_audit.stdout_lines[4] }}, Desired: No Auditing"
+  when: __ed_1_2_49_audit and 'skipped' not in __ed_1_2_49_audit and 'No Auditing' not in __ed_1_2_49_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.49
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.50 | PATCH_WIN | LOGGING | Advanced Audit Policy - RPC Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"RPC Events\" /success:disable /failure:disable 
+  when: 
+    - ed_1_2_50
+  register: __ed_1_2_50
+  tags: 
+    - ED.1.2.50
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.50 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"RPC Events\"
+  when: 
+    - ed_1_2_50
+  check_mode: no
+  register: __ed_1_2_50_audit
+  tags: 
+    - ED.1.2.50
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.50 | AUDIT_WIN | LOGGING | Advanced Audit Policy - RPC Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_50_audit.stdout_lines[4] }}, Desired: No Auditing"
+  when: __ed_1_2_50_audit and 'skipped' not in __ed_1_2_50_audit and 'No Auditing' not in __ed_1_2_50_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.50
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.51 | PATCH_WIN | LOGGING | Advanced Audit Policy - Security State Change
+  win_command: auditpol /set /subcategory:\"Security State Change\" /failure:enable 
+  when: 
+    - ed_1_2_51
+  register: __ed_1_2_51
+  tags: 
+    - ED.1.2.51
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.51 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Security State Change\"
+  when: 
+    - ed_1_2_51
+  check_mode: no
+  register: __ed_1_2_51_audit
+  tags: 
+    - ED.1.2.51
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.51 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Security State Change
+  debug: 
+    msg: "Current:{{ __ed_1_2_51_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_51_audit and 'skipped' not in __ed_1_2_51_audit and 'Failure' not in __ed_1_2_51_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.51
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.52 | PATCH_WIN | LOGGING | Advanced Audit Policy - Security System Extension SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Security System Extension\" /failure:enable 
+  when: 
+    - ed_1_2_52
+  register: __ed_1_2_52
+  tags: 
+    - ED.1.2.52
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.52 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Security System Extension\"
+  when: 
+    - ed_1_2_52
+  check_mode: no
+  register: __ed_1_2_52_audit
+  tags: 
+    - ED.1.2.52
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.52 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Security System Extension
+  debug: 
+    msg: "Current:{{ __ed_1_2_52_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_52_audit and 'skipped' not in __ed_1_2_52_audit and 'Failure' not in __ed_1_2_52_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.52
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.53 | PATCH_WIN | LOGGING | Advanced Audit Policy - System Integrity SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"System Integrity\" /failure:enable 
+  when: 
+    - ed_1_2_53
+  register: __ed_1_2_53
+  tags: 
+    - ED.1.2.53
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.53 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"System Integrity\"
+  when: 
+    - ed_1_2_53
+  check_mode: no
+  register: __ed_1_2_53_audit
+  tags: 
+    - ED.1.2.53
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.53 | AUDIT_WIN | LOGGING | Advanced Audit Policy - System Integrity
+  debug: 
+    msg: "Current:{{ __ed_1_2_53_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_53_audit and 'skipped' not in __ed_1_2_53_audit and 'Failure' not in __ed_1_2_53_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.53
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.54 | PATCH_WIN | LOGGING | Advanced Audit Policy - IPsec Driver SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"IPsec Driver\" /failure:enable 
+  when: 
+    - ed_1_2_54
+  register: __ed_1_2_54
+  tags: 
+    - ED.1.2.54
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.54 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"IPsec Driver\"
+  when: 
+    - ed_1_2_54
+  check_mode: no
+  register: __ed_1_2_54_audit
+  tags: 
+    - ED.1.2.54
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.54 | AUDIT_WIN | LOGGING | Advanced Audit Policy - IPsec Driver
+  debug: 
+    msg: "Current:{{ __ed_1_2_54_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_54_audit and 'skipped' not in __ed_1_2_54_audit and 'Failure' not in __ed_1_2_54_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.54
+    - audit
+    - logging
+    - S
+
+########################################
+
+- name: ED.1.2.55 | PATCH_WIN | LOGGING | Advanced Audit Policy - Other System Events SKIPCM_WIN
+  win_command: auditpol /set /subcategory:\"Other System Events\" /failure:enable 
+  when: 
+    - ed_1_2_55
+  register: __ed_1_2_55
+  tags: 
+    - ED.1.2.55
+    - patch
+    - logging
+    - S
+
+- name: ED.1.2.55 | GATHER_INFO_WIN | LOGGING | Gather audit data
+  win_command: auditpol /get /subcategory:\"Other System Events\"
+  when: 
+    - ed_1_2_55
+  check_mode: no
+  register: __ed_1_2_55_audit
+  tags: 
+    - ED.1.2.55
+    - audit
+    - logging
+    - S
+
+- name: ED.1.2.55 | AUDIT_WIN | LOGGING | Advanced Audit Policy - Other System Events
+  debug: 
+    msg: "Current:{{ __ed_1_2_55_audit.stdout_lines[4] }}, Desired: Failure with OPTIONAL Success"
+  when: __ed_1_2_55_audit and 'skipped' not in __ed_1_2_55_audit and 'Failure' not in __ed_1_2_55_audit.stdout_lines[4]
+  tags:
+    - ED.1.2.55
+    - audit
+    - logging
+    - S
+
+# This section retrieves information about interesting system resources
+# The output is currently too verbose for convenience, so the section is disabled
+#########################################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Determine remote SystemDrive directory
+#  win_shell: "echo $env:SystemDrive"
+#  check_mode: no
+#  when: 
+#    - ed_1_2_57
+#  register: __ed_1_2_57_sd
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Determine remote WinDir directory
+#  win_shell: "echo $env:WinDir"
+#  check_mode: no
+#  when: 
+#    - ed_1_2_57
+#  register: __ed_1_2_57_wd
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Determine remote SystemRoot directory
+#  win_shell: "echo $env:SystemRoot"
+#  check_mode: no
+#  when: 
+#    - ed_1_2_57
+#  register: __ed_1_2_57_sr
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot% inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/security exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\security"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/security
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\security inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32 exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32 inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/config exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\config"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/config
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\config inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/drivers exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\drivers"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/drivers
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\drivers inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/spool exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\spool"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/spool
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\spool inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/GroupPolicy exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\GroupPolicy"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/GroupPolicy
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\GroupPolicy inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/winload.exe exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\winload.exe"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/winload.exe
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\winload.exe inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/winload.efi exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\winload.efi"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/winload.efi
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\winload.efi inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/Logs/security.evtx exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\Logs\\Security.evtx"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/Logs/Security.evtx
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\Logs\\Security.evtx inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/system32/Logs/security.evtx exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\system32\\Logs\\DNS Server.evtx"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/system32/Logs/DNS Server.evtx
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\system32\\Logs\\DNS Server.evtx inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/systemwow64 exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\systemwow64"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/systemwow64
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\systemwow64 inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote SystemRoot/systemwow64/drivers exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sr and not 'skipped' in __ed_1_2_57_sr
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sr.stdout_lines[0] }}\\systemwow64\\drivers"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of SystemRoot/systemwow64/drivers
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sr_exist) |ternary( '%SystemRoot%\\systemwow64\\drivers inaccessable ERROR', __ed_1_2_57_sr_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sr_exist and not 'skipped' in __ed_1_2_57_sr_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote %WinDir%/WinSxS/Backup exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_wd and not 'skipped' in __ed_1_2_57_wd
+#  vars:
+#    my_file: "{{ __ed_1_2_57_wd.stdout_lines[0] }}\\WinSxS\\Backup"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_wd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Display permissions of %WinDir%/WinSxS/Backup
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_wd_exist) |ternary( '%WinDir%\\WinSxS\\Backup inaccessable ERROR', __ed_1_2_57_wd_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_wd_exist and not 'skipped' in __ed_1_2_57_wd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote %SystemDrive% exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sd and not 'skipped' in __ed_1_2_57_sd
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sd.stdout_lines[0] }}"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Does remote %SystemDrive% exist?
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sd_exist) |ternary( '%SystemDrive% inaccessable ERROR', __ed_1_2_57_sd_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sd_exist and not 'skipped' in __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote %SystemDrive%/Boot/BCD exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sd and not 'skipped' in __ed_1_2_57_sd
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sd.stdout_lines[0] }}\\Boot\\BCD"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Does remote %SystemDrive%/Boot/BCD exist?
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sd_exist) |ternary( '%SystemDrive%\\Boot\\BCD inaccessable ERROR', __ed_1_2_57_sd_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sd_exist and not 'skipped' in __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote %SystemDrive%/bootmgr exist?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sd and not 'skipped' in __ed_1_2_57_sd
+#  vars:
+#    my_file: "{{ __ed_1_2_57_sd.stdout_lines[0] }}\\bootmgr"
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Does remote %SystemDrive%/bootmgr exist?
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sd_exist) |ternary( '%SystemDrive%\\bootmgr inaccessable ERROR', __ed_1_2_57_sd_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sd_exist and not 'skipped' in __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################
+#
+#- name: ED.1.2.57 | GATHER_INFO_WIN | RESOURCE | Does remote EFI/Microsoft/Boot/bootmgrfw.efi exists?
+#  win_stat:
+#    path: "{{ my_file }}"
+#  when: 
+#    - __ed_1_2_57_sd and not 'skipped' in __ed_1_2_57_sd
+#  vars:
+#    my_file: 'EFI\Microsoft\Boot\bootmgrfw.efi'
+#  ignore_errors: yes
+#  register: __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+# 
+#- name: ED.1.2.57 | AUDIT_WIN | RESOURCE | Does remote EFI/Microsoft/Boot/bootmgrfw.efi exists?
+#  debug:
+#    msg: "{{ ('failed' in __ed_1_2_57_sd_exist) |ternary( 'EFI\\Microsoft\\Boot\\bootmgrfw.efi inaccessable ERROR', __ed_1_2_57_sd_exist.stat ) }}" 
+#  when:
+#    - __ed_1_2_57_sd_exist and not 'skipped' in __ed_1_2_57_sd_exist
+#  tags:
+#    - ED.1.2.57
+#    - audit
+#    - resource
+#    - S
+#
+#####################

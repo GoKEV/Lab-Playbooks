@@ -1,0 +1,1 @@
+hkey_classes_root [ 1 5 8 17 ]

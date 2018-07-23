@@ -1,0 +1,20 @@
+- name: Gather secedit facts
+  win_secedit_facts:
+  tags:
+    - always
+
+- name: Gather user facts
+  win_user_facts:
+  tags:
+    - always
+
+- include: "{{ filename }}.yml"
+  loop_control:
+    loop_var: filename
+  with_items:
+    - password
+#    - logging
+#    - system
+#    - network
+#    - resources
+#    - advanced

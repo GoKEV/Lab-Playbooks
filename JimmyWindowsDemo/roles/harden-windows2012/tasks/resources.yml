@@ -1,0 +1,1217 @@
+- name: ED.1.2.56 | PATCH_WIN | RESOURCE | Advanced audit policy settings override audit policy settings
+  win_regedit:
+    key: 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
+    value: SCENoApplyLegacyAuditPolicy
+    data: 1
+    datatype: dword
+  when: ed_1_2_56
+  register: __ed_1_2_56
+  tags:
+    - ED.1.2.56
+    - patch
+    - resource
+    - S
+
+- name: ED.1.2.56 | GATHER_INFO_WIN | RESOURCE | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
+    name: SCENoApplyLegacyAuditPolicy
+  register: __ed_1_2_56_audit
+  when:
+    - ed_1_2_56
+    - ansible_check_mode
+  tags:
+    - ED.1.2.56
+    - audit
+    - resource
+    - S
+
+- name: ED.1.2.56 | AUDIT_WIN | RESOURCE | Advanced audit policy settings override audit policy settings
+  debug:
+    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa Key:SCENoApplyLegacyAuditPolicy | Current:{{ __ed_1_2_56_audit }} | Desired:0x01"
+  when: __ed_1_2_56_audit and 'skipped' not in __ed_1_2_56_audit and __ed_1_2_56_audit.value != 1
+  tags:
+    - ED.1.2.56
+    - audit
+    - resource
+    - S
+
+########################################
+ 
+- name: ED.1.3.1 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_shell: Get-Service -DisplayName "Windows Defender Service" -ErrorAction "SilentlyContinue" | Format-List -Property Status -ErrorAction "SilentlyContinue"
+  check_mode: no
+  ignore_errors: yes
+  when: 
+    - ed_1_3_1
+    - ansible_check_mode
+  register: __ed_1_3_1_audit
+  tags: 
+    - ED.1.3.1
+    - audit
+    - resource
+    - S
+
+- name: ED.1.3.1 | NO_REMEDIATION_WIN | ADVANCED | Is the Windows Defender service running?
+  debug: 
+    msg: "The Windows Defender Service is NOT installed"
+  when: __ed_1_3_1_audit and 'skipped' not in __ed_1_3_1_audit and 'failed' in  __ed_1_3_1_audit
+  tags:
+    - ED.1.3.1
+    - audit
+    - resource
+    - S
+ 
+
+- name: ED.1.3.1 | AUDIT_WIN | ADVANCED | Is the Windows Defender service running?
+  debug: 
+    msg: "Current {{ __ed_1_3_1_audit.stdout_lines[2] }}, Desired: Running"
+  when: __ed_1_3_1_audit and 'skipped' not in __ed_1_3_1_audit and 'failed' not in  __ed_1_3_1_audit and 'Running' not in __ed_1_3_1_audit.stdout_lines[2]
+  tags:
+    - ED.1.3.1
+    - audit
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.10 | GATHER_INFO_WIN | RESOURCE | Determine remote SystemDrive directory
+  win_shell: "echo $env:SystemDrive"
+  check_mode: no
+  when: 
+    - ed_1_8_10
+  register: __ed_1_8_10
+  tags:
+    - ED.1.8.10
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.10 | GATHER_INFO_WIN | RESOURCE | Does remote SystemDrive/Boot/BCD directory exist?
+  win_stat:
+    path: "{{ my_file }}"
+  when: 
+    - __ed_1_8_10 and not 'skipped' in __ed_1_8_10
+  vars:
+    my_file: "{{ __ed_1_8_10.stdout_lines[0] }}\\Boot\\BCD"
+  ignore_errors: yes
+  register: __ed_1_8_10_exist
+  tags:
+    - ED.1.8.10
+    - audit
+    - resource
+    - S
+ 
+- name: ED.1.8.10 | AUDIT_WIN | RESOURCE | Does remote SystemDrive/Boot/BCD directory exist?
+  debug:
+    msg: "%SystemDrive%\\Boot\\BCD is inaccessable (ERROR)" 
+  when:
+    - __ed_1_8_10_exist and not 'skipped' in __ed_1_8_10_exist and 'failed' in __ed_1_8_10_exist
+  tags:
+    - ED.1.8.10
+    - audit
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.12 | GATHER_INFO_WIN | RESOURCE | Determine remote SystemDrive directory
+  win_shell: "echo $env:SystemDrive"
+  check_mode: no
+  when: 
+    - ed_1_8_12
+  register: __ed_1_8_12
+  tags:
+    - ED.1.8.12
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.12 | GATHER_INFO_WIN | RESOURCE | Does remote SystemDrive/Boot/bootmgr directory exist?
+  win_stat:
+    path: "{{ my_file }}"
+  when: 
+    - __ed_1_8_12 and not 'skipped' in __ed_1_8_12
+  vars:
+    my_file: "{{ __ed_1_8_12.stdout_lines[0] }}\\Boot\\bootmgr"
+  ignore_errors: yes
+  register: __ed_1_8_12_exist
+  tags:
+    - ED.1.8.12
+    - audit
+    - resource
+    - S
+ 
+- name: ED.1.8.12 | AUDIT_WIN | RESOURCE | Does remote SystemDrive/Boot/bootmgr directory exist?
+  debug:
+    msg: "%SystemDrive%\\Boot\\bootmgr is inaccessable (ERROR)"
+  when:
+    - __ed_1_8_12_exist and not 'skipped' in __ed_1_8_12_exist and 'failed' in __ed_1_8_12_exist
+  tags:
+    - ED.1.8.12
+    - audit
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.18 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:SystemRoot"
+  win_shell: "echo $env:SystemRoot"
+  check_mode: no
+  register: sysroot_ed1818
+  tags:
+    - ED.1.8.18
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.18 | PATCH_WIN | ADVANCED | Set eventlog access to security log
+  win_acl:
+    path: "{{ sysroot_ed1818.stdout_lines[0] }}\\System32\\Winevt\\Logs\\Security.evtx"
+    user: EventLog
+    rights: FullControl
+    type: allow
+    state: present
+  register: ev_success_ed1818
+  ignore_errors: true
+  tags:
+    - ED.1.8.18
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.18 | AUDIT_WIN | ADVANCED | Set eventlog access to security log
+  debug:
+    msg: "{{ ev_success_ed1818 }} FAILED to give eventlog user FullControl of security log"
+  when: (not ansible_check_mode) and ('failed' in ev_success_ed1818)
+  tags:
+    - ED.1.8.18
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.18 | PATCH_WIN | ADVANCED | Set system access to security log
+  win_acl:
+    path: "{{ sysroot_ed1818.stdout_lines[0] }}\\System32\\Winevt\\Logs\\Security.evtx"
+    user: SYSTEM
+    rights: FullControl
+    type: allow
+    state: present
+  register: sy_success_ed1818
+  ignore_errors: true
+  tags:
+    - ED.1.8.18
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.18 | AUDIT_WIN | ADVANCED | Set system access to security log
+  debug:
+    msg: "FAILED to give system user FullControl of security log"
+  when: (not ansible_check_mode) and ('failed' in sy_success_ed1818)
+  tags:
+    - ED.1.8.18
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.18 | PATCH_WIN | ADVANCED | Set administrator access to security log
+  win_acl:
+    path: "{{ sysroot_ed1818.stdout_lines[0] }}\\System32\\Winevt\\Logs\\Security.evtx"
+    user: Administrator
+    rights: FullControl
+    type: allow
+    state: present
+  register: ad_success_ed1818
+  ignore_errors: true
+  tags:
+    - ED.1.8.18
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.18 | AUDIT_WIN | ADVANCED | Set administrator access to security log
+  debug:
+    msg: "FAILED to give administrator user FullControl of security log"
+  when: (not ansible_check_mode) and ('failed' in ad_success_ed1818)
+  tags:
+    - ED.1.8.18
+    - audit
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.19 | GATHER_INFO_WIN | ADVANCED | Get value of "$env:SystemRoot"
+  win_shell: "echo $env:SystemRoot"
+  check_mode: no
+  register: sysroot_ed1919
+  tags:
+    - ED.1.8.19
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.19 | PATCH_WIN | ADVANCED | Set eventlog access to dns log
+  win_acl:
+    path: "{{ sysroot_ed1919.stdout_lines[0] }}\\System32\\Winevt\\Logs\\DNS Server.evtx"
+    user: EventLog
+    rights: FullControl
+    type: allow
+    state: present
+  register: ev_success_ed1919
+  ignore_errors: true
+  tags:
+    - ED.1.8.19
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.19 | AUDIT_WIN | ADVANCED | Set eventlog access to dns log
+  debug:
+    msg: "{{ ev_success_ed1919 }} FAILED to give eventlog user FullControl of dns log"
+  when: (not ansible_check_mode) and ('failed' in ev_success_ed1919)
+  tags:
+    - ED.1.8.19
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.19 | PATCH_WIN | ADVANCED | Set system access to dns log
+  win_acl:
+    path: "{{ sysroot_ed1919.stdout_lines[0] }}\\System32\\Winevt\\Logs\\DNS Server.evtx"
+    user: SYSTEM
+    rights: FullControl
+    type: allow
+    state: present
+  register: sy_success_ed1919
+  ignore_errors: true
+  tags:
+    - ED.1.8.19
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.19 | AUDIT_WIN | ADVANCED | Set system access to dns log
+  debug:
+    msg: "FAILED to give system user FullControl of dns log"
+  when: (not ansible_check_mode) and ('failed' in sy_success_ed1919)
+  tags:
+    - ED.1.8.19
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.19 | PATCH_WIN | ADVANCED | Set administrator access to dns log
+  win_acl:
+    path: "{{ sysroot_ed1919.stdout_lines[0] }}\\System32\\Winevt\\Logs\\DNS Server.evtx"
+    user: Administrator
+    rights: FullControl
+    type: allow
+    state: present
+  register: ad_success_ed1919
+  ignore_errors: true
+  tags:
+    - ED.1.8.19
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.19 | AUDIT_WIN | ADVANCED | Set administrator access to dns log
+  debug:
+    msg: "FAILED to give administrator user FullControl of dns log"
+  when: (not ansible_check_mode) and ('failed' in ad_success_ed1919)
+  tags:
+    - ED.1.8.19
+    - audit
+    - resource
+    - S
+
+########################################
+ 
+- name: ED.1.8.22 | GATHER_INFO_WIN | RESOURCE | Determine remote TEMP directory
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  when: ed_1_8_22
+  register: __ed_1_8_22
+  tags:
+    - ED.1.8.22
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.22 | PATCH_WIN | RESOURCE | Copy file(s) to remote TEMP directory SKIPCM_WIN
+  win_copy:
+    src: ed_1_8_22.txt
+    dest: "{{ __ed_1_8_22.stdout_lines[0] }}\\ed_1_8_22.txt"
+  when: 
+    - ed_1_8_22
+    - not ansible_check_mode
+  tags:
+    - ED.1.8.22
+    - patch
+    - resource
+    - S
+
+- name: ED.1.8.22 | PATCH_WIN | RESOURCE | Protect OSR - hkey_classes_root SKIPCM_WIN
+  win_command: regini.exe "{{ __ed_1_8_22.stdout_lines[0] }}\\ed_1_8_22.txt"
+  when: ed_1_8_22
+  tags:
+    - ED.1.8.22
+    - patch
+    - resource
+    - S
+ 
+- name: ED.1.8.22 | PATCH_WIN | RESOURCE | Remove temporary file
+  win_file: 
+    path: "{{ __ed_1_8_22.stdout_lines[0] }}\\ed_1_8_22.txt"
+    state: absent
+  when: 
+    - ed_1_8_22
+    - not ansible_check_mode
+  tags:
+    - ED.1.8.22
+    - patch
+    - resource
+    - S
+
+########################################
+ 
+- name: ED.1.8.23 | GATHER_INFO_WIN | RESOURCE | Determine remote TEMP directory
+  win_shell: "echo $env:TEMP"
+  check_mode: no
+  when: ed_1_8_23
+  register: __ed_1_8_23
+  tags:
+    - ED.1.8.23
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.23 | PATCH_WIN | RESOURCE | Copy file(s) to remote TEMP directory SKIPCM_WIN
+  win_copy:
+    src: ed_1_8_23.txt
+    dest: "{{ __ed_1_8_23.stdout_lines[0] }}\\ed_1_8_23.txt"
+  when: 
+    - ed_1_8_23
+    - not ansible_check_mode
+  tags:
+    - ED.1.8.23
+    - patch
+    - resource
+    - S
+
+- name: ED.1.8.23 | PATCH_WIN | RESOURCE | Protect OSR - HKLM\SYSTEM\CurrentControlSet\Services\Eventlog\Security SKIPCM_WIN
+  win_command: regini.exe "{{ __ed_1_8_23.stdout_lines[0] }}\\ed_1_8_23.txt"
+  when: ed_1_8_23
+  tags:
+    - ED.1.8.23
+    - patch
+    - resource
+    - S
+ 
+- name: ED.1.8.23 | PATCH_WIN | RESOURCE | Remove temporary file
+  win_file: 
+    path: "{{ __ed_1_8_23.stdout_lines[0] }}\\ed_1_8_23.txt"
+    state: absent
+  when: 
+    - ed_1_8_23
+    - not ansible_check_mode
+  tags:
+    - ED.1.8.23
+    - patch
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.24 | PATCH_WIN | RESOURCE | Restrict guest access to the application event log
+  win_regedit:
+    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Application'
+    value: RestrictGuestAccess
+    data: 1
+    datatype: dword
+  when: ed_1_8_24
+  register: __ed_1_8_24
+  tags:
+    - ED.1.8.24
+    - patch
+    - resource
+    - S
+
+- name: ED.1.8.24 | GATHER_INFO_WIN | RESOURCE | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Application'
+    name: RestrictGuestAccess
+  register: __ed_1_8_24_audit
+  when:
+    - ed_1_8_24
+    - ansible_check_mode
+  tags:
+    - ED.1.8.24
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.24 | AUDIT_WIN | RESOURCE | Restrict guest access to the application event log
+  debug:
+    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application Key:RestrictGuestAccess | Current:{{ __ed_1_8_24_audit }} | Desired:1"
+  when: __ed_1_8_24_audit and 'skipped' not in __ed_1_8_24_audit and __ed_1_8_24_audit.value != 1
+  tags:
+    - ED.1.8.24
+    - audit
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.25 | PATCH_WIN | RESOURCE | Restrict guest access security event log
+  win_regedit:
+    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
+    value: RestrictGuestAccess
+    data: 1
+    datatype: dword
+  when: ed_1_8_25
+  register: __ed_1_8_25
+  tags:
+    - ED.1.8.25
+    - patch
+    - resource
+    - S
+
+- name: ED.1.8.25 | GATHER_INFO_WIN | RESOURCE | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
+    name: RestrictGuestAccess
+  register: __ed_1_8_25_audit
+  when:
+    - ed_1_8_25
+    - ansible_check_mode
+  tags:
+    - ED.1.8.25
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.25 | AUDIT_WIN | RESOURCE | Restrict guest access security event log
+  debug:
+    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security Key:RestrictGuestAccess | Current:{{ __ed_1_8_25_audit }} | Desired:1"
+  when: __ed_1_8_25_audit and 'skipped' not in __ed_1_8_25_audit and __ed_1_8_25_audit.value != 1
+  tags:
+    - ED.1.8.25
+    - audit
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.26 | PATCH_WIN | RESOURCE | Restrict guest access to the system event log
+  win_regedit:
+    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\System'
+    value: RestrictGuestAccess
+    data: 1
+    datatype: dword
+  when: ed_1_8_26
+  register: __ed_1_8_26
+  tags:
+    - ED.1.8.26
+    - patch
+    - resource
+    - S
+
+- name: ED.1.8.26 | GATHER_INFO_WIN | RESOURCE | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\System'
+    name: RestrictGuestAccess
+  register: __ed_1_8_26_audit
+  when:
+    - ed_1_8_26
+    - ansible_check_mode
+  tags:
+    - ED.1.8.26
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.26 | AUDIT_WIN | RESOURCE | Restrict guest access to the system event log
+  debug:
+    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\System Key:RestrictGuestAccess | Current:{{ __ed_1_8_26_audit }} | Desired:1"
+  when: __ed_1_8_26_audit and 'skipped' not in __ed_1_8_26_audit and __ed_1_8_26_audit.value != 1
+  tags:
+    - ED.1.8.26
+    - audit
+    - resource
+    - S
+
+########################################
+
+- name: ED.1.8.27 | PATCH_WIN | RESOURCE | Restrict guest access to the DNS Server event log
+  win_regedit:
+    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\DNS Server'
+    value: RestrictGuestAccess
+    data: 1
+    datatype: dword
+  when: ed_1_8_27
+  register: __ed_1_8_27
+  tags:
+    - ED.1.8.27
+    - patch
+    - resource
+    - S
+
+- name: ED.1.8.27 | GATHER_INFO_WIN | RESOURCE | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\DNS Server'
+    name: RestrictGuestAccess
+  register: __ed_1_8_27_audit
+  when:
+    - ed_1_8_27
+    - ansible_check_mode
+  tags:
+    - ED.1.8.27
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.27 | AUDIT_WIN | RESOURCE | Restrict guest access to the DNS Server event log
+  debug:
+    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\DNS Server Key:RestrictGuestAccess | Current:{{ __ed_1_8_27_audit }} | Desired:1"
+  when: __ed_1_8_27_audit and 'skipped' not in __ed_1_8_27_audit and __ed_1_8_27_audit.value != 1
+  tags:
+    - ED.1.8.27
+    - audit
+    - resource
+    - S
+
+########################################
+# No obvious implementation for these items
+# ED.1.8.28.1
+# ED.1.8.28.2
+########################################
+
+- name: ED.1.8.29 | PATCH_WIN | RESOURCE | Set explorer auto run
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer'
+    value: NoDriveTypeAutoRun
+    data: 255
+    datatype: dword
+  when: ed_1_8_29
+  register: __ed_1_8_29
+  tags:
+    - ED.1.8.29
+    - patch
+    - resource
+    - S
+
+- name: ED.1.8.29 | GATHER_INFO_WIN | RESOURCE | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer'
+    name: NoDriveTypeAutoRun
+  register: __ed_1_8_29_audit
+  when:
+    - ed_1_8_29
+    - ansible_check_mode
+  tags:
+    - ED.1.8.29
+    - audit
+    - resource
+    - S
+
+- name: ED.1.8.29 | AUDIT_WIN | RESOURCE | Set explorer auto run 
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer Key:NoDriveTypeAutoRun | Current:{{ __ed_1_8_29_audit }} | Desired:255"
+  when: __ed_1_8_29_audit and 'skipped' not in __ed_1_8_29_audit and __ed_1_8_29_audit.value != 255
+  tags:
+    - ED.1.8.29
+    - audit
+    - resource
+    - S
+
+# NOTE the following tasks are currently designated as ambiguous (target two keys) so are disabled for now.
+#########################################
+#
+#- name: ED.1.8.30 | PATCH_WIN | RESOURCE | Set auto backup security log file (part 1)
+#  win_regedit:
+#    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
+#    value: AutoBackupLogFiles
+#    data: 0x01
+#    datatype: dword
+#  when: ed_1_8_30
+#  register: __ed_1_8_30_1
+#  tags:
+#    - ED.1.8.30
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.30 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 1)
+#  win_reg_stat:
+#    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
+#    name: AutoBackupLogFiles
+#  register: __ed_1_8_30_audit
+#  when:
+#    - ed_1_8_30
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.30
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.30 | AUDIT_WIN | RESOURCE | Set auto backup security log file (part 1)
+#  debug:
+#    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security Key:AutoBackupLogFiles | Current:{{ __ed_1_8_30_audit }} | Desired:0x01"
+#  when: __ed_1_8_30_audit and 'skipped' not in __ed_1_8_30_audit and __ed_1_8_30_audit.value != 1
+#  tags:
+#    - ED.1.8.30
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.30 | PATCH_WIN | RESOURCE | Set auto backup security log file (part 2)
+#  win_regedit:
+#    key: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Security\AutoBackupLogfiles'
+#    value: AutoBackupLogFiles
+#    data: 0x01
+#    datatype: dword
+#  when: ed_1_8_30
+#  register: __ed_1_8_30_2
+#  tags:
+#    - ED.1.8.30
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.30 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 2)
+#  win_reg_stat:
+#    path: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Security\AutoBackupLogfiles'
+#    name: AutoBackupLogFiles
+#  register: __ed_1_8_30_audit
+#  when:
+#    - ed_1_8_30
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.30
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.30 | AUDIT_WIN | RESOURCE | Set auto backup security log file (part 2)
+#  debug:
+#    msg: "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security\\AutoBackupLogfiles Key:AutoBackupLogFiles | Current:{{ __ed_1_8_30_audit }} | Desired:0x01"
+#  when: __ed_1_8_30_audit and 'skipped' not in __ed_1_8_30_audit and __ed_1_8_30_audit.value != 1
+#  tags:
+#    - ED.1.8.30
+#    - audit
+#    - resource
+#    - S
+#
+#########################################
+#
+#- name: ED.1.8.31 | PATCH_WIN | RESOURCE | Set auto backup system log file (part 1)
+#  win_regedit:
+#    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\System'
+#    value: AutoBackupLogFiles
+#    data: 0
+#    datatype: dword
+#  when: ed_1_8_31
+#  register: __ed_1_8_31_1
+#  tags:
+#    - ED.1.8.31
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.31 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 1)
+#  win_reg_stat:
+#    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\System'
+#    name: AutoBackupLogFiles
+#  register: __ed_1_8_31_audit
+#  when:
+#    - ed_1_8_31
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.31
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.31 | AUDIT_WIN | RESOURCE | Set auto backup system log file (part 1)
+#  debug:
+#    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\System Key:AutoBackupLogFiles | Current:{{ __ed_1_8_31_audit }} | Desired:0"
+#  when: __ed_1_8_31_audit and 'skipped' not in __ed_1_8_31_audit and __ed_1_8_31_audit.value != 0
+#  tags:
+#    - ED.1.8.31
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.31 | PATCH_WIN | RESOURCE | Set auto backup system log file (part 2)
+#  win_regedit:
+#    key: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\System\AutoBackupLogfiles'
+#    value: AutoBackupLogFiles
+#    data: 0
+#    datatype: dword
+#  when: ed_1_8_31
+#  register: __ed_1_8_31_2
+#  tags:
+#    - ED.1.8.31
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.31 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 2)
+#  win_reg_stat:
+#    path: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\System\AutoBackupLogfiles'
+#    name: AutoBackupLogFiles
+#  register: __ed_1_8_31_audit
+#  when:
+#    - ed_1_8_31
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.31
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.31 | AUDIT_WIN | RESOURCE | Set auto backup system log file (part 2)
+#  debug:
+#    msg: "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System\\AutoBackupLogfiles Key:AutoBackupLogFiles | Current:{{ __ed_1_8_31_audit }} | Desired:0"
+#  when: __ed_1_8_31_audit and 'skipped' not in __ed_1_8_31_audit and __ed_1_8_31_audit.value != 0
+#  tags:
+#    - ED.1.8.31
+#    - audit
+#    - resource
+#    - S
+#
+#########################################
+#
+#- name: ED.1.8.32 | PATCH_WIN | RESOURCE | Set auto backup application log file (part 1)
+#  win_regedit:
+#    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Application'
+#    value: AutoBackupLogFiles
+#    data: 0
+#    datatype: dword
+#  when: ed_1_8_32
+#  register: __ed_1_8_32_1
+#  tags:
+#    - ED.1.8.32
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.32 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 1)
+#  win_reg_stat:
+#    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Application'
+#    name: AutoBackupLogFiles
+#  register: __ed_1_8_32_audit
+#  when:
+#    - ed_1_8_32
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.32
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.32 | AUDIT_WIN | RESOURCE | Set auto backup application log file (part 1)
+#  debug:
+#    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application Key:AutoBackupLogFiles | Current:{{ __ed_1_8_32_audit }} | Desired:0"
+#  when: __ed_1_8_32_audit and 'skipped' not in __ed_1_8_32_audit and __ed_1_8_32_audit.value != 0
+#  tags:
+#    - ED.1.8.32
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.32 | PATCH_WIN | RESOURCE | Set auto backup application log file (part 2)
+#  win_regedit:
+#    key: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Application\AutoBackupLogfiles'
+#    value: AutoBackupLogFiles
+#    data: 0
+#    datatype: dword
+#  when: ed_1_8_32
+#  register: __ed_1_8_32_2
+#  tags:
+#    - ED.1.8.32
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.32 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 2)
+#  win_reg_stat:
+#    path: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Application\AutoBackupLogfiles'
+#    name: AutoBackupLogFiles
+#  register: __ed_1_8_32_audit
+#  when:
+#    - ed_1_8_32
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.32
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.32 | AUDIT_WIN | RESOURCE | Set auto backup application log file (part 2)
+#  debug:
+#    msg: "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application\\AutoBackupLogfiles Key:AutoBackupLogFiles | Current:{{ __ed_1_8_32_audit }} | Desired:0"
+#  when: __ed_1_8_32_audit and 'skipped' not in __ed_1_8_32_audit and __ed_1_8_32_audit.value != 0
+#  tags:
+#    - ED.1.8.32
+#    - audit
+#    - resource
+#    - S
+#
+#########################################
+#
+#- name: ED.1.8.33 | PATCH_WIN | RESOURCE | Set system eventlog retention key (part 1)
+#  win_regedit:
+#    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
+#    value: Retention
+#    data: -1
+#    datatype: dword
+#  when: ed_1_8_33
+#  register: __ed_1_8_33_1
+#  tags:
+#    - ED.1.8.33
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.33 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 1)
+#  win_reg_stat:
+#    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
+#    name: Retention
+#  register: __ed_1_8_33_audit
+#  when:
+#    - ed_1_8_33
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.33
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.33 | AUDIT_WIN | RESOURCE | Set system eventlog retention key (part 1)
+#  debug:
+#    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security Key:Retention | Current:{{ __ed_1_8_33_audit }} | Desired:-1"
+#  when: __ed_1_8_33_audit and 'skipped' not in __ed_1_8_33_audit and __ed_1_8_33_audit.value != -1
+#  tags:
+#    - ED.1.8.33
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.33 | PATCH_WIN | RESOURCE | Set system eventlog retention key (part 2)
+#  win_regedit:
+#    key: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Security'
+#    value: Retention
+#    data: -1
+#    datatype: dword
+#  when: ed_1_8_33
+#  register: __ed_1_8_33_2
+#  tags:
+#    - ED.1.8.33
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.33 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 2)
+#  win_reg_stat:
+#    path: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Security'
+#    name: Retention
+#  register: __ed_1_8_33_audit
+#  when:
+#    - ed_1_8_33
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.33
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.33 | AUDIT_WIN | RESOURCE | Set system eventlog retention key (part 2) 
+#  debug:
+#    msg: "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security Key:Retention | Current:{{ __ed_1_8_33_audit }} | Desired:-1"
+#  when: __ed_1_8_33_audit and 'skipped' not in __ed_1_8_33_audit and __ed_1_8_33_audit.value != -1
+#  tags:
+#    - ED.1.8.33
+#    - audit
+#    - resource
+#    - S
+#
+#########################################
+#
+#- name: ED.1.8.34 | PATCH_WIN | RESOURCE | Unset security eventlog retention key (part 1)
+#  win_regedit:
+#    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\System'
+#    value: Retention
+#    state: absent
+#  when: ed_1_8_34
+#  register: __ed_1_8_34_1
+#  tags:
+#    - ED.1.8.34
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.34 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 1)
+#  win_reg_stat:
+#    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\System'
+#    name: Retention
+#  register: __ed_1_8_34_audit
+#  when:
+#    - ed_1_8_34
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.34
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.34 | AUDIT_WIN | RESOURCE | Unset security eventlog retention key (part 1)
+#  debug:
+#    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\System Key:Retention | Current:{{ __ed_1_8_34_audit }} | Desired:false"
+#  when: __ed_1_8_34_audit and 'skipped' not in __ed_1_8_34_audit and __ed_1_8_34_audit.exists != False
+#  tags:
+#    - ED.1.8.34
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.34 | PATCH_WIN | RESOURCE | Unset security eventlog retention key (part 2)
+#  win_regedit:
+#    key: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\System\Retention'
+#    value: Retention
+#    state: absent
+#  when: ed_1_8_34
+#  register: __ed_1_8_34_2
+#  tags:
+#    - ED.1.8.34
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.34 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 2)
+#  win_reg_stat:
+#    path: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\System\Retention'
+#    name: Retention
+#  register: __ed_1_8_34_audit
+#  when:
+#    - ed_1_8_34
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.34
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.34 | AUDIT_WIN | RESOURCE | Unset security eventlog retention key (part 2)
+#  debug:
+#    msg: "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System\\Retention Key:Retention | Current:{{ __ed_1_8_34_audit }} | Desired:false"
+#  when: __ed_1_8_34_audit and 'skipped' not in __ed_1_8_34_audit and __ed_1_8_34_audit.exists != False
+#  tags:
+#    - ED.1.8.34
+#    - audit
+#    - resource
+#    - S
+#
+#########################################
+#
+#- name: ED.1.8.35 | PATCH_WIN | RESOURCE | Unset application eventlog retention key (part 1)
+#  win_regedit:
+#    key: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Application'
+#    value: Retention
+#    state: absent
+#  when: ed_1_8_35
+#  register: __ed_1_8_35_1
+#  tags:
+#    - ED.1.8.35
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.35 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 1)
+#  win_reg_stat:
+#    path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Application'
+#    name: Retention
+#  register: __ed_1_8_35_audit
+#  when:
+#    - ed_1_8_35
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.35
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.35 | AUDIT_WIN | RESOURCE | Unset application eventlog retention key (part 1)
+#  debug:
+#    msg: "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application Key:Retention | Current:{{ __ed_1_8_35_audit }} | Desired:false"
+#  when: __ed_1_8_35_audit and 'skipped' not in __ed_1_8_35_audit and __ed_1_8_35_audit.exists != False
+#  tags:
+#    - ED.1.8.35
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.35 | PATCH_WIN | RESOURCE | Unset application eventlog retention key (part 2)
+#  win_regedit:
+#    key: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Application\Retention'
+#    value: Retention
+#    state: absent
+#  when: ed_1_8_35
+#  register: __ed_1_8_35_2
+#  tags:
+#    - ED.1.8.35
+#    - patch
+#    - resource
+#    - S
+#
+#- name: ED.1.8.35 | GATHER_INFO_WIN | RESOURCE | Gather audit data (part 2)
+#  win_reg_stat:
+#    path: 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Application\Retention'
+#    name: Retention
+#  register: __ed_1_8_35_audit
+#  when:
+#    - ed_1_8_35
+#    - ansible_check_mode
+#  tags:
+#    - ED.1.8.35
+#    - audit
+#    - resource
+#    - S
+#
+#- name: ED.1.8.35 | AUDIT_WIN | RESOURCE | Unset application eventlog retention key (part 2)
+#  debug:
+#    msg: "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application\\Retention Key:Retention | Current:{{ __ed_1_8_35_audit }} | Desired:false"
+#  when: __ed_1_8_35_audit and 'skipped' not in __ed_1_8_35_audit and __ed_1_8_35_audit.exists != False
+#  tags:
+#    - ED.1.8.35
+#    - audit
+#    - resource
+#    - S
+
+########################################
+
+- name: ED.1.9.2 | GATHER_INFO_WIN | RESOURCE | Gather audit data (exists)
+  win_shell: 'net user guest'
+  register: __ed_1_9_2_exists
+  check_mode: no
+  ignore_errors: true
+  when:
+    - ed_1_9_2
+  tags:
+    - ED.1.9.2
+    - audit
+    - resource
+    - B
+
+- name: ED.1.9.2 | AUDIT_WIN | RESOURCE | Guest user exists (must disable and rename)
+  debug:
+    msg: Guest user exists. Will be renamed.
+  when:
+    - ed_1_9_2
+    - __ed_1_9_2_exists
+  tags:
+    - ED.1.9.2
+    - audit
+    - resource
+    - B
+
+- name: ED.1.9.2 | GATHER_INFO_WIN | RESOURCE | Gather audit data (active)
+  win_shell: 'net user guest | findstr /C:"Account active" | findstr /C:"Yes"'
+  register: __ed_1_9_2_active
+  check_mode: no
+  ignore_errors: true
+  when:
+    - ed_1_9_2
+    - __ed_1_9_2_exists
+  tags:
+    - ED.1.9.2
+    - audit
+    - resource
+    - B
+
+- name: ED.1.9.2 | NO_REMEDIATION | RESOURCE | Guest user active (must disable)
+  debug: 
+    msg: Guest user active. Must be disabled and renamed.
+  when:
+    - ed_1_9_2
+    - __ed_1_9_2_active
+  tags:
+    - ED.1.9.2
+    - audit
+    - resource
+    - B
+
+# The wmic command fails on Win 2012
+#- name: ED.1.9.2 | PATCH_WIN | RESOURCE | Disable guest account
+#  win_shell: 'net user guest /active:no'
+#  register: __ed_1_9_2_disabled_guest
+#  when:
+#    - ed_1_9_2
+#    - __ed_1_9_2_active
+#  tags:
+#    - ED.1.9.2
+#    - patch
+#    - resource
+#    - B
+#
+#- name: ED.1.9.2 | PATCH_WIN | RESOURCE | Rename guest account
+#  win_shell: 'wmic useraccount where name="guest" rename afi_guest'
+#  when:
+#    - ed_1_9_2
+#    - __ed_1_9_2_disabled_guest
+#  tags:
+#    - ED.1.9.2
+#    - patch
+#    - resource
+#    - B
+
+########################################
+# ED.1.9.3 - There is no obvious way to implement this task right now.
+########################################
+
+- name: ED.1.9.4 | PATCH_WIN | ADVANCED | UAC must remain enabled
+  win_regedit:
+    key: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    value: EnableLUA
+    data: 1
+    datatype: dword
+  when: ed_1_9_4
+  register: __ed_1_9_4
+  tags:
+    - ED.1.9.4
+    - patch
+    - advanced
+    - B
+
+- name: ED.1.9.4 | GATHER_INFO_WIN | ADVANCED | Gather audit data
+  win_reg_stat:
+    path: 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: EnableLUA
+  register: __ed_1_9_4_audit
+  when:
+    - ed_1_9_4
+    - ansible_check_mode
+  tags:
+    - ED.1.9.4
+    - audit
+    - advanced
+    - B
+
+- name: ED.1.9.4 | AUDIT_WIN | ADVANCED | UAC must remain enabled
+  debug:
+    msg: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System Key: EnableLUA | Current:{{ ('value' in __ed_1_9_4_audit) |ternary(__ed_1_9_4_audit.value, 'Non-existent key') }}  }} | Desired:0x01"
+  when: __ed_1_9_4_audit and 'skipped' not in __ed_1_9_4_audit and __ed_1_9_4_audit.value != 1
+  tags:
+    - ED.1.9.4
+    - audit
+    - advanced
+    - B
+
+################################################################################ 
+# ED.2.0.1  is duplicated by ED.99.3.16 and ED.99.3.17
+################################################################################ 
+

@@ -1,0 +1,58 @@
+
+
+- win_updates:
+    category_names:
+      - CriticalUpdates
+  register: update_result
+
+- win_reboot:
+    shutdown_timeout_sec: 3600
+    reboot_timeout_sec: 3600
+  when: update_result.reboot_required
+
+
+
+#- name: Copy a Windows Update file from remote directory to local
+#  win_copy:
+#    src: \\172.16.32.239\Installs\Windows8.1-KB3164035-x64.msu
+#    dest: c:\Windows8.1-KB3164035-x64.msu
+#    remote_src: True
+
+#- name: Install Windows Update for KB3164035
+#  win_shell: c:\Windows8.1-KB3164035-x64.msu /quiet /norestart
+#  register: patch
+
+#- debug:
+#    var: patch
+
+#- name: Reboot Windows
+#  win_reboot:
+
+
+
+#- name: Install Windows Update for KB4013418
+#  win_package:
+#    path: c:\windows10.0-kb4013418-x64.msu
+#    productid: '{D64B6984-242F-32BC-B008-752806E5FC44}.KB4013418'
+#    arguments: '/quiet /norestart'
+#    ensure: present
+#    expected_return_code: [0,3010]
+#  register: patch
+
+
+
+
+
+
+
+
+
+#- win_updates:
+#  register: update_result
+
+#- win_reboot:
+#    shutdown_timeout_sec: 3600
+#    reboot_timeout_sec: 3600
+
+
+

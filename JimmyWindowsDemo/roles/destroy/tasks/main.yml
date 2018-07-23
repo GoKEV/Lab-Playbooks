@@ -1,0 +1,9 @@
+- name: Power off VM
+  vsphere_guest:
+    vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
+    username: "{{ lookup('env', 'VMWARE_USER') }}"
+    password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
+    guest: "{{ inventory_hostname }}"
+    state: absent
+    force: yes
+    validate_certs: False

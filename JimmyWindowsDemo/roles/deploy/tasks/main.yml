@@ -1,0 +1,55 @@
+- name: Clone template or virtual machine and customize
+  vmware_guest:
+    datacenter: "{{ vCenterDatacenter }}"
+    cluster: "{{ vCenterCluster }}"
+    resource_pool: "{{ vCenterResourcePool|default(omit, True) }}"
+    folder: "/{{ vCenterFolder }}"
+    name: "{{ inventory_hostname }}"
+    template: "{{ vCenterCloneSource }}"
+    snapshot_src: "{{ VCenterCloneSnapshot }}"
+    linked_clone: True
+    state: poweredon
+    wait_for_ip_address: true
+    validate_certs: False
+    networks:
+    - name: "{{ vCenterPortGroup }}"
+      ip: "{{ ansible_host }}"
+      netmask: "{{ VMSubnetMask }}"
+      gateway: "{{ VMGateway }}"
+      dns_servers:
+      - "{{ dns_server1 }}"
+      - "{{ dns_server2 }}"
+    hardware:
+      memory_mb: "{{ VMMemory }}"
+      num_cpus: "{{ VMCPUs }}"
+    customization:
+      autologon: True
+      orgname: POC-DEMO
+      fullname: POC-DEMO
+      # timezone 20 = Central Standard Time
+      # For more info see https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx[msdn.microsoft.com]
+      timezone: 20
+      password: "{{ VMPassword }}"
+      dns_servers:
+      - "{{ dns_server1 }}"
+      - "{{ dns_server2 }}"
+      runonce:
+      - powershell.exe -ExecutionPolicy Unrestricted -File C:\ConfigureWinRM.ps1 -ForceNewSSLCert -EnableCredSSP
+      - winrm set winrm/config/service/auth @{Basic="true"}
+      - winrm set winrm/config/service @{AllowUnencrypted="true"}
+  register: newvm
+
+
+- name: Wait for SysPrep to complete
+  wait_for:
+    host: "{{ ansible_host | default(inventory_hostname) }}"
+    port: 5986
+    delay: 120
+    timeout: 600
+  when: newvm.changed
+
+
+
+
+
+

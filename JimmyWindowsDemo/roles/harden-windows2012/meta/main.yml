@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Sam Doran, Marcelo Giles
+  description:
+  company: Ansible by Red Hat
+  license: MIT
+  min_ansible_version: 2.3
+
+  platforms:
+  - name: Windows
+    versions:
+      - 2012R2
+
+  galaxy_tags:
+    - system
+    - security
+    - windows
+
+dependencies: []

@@ -1,0 +1,1316 @@
+- name: ED.1.5.1 | PATCH_WIN | NETWORK | Disable NNTP
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+      value: EnableTcpNntp
+      data: 0
+  when: ed_1_5_1
+  register: __ed_1_5_1
+  tags:
+    - ED.1.5.1
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.1 | GATHER_INFO_WIN | NETWORK | Check NNTP Port
+  local_action:
+    module: wait_for
+    port: 119
+    host: "{{ inventory_hostname }}"
+    timeout: 5
+  register: __ed_1_5_1_audit
+  when:
+    - ed_1_5_1
+    - ansible_check_mode
+  tags:
+    - ED.1.5.1
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.1 | AUDIT_WIN | NETWORK | Disable NNTP
+  debug:
+    msg: "Port check NNTP {{ __ed_1_5_1_audit }}"
+  when:
+    - ed_1_5_1
+    - ansible_check_mode
+    - __ed_1_5_1_audit
+  tags:
+    - ED.1.5.1
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.2 | PATCH_WIN | NETWORK | Disable X-Windows
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+      value: EnableTcpXWindows
+      data: 0
+  when: ed_1_5_2
+  register: __ed_1_5_2
+  tags:
+    - ED.1.5.2
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.2 | GATHER_INFO_WIN | NETWORK | Disable X-Windows
+  local_action:
+    module: wait_for
+    port: 6000
+    host: "{{ inventory_hostname }}"
+    timeout: 5
+  register: __ed_1_5_2_audit
+  when:
+    - ed_1_5_2
+    - ansible_check_mode
+  tags:
+    - ED.1.5.2
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.2 | AUDIT_WIN | NETWORK | Disable X-Windows
+  debug:
+    msg: "Port check REXD {{ __ed_1_5_2_audit }}"
+  when:
+    - ed_1_5_2
+    - ansible_check_mode
+    - __ed_1_5_2_audit
+  tags:
+    - ED.1.5.2
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.3 | PATCH_WIN | NETWORK | Disable REXD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+      value: EnableTcpRexd
+      data: 0
+  when: ed_1_5_3
+  register: __ed_1_5_3
+  tags:
+    - ED.1.5.3
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.3 | GATHER_INFO_WIN | NETWORK | Check if REXD is running
+  win_shell: (Get-Service -name *rexd).Status
+  register: __ed_1_5_3_audit
+  when:
+    - ed_1_5_3
+    - ansible_check_mode
+  tags:
+    - ED.1.5.3
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.3 | AUDIT_WIN | NETWORK | Disable REXD
+  debug:
+    msg: "Port check REXD {{ __ed_1_5_3_audit }}"
+  when:
+    - ed_1_5_3
+    - ansible_check_mode
+    - __ed_1_5_3_audit
+  tags:
+    - ED.1.5.3
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.4.1 | PATCH_WIN | NETWORK | TCP/IP Anonymous FTP access
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+      value: AllowAnonymous
+      data: 0
+      datatype: dword
+  when: ed_1_5_4_1
+  register: __ed_1_5_4_1
+  tags:
+    - ED.1.5.4.1
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.4.1 | GATHER_INFO_WIN | NETWORK | TCP/IP Anonymous FTP access
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+    name: AllowAnonymous
+  register: __ed_1_5_4_1_audit
+  when:
+    - ed_1_5_4_1
+    - ansible_check_mode
+  tags:
+    - ED.1.5.4.1
+    - B
+    - audit
+    - network
+
+- name: ED.1.5.4.1 | AUDIT_WIN | NETWORK | TCP/IP Anonymous FTP access
+  debug:
+    msg: "AllowAnonymous FTP {{ __ed_1_5_4_1_audit }}"
+  when:
+    - ed_1_5_4_1
+    - ansible_check_mode
+    - __ed_1_5_4_1_audit
+  tags:
+    - ED.1.5.4.1
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.4.2 | PATCH_WIN | NETWORK | TCP/IP Anonymous FTP Directory access
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+      value: IsEnabled
+      data: 0
+      datatype: dword
+  when: ed_1_5_4_2
+  register: __ed_1_5_4_2
+  tags:
+    - ED.1.5.4.2
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.4.2 | GATHER_INFO_WIN | NETWORK | TCP/IP Anonymous FTP Directory access
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+    name: DefaultDir
+  register: __ed_1_5_4_2_audit
+  when:
+    - ed_1_5_4_2
+    - ansible_check_mode
+  tags:
+    - ED.1.5.4.2
+    - B
+    - audit
+    - network
+
+- name: ED.1.5.4.2 | AUDIT_WIN | NETWORK | TCP/IP Anonymous FTP Directory access
+  debug:
+    msg: "FTP DefaultDir {{ __ed_1_5_4_2_audit }}"
+  when:
+    - ed_1_5_4_2
+    - ansible_check_mode
+    - __ed_1_5_4_2_audit
+  tags:
+    - ED.1.5.4.2
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.4.3 | PATCH_WIN | NETWORK | TCP/IP FTP Service disabled 
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+      value: IsEnabled
+      data: 0
+      datatype: dword
+  when: ed_1_5_4_3
+  register: __ed_1_5_4_3
+  tags:
+    - ED.1.5.4.3
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.4.3 | GATHER_INFO_WIN | NETWORK | TCP/IP FTP Service disabled
+  win_reg_stat:
+    path: 'HKLM:\System\CurrentControlSet\Services\MSFTPSVC\Parameters'
+    name: IsEnabled
+  register: __ed_1_5_4_3_audit
+  when:
+    - ed_1_5_4_3
+    - ansible_check_mode
+  tags:
+    - ED.1.5.4.3
+    - B
+    - audit
+    - network
+
+- name: ED.1.5.4.3 | AUDIT_WIN | NETWORK | TCP/IP Anonymous FTP not installed
+  debug:
+    msg: "FTPD IsEnabled {{ __ed_1_5_4_3_audit }}" 
+  when:
+    - ed_1_5_4_3
+    - ansible_check_mode
+    - __ed_1_5_4_3_audit
+  tags:
+    - ED.1.5.4.3
+    - B
+    - audit
+    - network
+
+
+########################################
+
+- name: ED.1.5.5 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable TFTP
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableUdpTftp
+      data: 0
+  when: ed_1_5_5
+  register: __ed_1_5_5
+  tags:
+    - ED.1.5.5
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.5 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check TFTP
+  #command: "nc -z {{ inventory_hostname }} 69"
+  local_action:
+    module: wait_for
+    port: 69
+    host: "{{ inventory_hostname }}"
+    timeout: 5
+  register: __ed_1_5_5_audit
+  when:
+    - ed_1_5_5
+    - ansible_check_mode
+  tags:
+    - ED.1.5.5
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.5 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check TFTP
+  debug:
+    msg: "Port check TFTP {{ __ed_1_5_5_audit }}"
+  when:
+    - ed_1_5_5
+    - ansible_check_mode
+    - __ed_1_5_5_audit
+  tags:
+    - ED.1.5.5
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.6.1 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable ECHO
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpEcho
+      data: 0
+  when: ed_1_5_6_1
+  register: __ed_1_5_6_1
+  tags:
+    - ED.1.5.6.1
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.6.1 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check ECHO
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 7
+    timeout: 5
+  register: __ed_1_5_6_1_audit
+  when:
+    - ed_1_5_6_1
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.1
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.1 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check ECHO
+  debug:
+    msg: "Port check ECHO {{ __ed_1_5_6_1_audit }}"
+  when:
+    - ed_1_5_6_1
+    - ansible_check_mode
+    - __ed_1_5_6_1_audit
+  tags:
+    - ED.1.5.6.1
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.6.2 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable CHARGEN
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpChargen
+      data: 0
+  when: ed_1_5_6_2
+  register: __ed_1_5_6_2
+  tags:
+    - ED.1.5.6.2
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.6.2 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check CHARGEN
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 19
+    timeout: 5
+  register: __ed_1_5_6_2_audit
+  when:
+    - ed_1_5_6_2
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.2
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.2 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check CHARGEN
+  debug:
+    msg: "Port check CHARGEN {{ __ed_1_5_6_2_audit }}"
+  when:
+    - ed_1_5_6_2
+    - ansible_check_mode
+    - __ed_1_5_6_2_audit
+  tags:
+    - ED.1.5.6.2
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.6.3 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable FINGER
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpFinger
+      data: 0
+  when: ed_1_5_6_3
+  register: __ed_1_5_6_3
+  tags:
+    - ED.1.5.6.3
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.6.3 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check FINGER
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 79
+    timeout: 5
+  register: __ed_1_5_6_3_audit
+  when:
+    - ed_1_5_6_3
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.3
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.3 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check FINGER
+  debug:
+    msg: "Port check FINGER {{ __ed_1_5_6_3_audit }}"
+  when:
+    - ed_1_5_6_3
+    - ansible_check_mode
+    - __ed_1_5_6_3_audit 
+  tags:
+    - ED.1.5.6.3
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.6.4 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable DISCARD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpDiscard 
+      data: 0
+  when: ed_1_5_6_4
+  register: __ed_1_5_6_4
+  tags:
+    - ED.1.5.6.4
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.6.4 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check DISCARD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 9
+    timeout: 5
+  register: __ed_1_5_6_4_audit
+  when:
+    - ed_1_5_6_4
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.4
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.4 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check DISCARD
+  debug:
+    msg: "Port check DISCARD {{ __ed_1_5_6_4_audit }}"
+  when:
+    - ed_1_5_6_4
+    - ansible_check_mode
+    - __ed_1_5_6_4_audit 
+  tags:
+    - ED.1.5.6.4
+    - B
+    - audit
+    - network
+
+
+
+########################################
+
+- name: ED.1.5.6.5 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable SYSTAT
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpSystat
+      data: 0
+  when: ed_1_5_6_5
+  register: __ed_1_5_6_5
+  tags:
+    - ED.1.5.6.5
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.6.5 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check SYSTAT
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 11
+    timeout: 5
+  register: __ed_1_5_6_5_audit
+  when:
+    - ed_1_5_6_5
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.5
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.5 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check SYSTAT
+  debug:
+    msg: "Port check systat {{ __ed_1_5_6_3_audit }}"
+  when:
+    - ed_1_5_6_5
+    - ansible_check_mode
+    - __ed_1_5_6_5_audit 
+  tags:
+    - ED.1.5.6.5
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.6.6 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable DAYTIME
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpDaytime 
+      data: 0
+  when: ed_1_5_6_6
+  register: __ed_1_5_6_6
+  tags:
+    - ED.1.5.6.6
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.6.6 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check DAYTIME
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 13
+    timeout: 5
+  register: __ed_1_5_6_6_audit
+  when:
+    - ed_1_5_6_6
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.6
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.6 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check DAYTIME
+  debug:
+    msg: "Port check DAYTIME {{ __ed_1_5_6_3_audit }}"
+  when:
+    - ed_1_5_6_6
+    - ansible_check_mode
+    - __ed_1_5_6_6_audit 
+  tags:
+    - ED.1.5.6.6
+    - B
+    - audit
+    - network
+
+
+########################################
+
+- name: ED.1.5.6.7 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - NETSTAT
+  win_command: NETSTAT.EXE
+  register: __ed_1_5_6_7_audit
+  when:
+    - ed_1_5_6_7
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.7
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.7 | AUDIT_WIN | NETWORK | Denial of Service Prevention - NETSTAT
+  debug:
+    msg: "NETSTAT.EXE command {{ __ed_1_5_6_7_audit }}"
+  when:
+    - ed_1_5_6_7
+    - ansible_check_mode
+    - __ed_1_5_6_7_audit 
+  tags:
+    - ED.1.5.6.7
+    - B
+    - audit
+    - network
+
+- name: ED.1.5.6.7 | PATCH_WIN | NETWORK | Denial of Service Prevention - Install  NETSTAT
+  win_chocolatey:
+      name: NETSTAT
+      state: present
+  when: 
+    - ed_1_5_6_7
+    - __ed_1_5_6_7_audit.rc != 0
+  register: __ed_1_5_6_7
+  tags:
+    - ED.1.5.6.7
+    - B
+    - patch
+    - network
+
+########################################
+
+- name: ED.1.5.6.8 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable WHO
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableUdpWho
+      data: 0
+  when: ed_1_5_6_8
+  register: __ed_1_5_6_8
+  tags:
+    - ED.1.5.6.8
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.6.8 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check WHO
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 513
+    timeout: 5
+  register: __ed_1_5_6_8_audit
+  when:
+    - ed_1_5_6_8
+    - ansible_check_mode
+  tags:
+    - ED.1.5.6.8
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.6.8 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check WHO
+  debug:
+    msg: "Port check who {{ __ed_1_5_6_8_audit }}"
+  when:
+    - ed_1_5_6_8
+    - ansible_check_mode
+    - __ed_1_5_6_8_audit 
+  tags:
+    - ED.1.5.6.8
+    - B
+    - audit
+    - network
+
+
+########################################
+
+- name: ED.1.5.7.3 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable RSTATD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpRstatd
+      data: 0
+  when: ed_1_5_7_3
+  register: __ed_1_5_7_3
+  tags:
+    - ED.1.5.7.3
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.3 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check RSTATD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 111
+    timeout: 5
+  register: __ed_1_5_7_3_audit
+  when:
+    - ed_1_5_7_3
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.3
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.3 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check RSTATD
+  debug:
+    msg: "Port check RSTATD {{ __ed_1_5_7_3_audit }}"
+  when:
+    - ed_1_5_7_3
+    - ansible_check_mode
+    - __ed_1_5_7_3_audit 
+  tags:
+    - ED.1.5.7.3
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.7.5 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable RWALLD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableUdpWho
+      data: 0
+  when: ed_1_5_7_5
+  register: __ed_1_5_7_5
+  tags:
+    - ED.1.5.7.5
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.5 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check RWALLD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 513
+    timeout: 5
+  register: __ed_1_5_7_5_audit
+  when:
+    - ed_1_5_7_5
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.5
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.5 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check RWALLD
+  debug:
+    msg: "Port check RWALLD {{ __ed_1_5_7_5_audit }}"
+  when:
+    - ed_1_5_7_5
+    - ansible_check_mode
+    - __ed_1_5_7_5_audit 
+  tags:
+    - ED.1.5.7.5
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.7.6 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable RUSERD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpTftp
+      data: 0
+  when: ed_1_5_7_6
+  register: __ed_1_5_7_6
+  tags:
+    - ED.1.5.7.6
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.6 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check RUSERD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 69
+    timeout: 5
+  register: __ed_1_5_7_6_audit
+  when:
+    - ed_1_5_7_6
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.6
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.6 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check RUSERD
+  debug:
+    msg: "Port check RUSERD {{ __ed_1_5_7_6_audit }}"
+  when:
+    - ed_1_5_7_6
+    - ansible_check_mode
+    - __ed_1_5_7_6_audit 
+  tags:
+    - ED.1.5.7.6
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.7.9 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable BOOTPS
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableUdpBootps
+      data: 0
+  when: ed_1_5_7_9
+  register: __ed_1_5_7_9
+  tags:
+    - ED.1.5.7.9
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.9 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check BOOTPS
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 67
+    timeout: 5
+  register: __ed_1_5_7_9_audit
+  when:
+    - ed_1_5_7_9
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.9
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.9 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check BOOTPS
+  debug:
+    msg: "Port check BOOTPS {{ __ed_1_5_7_9_audit }}"
+  when:
+    - ed_1_5_7_9
+    - ansible_check_mode
+    - __ed_1_5_7_9_audit 
+  tags:
+    - ED.1.5.7.9
+    - B
+    - audit
+    - network
+
+
+
+########################################
+
+- name: ED.1.5.7.11 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable SPRAYD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpSprayd
+      data: 0
+  when: ed_1_5_7_11
+  register: __ed_1_5_7_11
+  tags:
+    - ED.1.5.7.11
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.11 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check SPRAYD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 32776 
+    timeout: 5
+  register: __ed_1_5_7_11_audit
+  when:
+    - ed_1_5_7_11
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.11
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.11 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check SPRAYD
+  debug:
+    msg: "Port check SPRAYD {{ __ed_1_5_7_11_audit }}"
+  when:
+    - ed_1_5_7_11
+    - ansible_check_mode
+    - __ed_1_5_7_11_audit 
+  tags:
+    - ED.1.5.7.11
+    - B
+    - audit
+    - network
+
+
+########################################
+
+- name: ED.1.5.7.12 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable PCNFSD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpPcnfsd
+      data: 0
+  when: ed_1_5_7_12
+  register: __ed_1_5_7_12
+  tags:
+    - ED.1.5.7.12
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.12 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check PCNFSD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 4045
+    timeout: 5
+  register: __ed_1_5_7_12_audit
+  when:
+    - ed_1_5_7_12
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.12
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.12 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check PCNFSD
+  debug:
+    msg: "Port check PCNFSD {{ __ed_1_5_7_12_audit }}"
+  when:
+    - ed_1_5_7_12
+    - ansible_check_mode
+    - __ed_1_5_7_12_audit 
+  tags:
+    - ED.1.5.7.12
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.7.14 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable RWHO
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpRwho
+      data: 0
+  when: ed_1_5_7_14
+  register: __ed_1_5_7_14
+  tags:
+    - ED.1.5.7.14
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.14 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check RWHO
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 550
+    timeout: 5
+  register: __ed_1_5_7_14_audit
+  when:
+    - ed_1_5_7_14
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.14
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.14 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check RWHO
+  debug:
+    msg: "Port check RWHO {{ __ed_1_5_7_14_audit }}"
+  when:
+    - ed_1_5_7_14
+    - ansible_check_mode
+    - __ed_1_5_7_14_audit 
+  tags:
+    - ED.1.5.7.14
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.7.15 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable CMSD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpCmsd
+      data: 0
+  when: ed_1_5_7_15
+  register: __ed_1_5_7_15
+  tags:
+    - ED.1.5.7.15
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.15 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check CMSD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 956
+    timeout: 5
+  register: __ed_1_5_7_15_audit
+  when:
+    - ed_1_5_7_15
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.15
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.15 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check CMSD
+  debug:
+    msg: "Port check CMSD {{ __ed_1_5_7_15_audit }}"
+  when:
+    - ed_1_5_7_15
+    - ansible_check_mode
+    - __ed_1_5_7_15_audit 
+  tags:
+    - ED.1.5.7.15
+    - B
+    - audit
+    - network
+
+
+########################################
+
+- name: ED.1.5.7.16 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable DTSPCD
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpRwho
+      data: 0
+  when: ed_1_5_7_16
+  register: __ed_1_5_7_16
+  tags:
+    - ED.1.5.7.16
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.16 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check DTSPCD
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 6112
+    timeout: 5
+  register: __ed_1_5_7_16_audit
+  when:
+    - ed_1_5_7_16
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.16
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.16 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check DTSPCD
+  debug:
+    msg: "Port check DTSPCD {{ __ed_1_5_7_16_audit }}"
+  when:
+    - ed_1_5_7_16
+    - ansible_check_mode
+    - __ed_1_5_7_16_audit 
+  tags:
+    - ED.1.5.7.16
+    - B
+    - audit
+    - network
+
+
+########################################
+
+- name: ED.1.5.7.17 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable TTDBSERVER
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpRwho
+      data: 0
+  when: ed_1_5_7_17
+  register: __ed_1_5_7_17
+  tags:
+    - ED.1.5.7.17
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.17 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check TTDBSERVER
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 1524
+    timeout: 5
+  register: __ed_1_5_7_17_audit
+  when:
+    - ed_1_5_7_17
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.17
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.17 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check TTDBSERVER
+  debug:
+    msg: "Port check TTDBSERVER {{ __ed_1_5_7_17_audit }}"
+  when:
+    - ed_1_5_7_17
+    - ansible_check_mode
+    - __ed_1_5_7_17_audit 
+  tags:
+    - ED.1.5.7.17
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.7.18 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable TELNET
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpTelnet
+      data: 0
+  when: ed_1_5_7_18
+  register: __ed_1_5_7_18
+  tags:
+    - ED.1.5.7.18
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.18 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check TELNET
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 23
+    timeout: 5
+  register: __ed_1_5_7_18_audit
+  when:
+    - ed_1_5_7_18
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.18
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.18 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check TELNET
+  debug:
+    msg: "Port check TELNET {{ __ed_1_5_7_18_audit }}"
+  when:
+    - ed_1_5_7_18
+    - ansible_check_mode
+    - __ed_1_5_7_18_audit 
+  tags:
+    - ED.1.5.7.18
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.7.19 | PATCH_WIN | NETWORK | Denial of Service Prevention - Disable FTP
+  win_regedit:
+      key: 'HKLM:\System\CurrentControlSet\Services\SimpTCP\Parameters'
+      value: EnableTcpFtp
+      data: 0
+  when: ed_1_5_7_19
+  register: __ed_1_5_7_19
+  tags:
+    - ED.1.5.7.19
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.7.19 | GATHER_INFO_WIN | NETWORK | Denial of Service Prevention - Port check FTP
+  local_action:
+    module: wait_for
+    host: "{{ inventory_hostname }}"
+    port: 21
+    timeout: 5
+  register: __ed_1_5_7_19_audit
+  when:
+    - ed_1_5_7_19
+    - ansible_check_mode
+  tags:
+    - ED.1.5.7.19
+    - B
+    - audit
+    - network
+  ignore_errors: true
+  check_mode: no
+
+- name: ED.1.5.7.19 | AUDIT_WIN | NETWORK | Denial of Service Prevention - Port check FTP
+  debug:
+    msg: "Port check FTP {{ __ed_1_5_7_19_audit }}"
+  when:
+    - ed_1_5_7_19
+    - ansible_check_mode
+    - __ed_1_5_7_19_audit 
+  tags:
+    - ED.1.5.7.19
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.8.1 | PATCH_WIN | NETWORK | Public community name in SNMP service
+  win_regedit:
+      path: 'HKLM:\SYSTEM\CurrentControlSet\services\SNMP\Parameters\ValidCommunities\public'
+      state: absent
+  when: ed_1_5_8_1
+  register: __ed_1_5_8_1
+  tags:
+    - ED.1.5.8.1
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.8.1 | GATHER_INFO_WIN | NETWORK | Public community name in SNMP service 
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\services\SNMP\Parameters\ValidCommunities'
+    name: public
+  register: __ed_1_5_8_1_audit
+  when:
+    - ed_1_5_8_1
+    - ansible_check_mode
+  tags:
+    - ED.1.5.8.1
+    - B
+    - audit
+    - network
+
+- name: ED.1.5.8.1 | AUDIT_WIN | NETWORK | Public community name in SNMP service 
+  debug:
+    msg: "Public SNMP community name {{ __ed_1_5_8_1_audit }}"
+  when:
+    - ed_1_5_8_1
+    - ansible_check_mode
+    - __ed_1_5_8_1_audit
+  tags:
+    - ED.1.5.8.1
+    - B
+    - audit
+    - network
+
+########################################
+
+- name: ED.1.5.8.2 | PATCH_WIN | NETWORK | Private community name in SNMP service 
+  win_regedit:
+      key: 'HKLM:\SYSTEM\CurrentControlSet\services\SNMP\Parameters\ValidCommunities\private'
+      state: absent
+  when: ed_1_5_8_2
+  register: __ed_1_5_8_2
+  tags:
+    - ED.1.5.8.2
+    - B
+    - patch
+    - network
+
+- name: ED.1.5.8.2 | GATHER_INFO_WIN | NETWORK | Private community name in SNMP service 
+  win_reg_stat:
+    path: 'HKLM:\SYSTEM\CurrentControlSet\services\SNMP\Parameters\ValidCommunities'
+    name: private
+  register: __ed_1_5_8_2_audit
+  when:
+    - ed_1_5_8_2
+    - ansible_check_mode
+  tags:
+    - ED.1.5.8.2
+    - B
+    - audit
+    - network
+
+- name: ED.1.5.8.2 | AUDIT_WIN | NETWORK | Private community name in SNMP service 
+  debug:
+    msg: "Private SNMP community name {{ __ed_1_5_8_2_audit }}"
+  when:
+    - ed_1_5_8_2
+    - ansible_check_mode
+    - __ed_1_5_8_2_audit
+  tags:
+    - ED.1.5.8.2
+    - B
+    - audit
+    - network
