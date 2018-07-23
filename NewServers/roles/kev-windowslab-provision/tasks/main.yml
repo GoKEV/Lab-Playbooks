@@ -23,7 +23,7 @@
     - name: "{{ vmware_network }}"
       ip: "{{ item.vm_ip }}"
       netmask: "{{ item.vm_mask }}"
-      mac: "{{ item.vm_mac }}"
+#      mac: "{{ item.vm_mac }}"
   with_items:  "{{ vmware_new_machines }}"
   delegate_to: localhost
   changed_when: False
