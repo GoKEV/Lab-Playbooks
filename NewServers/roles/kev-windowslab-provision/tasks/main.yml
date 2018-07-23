@@ -1,5 +1,5 @@
 ---
-- name: "Deploy new VM called {{ vmware_new_hostname }} with {{ vm_cpu_count }} CPUs, {{ vmware_disk_size }} HDD, {{ vmware_ram_mb }} RAM with {{ vmware_network }} network from {{ vmware_template_name }} template."
+- name: "Deploy new VM called {{ item.vm_name }}"
   vmware_guest:
     datacenter: "{{ vmware_datacenter }}"
     cluster: "{{ vmware_cluster }}"
