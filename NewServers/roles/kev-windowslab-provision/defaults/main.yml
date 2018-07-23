@@ -20,3 +20,4 @@ vmware_new_machines:
   - vm_name: WindowsLab01
     vm_ip: NULL
     vm_mask: NULL
+    vm_gw: NULL

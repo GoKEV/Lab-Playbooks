@@ -24,21 +24,9 @@
     - name: "{{ vmware_network }}"
       ip: "{{ item.vm_ip }}"
       netmask: "{{ item.vm_mask }}"
+      gateway: "{{ item.vm_gw }}"
       start_connected: "{{ vmware_net_start_connected }}"
 
-  with_items:  "{{ vmware_new_machines }}"
-  delegate_to: localhost
-  changed_when: False
-
-
-
-- name: Revert to a NEKD snapshot
-  vmware_guest_snapshot:
-    datacenter: "{{ vmware_datacenter }}"
-    folder: "{{ vmware_folder }}"
-    name: "{{ item.vm_name }}"
-    state: revert
-    snapshot_name: NEKD
   with_items:  "{{ vmware_new_machines }}"
   delegate_to: localhost
   changed_when: False
