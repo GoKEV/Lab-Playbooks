@@ -1,0 +1,29 @@
+---
+# defaults file for kev-vmware-provision/---
+
+vmware_datacenter: 'KEV Datacenter'
+vmware_cluster: 'KEV Cluster'
+vmware_resource_pool: WindowsLab
+vmware_template_name: Windows2016-Template
+vmware_datastore: VMNFS
+vmware_folder: '/'
+vmware_disk_size: 50
+vmware_ram_mb: 4096
+vm_cpu_count: 2
+vm_core_per_cpu: 1
+vmware_network: VLAN20
+vmware_state: poweredon
+
+vmware_new_machines:
+  - vm_name: WindowsLab01
+    vm_ip: 10.0.20.201
+    vm_mask: 255.255.255.0
+    vm_mac: FF:FF:FF:FF:00:01
+  - vm_name: WindowsLab02
+    vm_ip: 10.0.20.202
+    vm_mask: 255.255.255.0
+    vm_mac: FF:FF:FF:FF:00:02
+  - vm_name: WindowsLab03
+    vm_ip: 10.0.20.203
+    vm_mask: 255.255.255.0
+    vm_mac: FF:FF:FF:FF:00:03
