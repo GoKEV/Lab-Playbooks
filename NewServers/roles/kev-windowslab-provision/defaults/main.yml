@@ -4,7 +4,7 @@
 vmware_datacenter: 'KEV Datacenter'
 vmware_cluster: 'KEV Cluster'
 vmware_resource_pool: WindowsLab
-vmware_template_name: Windows2016-Template
+vmware_template_name: TEMPLATE-Windows2016
 vmware_datastore: VMNFS
 vmware_folder: '/'
 vmware_disk_size: 50
