@@ -15,6 +15,6 @@
     - password
     - logging
     - system
-    - network
+#    - network
     - resources
     - advanced
