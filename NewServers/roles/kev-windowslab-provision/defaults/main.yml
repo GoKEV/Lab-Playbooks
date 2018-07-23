@@ -7,7 +7,7 @@ vmware_resource_pool: WindowsLab
 vmware_template_name: TEMPLATE-Windows2016
 vmware_datastore: VMNFS
 vmware_folder: '/'
-vmware_disk_size: 50
+vmware_disk_size: 60
 vmware_ram_mb: 4096
 vm_cpu_count: 2
 vm_core_per_cpu: 1

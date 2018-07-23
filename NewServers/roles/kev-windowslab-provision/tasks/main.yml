@@ -29,7 +29,7 @@
 
 
 
-- name: Revert to a snapshot
+- name: Revert to a NEKD snapshot
   vmware_guest_snapshot:
     datacenter: "{{ vmware_datacenter }}"
     folder: "{{ vmware_folder }}"
