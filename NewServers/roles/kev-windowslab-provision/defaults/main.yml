@@ -13,14 +13,9 @@ vm_cpu_count: 2
 vm_core_per_cpu: 1
 vmware_network: VLAN20
 vmware_state: poweredon
+vmware_linked_clone: False
 
 vmware_new_machines:
   - vm_name: WindowsLab01
-    vm_ip: 10.0.20.201
-    vm_mask: 255.255.255.0
-  - vm_name: WindowsLab02
-    vm_ip: 10.0.20.202
-    vm_mask: 255.255.255.0
-  - vm_name: WindowsLab03
-    vm_ip: 10.0.20.203
-    vm_mask: 255.255.255.0
+    vm_ip: NULL
+    vm_mask: NULL

@@ -6,7 +6,7 @@
     resource_pool: "{{ vmware_resource_pool }}"
     name: "{{ item.vm_name }}"
     template: "{{ vmware_template_name }}"
-    linked_clone: True
+    linked_clone: "{{ vmware_linked_clone }}"
     wait_for_ip_address: no
     folder: "{{ vmware_folder }}"
     state: "{{ vmware_state }}"
