@@ -1,6 +1,5 @@
 - name: Run our security hardening against a server
   hosts: all
-  vars:
 
   roles:
   - harden-windows2012
