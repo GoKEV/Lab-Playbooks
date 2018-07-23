@@ -24,6 +24,8 @@
     - name: "{{ vmware_network }}"
       ip: "{{ item.vm_ip }}"
       netmask: "{{ item.vm_mask }}"
+      start_connected: "{{ vmware_net_start_connected }}"
+
   with_items:  "{{ vmware_new_machines }}"
   delegate_to: localhost
   changed_when: False
