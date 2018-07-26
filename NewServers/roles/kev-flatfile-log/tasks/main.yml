@@ -5,7 +5,7 @@
     path: "{{ flatfile_log_file }}"
     status: file
     mode: 0644
-
+  delegate_to: localhost
 
 - name: Write a variable to a plain text log file
   lineinfile:
