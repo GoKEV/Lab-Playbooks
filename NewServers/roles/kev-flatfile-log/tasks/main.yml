@@ -3,8 +3,7 @@
 - name: "Make sure {{ flatfile_log_file }} exists"
   file:
     path: "{{ flatfile_log_file }}"
-    owner: awx
-    group: awx
+    status: file
     mode: 0644
 
 
