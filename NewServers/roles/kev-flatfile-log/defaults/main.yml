@@ -1,2 +1,6 @@
 ---
 # defaults file for kev-flatfile-log
+
+flatfile_log_file kev-flatfile-log.txt
+flatfile_log_line: GoKEV! GoKEV! GoKEV!
+

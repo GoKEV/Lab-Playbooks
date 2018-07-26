@@ -1,9 +1,17 @@
 ---
 # tasks file for kev-flatfile-log---
+- name: "Make sure {{ flatfile_log_file }} exists"
+  file:
+    path: "{{ flatfile_log_file }}"
+    owner: awx
+    group: awx
+    mode: 0644
+
+
 - name: Write a variable to a plain text log file
   lineinfile:
-    path: /tmp/proot-writable-file.txt
+    path: "{{ flatfile_log_file }}"
     insertafter: EOF
-    line: "{{ ansible_host }}|{{ ansible_distribution }}"
+    line: "{{ flatfile_log_line }}"
   delegate_to: localhost
 
