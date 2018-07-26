@@ -1,0 +1,9 @@
+---
+# tasks file for kev-flatfile-log---
+- name: Write a variable to a plain text log file
+  lineinfile:
+    path: /tmp/proot-writable-file.txt
+    insertafter: EOF
+    line: "{{ ansible_host }}|{{ ansible_default_ipv4.address }}"
+  delegate_to: localhost
+

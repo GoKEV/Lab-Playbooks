@@ -1,0 +1,6 @@
+---
+- name: Build a VMware guest from template
+  hosts: all
+
+  roles:
+  - kev-flatfile-log
