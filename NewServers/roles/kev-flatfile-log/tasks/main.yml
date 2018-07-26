@@ -4,6 +4,6 @@
   lineinfile:
     path: /tmp/proot-writable-file.txt
     insertafter: EOF
-    line: "{{ ansible_host }}|{{ ansible_default_ipv4.address }}"
+    line: "{{ ansible_host }}|{{ ansible_distribution }}"
   delegate_to: localhost
 
