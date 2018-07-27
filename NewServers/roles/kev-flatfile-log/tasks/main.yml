@@ -3,8 +3,9 @@
 - name: "Make sure {{ flatfile_log_file }} exists"
   file:
     path: "{{ flatfile_log_file }}"
-    status: file
+    state: touch
     mode: 0644
+  changed_when: No
   delegate_to: localhost
 
 - name: Write a variable to a plain text log file
