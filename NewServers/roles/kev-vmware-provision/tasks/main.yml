@@ -19,11 +19,6 @@
 
     networks:
     - name: "{{ vmware_network }}"
-      start_connected: "{{ vmware_net_start_connected }}"
-
-#      ip: "{{ vmware_manual_ip }}"
-#      netmask: "{{ vmware_manual_netmask }}"
-#      mac: "{{ vmware_manual_mac | default(omit) }}"
 
   register: newvminfo
   delegate_to: localhost
