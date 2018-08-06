@@ -7,7 +7,8 @@
 #        "ansible_distribution_file_variety": "RedHat", 
 #        "ansible_distribution_major_version": "7", 
 
-
+## Still need to work out the vars for Windows and if they can use the same module for 2016 and 
+10
 
 - name: Include task list in play
   include: dns_centos.yml
@@ -16,31 +17,4 @@
 - name: Include task list in play
   include: dns_el6.yml
   when: ansible_distribution == "RedHat"
-
-- name: Define the custom MOTD file if this is a RHEL system
-  set_fact:
-    motd_template_file: templates/motd_redhat
-
-- name: Define the MOTD file for any non-RHEL and non-CENT machine
-  set_fact:
-    motd_template_file: templates/motd_generic
-  when: ansible_distribution != "CentOS" and ansible_distribution != "RedHat"
-
-- name: motd template
-  template:
-    src: "{{ motd_template_file }}"
-    dest: /etc/motd
-    owner: root
-    group: wheel
-    mode: 0644
-    backup: yes
-
-- name: issue template
-  template:
-    src: templates/issue
-    dest: /etc/issue
-    owner: root
-    group: wheel
-    mode: 0644
-    backup: yes
 
