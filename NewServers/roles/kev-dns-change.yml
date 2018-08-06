@@ -1,9 +1,9 @@
 ---
-- name: Change DNS on multiple types of servers
+- name: MAIN | Deploying subtasks
   hosts: all
   remote_user: root
   gather_facts: yes
 
 
   roles:
-  - kev-change-dns
+  - kev-dns-change
