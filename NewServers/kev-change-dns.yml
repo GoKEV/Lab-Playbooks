@@ -1,0 +1,9 @@
+---
+- name: Change DNS on multiple types of servers
+  hosts: all
+  remote_user: root
+  gather_facts: yes
+
+
+  roles:
+  - kev-change-dns
