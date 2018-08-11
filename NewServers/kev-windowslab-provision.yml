@@ -1,8 +1,0 @@
----
-- name: Build a VMware guest from template
-  hosts: all
-  connection: local
-  gather_facts: no
-
-  roles:
-  - kev-windowslab-provision
