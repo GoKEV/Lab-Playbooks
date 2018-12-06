@@ -7,5 +7,5 @@
     dummy_message: You can override this dummy_message variable with extra vars if you like.
 
   roles:
-    - GoKEV-dummy-role
+    - GoKEV.dummy-role
 
